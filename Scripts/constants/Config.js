@@ -1,0 +1,1 @@
+﻿export const categoriaAllObject = { Id: "0", Nome: "All" };

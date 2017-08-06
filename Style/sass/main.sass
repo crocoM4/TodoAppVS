@@ -1,0 +1,431 @@
+﻿$font-primary: 'Roboto', sans-serif
+//Colori testo
+$color-accent: #009688
+$color-text-primary: #fff
+$color-text-secondary: #a0acba
+$color-text-third: #475b75
+//Colori sfondo
+$background-color: #0a1523
+$background-color-dark: #050e19
+$background-color-night: #020810
+
+//Proprietà comuni
+$container-border-radius: 10px
+$icon-button-color: #2d3b4d
+$icon-button-color-hover: #FFF
+
+//Chips
+$chip-categoria-border: 1px solid #1e252f
+$chip-categoria-border-hover: 1px solid $color-accent
+$chip-hover-text: #ffffff
+$chip-hover-button-action: #c0d9d7
+$chip-button-action-hover: #00695C
+
+//Input text
+$input-background-color: #0c1622
+$input-text-color: #fff
+$input-placeholder-color: #1a293a
+
+//Button
+$button-border: 1px solid #1e252f
+$button-border-hover: 1px solid $color-accent
+
+//Button text
+$text-button-color: #35383c
+$text-button-color-hover: #475b75
+
+$dialog-item-margin: 60px
+
+//Argomento
+
+body,p,h1,h2,a
+  margin: 0
+  padding: 0
+
+body
+  font-family: $font-primary
+  background-color: $background-color
+
+p
+  color: $color-text-secondary
+
+h2
+  color: $color-text-secondary
+
+
+//Input text plaeholder color
+input::-webkit-input-placeholder
+    color: $input-placeholder-color
+
+input:-moz-placeholder
+   color: $input-placeholder-color
+   opacity: 1
+
+input::-moz-placeholder
+   color: $input-placeholder-color
+   opacity: 1
+
+input:-ms-input-placeholder
+   color: $input-placeholder-color
+
+input::-ms-input-placeholder
+   color: $input-placeholder-color
+
+
+
+//Common style
+.main-input
+  font-family: $font-primary
+  font-weight: 300
+  background-color: $input-background-color
+  color: $input-text-color
+  font-size: 1.4em
+  display: inline-block
+  border: none
+  outline: none
+  padding: 15px 25px
+
+.main-button
+  font-family: $font-primary
+  font-weight: 500
+  font-size: 1.0em
+  display: inline-block
+  min-width: 150px
+  padding: 15px 30px
+  margin: 0 1.25em
+  background-color: $color-accent
+  color: $color-text-primary
+  border-radius: 50px
+  border: $button-border
+  outline: none
+  cursor: pointer
+  transition: all 150ms ease-in-out
+
+.main-button:hover
+  border: $button-border-hover
+
+.text-button
+  font-family: $font-primary
+  font-weight: 500
+  font-size: 1.0em
+  color: $text-button-color
+  background-color: transparent
+  outline: none
+  border: none
+  cursor: pointer
+  transition: all 150ms ease-in-out
+
+.text-button:hover
+  color: $text-button-color-hover
+
+
+#main-container
+  position: relative
+  width: 80%
+  margin: 0 auto 2.5em auto
+
+.centra-elementi
+  display: -ms-inline-flex
+  display: -webkit-inline-flex
+  display: inline-flex
+  -ms-flex-pack: center
+  -webkit-justify-content: center
+  justify-content: center
+  -ms-flex-line-pack: center
+  -webkit-align-content: center
+  align-content: center
+  -ms-flex-align: center
+  -webkit-align-items: center
+  align-items: center
+
+#main-top-bar
+  position: relative
+  display: flex
+  flex-direction: row
+  padding: 2.5em 0
+
+
+#content-menu-categorie
+  flex-direction: row
+  width: 100%
+
+#content-lista-argomenti
+  flex-direction: column
+
+#content-menu-categorie, #content-lista-argomenti
+  //display: block
+  display: flex
+  background-color: $background-color-dark
+  box-sizing: border-box
+  padding: 1.5em 1.25em
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  -webkit-border-radius: $container-border-radius
+  border-radius: $container-border-radius
+
+
+.chip-categoria
+  padding: 15px
+  margin: 0 1.25em
+  background-color: trasparent
+  border-radius: 50px
+  border: $chip-categoria-border
+  cursor: pointer
+  transition: all 150ms ease-in-out
+
+  .testo-categoria
+    color: $color-text-secondary
+    font-size: 0.7em
+    font-weight: 500
+    text-transform: uppercase
+    margin: 0 1em 0 1em
+
+  .button-cancella-categoria
+    background: none
+    outline: none
+    border: none
+    height: 17px
+    cursor: pointer
+
+    i
+      font-size: 1.3em
+      color: $icon-button-color
+
+.chip-categoria:hover
+  border: $chip-categoria-border-hover
+
+.chip-categoria.categoria-selezionata
+  background-color: $color-accent
+
+
+.chip-categoria.categoria-selezionata, .chip-categoria:hover
+
+  .testo-categoria
+    color: $chip-hover-text
+
+  .button-cancella-categoria
+
+    i
+      color: $chip-hover-button-action
+
+  .button-cancella-categoria:hover
+
+    i
+      color: $chip-button-action-hover
+
+.item-argomento
+  position: relative
+  overflow: hidden
+  display: block
+  margin: 15px
+
+  .titolo-argomento
+    font-size: 1.6em
+    color: $color-text-secondary
+    font-weight: 300
+    padding: 15px 40px
+    cursor: pointer
+
+  .titolo-argomento:hover
+    color: $color-text-primary
+
+//BUTTON ADD  ----------------------------------------------
+
+//Main Add Button
+#main-add-button
+  width: 97px
+  min-width: 97px
+  margin-left: 2.5em
+  display: inline-block
+  background-color: $background-color-night
+  box-sizing: border-box
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  -webkit-border-radius: $container-border-radius
+  border-radius: $container-border-radius
+  outline: none
+  border: none
+  cursor: pointer
+
+  i
+    color: $icon-button-color
+    font-size: 2.5em
+
+#main-add-button:hover
+
+  i
+    color: $icon-button-color-hover
+
+
+//DIALOG ----------------------------------------------
+
+#backdrop-dialog
+  position: fixed
+  background-color: $background-color
+  height: 100vh
+  width: 100vw
+  top: 0
+  left: 0
+  padding: 0 10%
+  box-sizing: border-box
+  -webkit-transition: all 250ms ease-in-out
+  -moz-transition: all 250ms ease-in-out
+  -ms-transition: all 250ms ease-in-out
+  -o-transition: all 250ms ease-in-out
+  transition: all 250ms ease-in-out
+
+#dialog-add
+  //position: absolute
+  height: calc(100vh - 2.5em * 2)
+  width: 100%
+  margin: 2.5em 0
+  //top: 0
+  //left: 0
+  background-color: $background-color-night
+  -webkit-border-radius: $container-border-radius
+  border-radius: $container-border-radius
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+
+
+  .dialog-header
+    text-align: right
+    display: block
+
+    #main-close-button
+        width: 97px
+        min-width: 97px
+        height: 97px
+        display: inline-block
+        box-sizing: border-box
+        background-color: $background-color-night
+        outline: none
+        border: none
+        cursor: pointer
+
+        i
+          font-size: 2.5em
+          color: $icon-button-color
+
+    #main-close-button:hover
+
+        i
+          color: $icon-button-color-hover
+
+  .dialog-footer
+    display: block
+    text-align: center
+
+
+//DIALOG CONTAINER ----------------------------------------------
+
+.dialog-container
+  position: relative
+  height: calc(100% - 200px)
+  display: -ms-flex
+  display: -webkit-flex
+  display: flex
+  -ms-flex-pack: center
+  -webkit-justify-content: center
+  justify-content: center
+  -ms-flex-line-pack: center
+  -webkit-align-content: center
+  align-content: center
+  -ms-flex-align: center
+  -webkit-align-items: center
+  align-items: center
+  flex-direction: column
+  opacity: 1
+  //-webkit-transition: all 500ms ease-in-out
+  //-moz-transition: all 500ms ease-in-out
+  //-ms-transition: all 500ms ease-in-out
+  //-o-transition: all 500ms ease-in-out
+  //transition: all 500ms ease-in-out
+  //-webkit-transition-delay: .5s
+  //transition-delay: .5s
+
+
+  h2
+    font-family: $font-primary
+    font-weight: 300
+    display: inline-block
+    font-size: 1.8em
+
+//Scelta
+.content-scelta-add
+  width: 100%
+  text-align: center
+
+  h2
+    margin-bottom: 60px
+    color: $color-text-third
+
+  .item-scelta-add
+    width: 100%
+    display: block
+    margin-bottom: $dialog-item-margin
+
+    .titolo-scelta
+      font-size: 2em
+      color: $color-text-secondary
+      font-weight: 300
+      padding: 15px 40px
+      cursor: pointer
+
+    .titolo-scelta:hover
+      color: $color-text-primary
+
+//Aggiungi categoria
+.content-aggiungi-categoria
+  width: 100%
+  text-align: center
+
+  h2
+    margin-bottom: 60px
+    color: $color-text-third
+
+  div
+    margin-bottom: $dialog-item-margin
+
+  .main-input
+    width: 30%
+
+//Aggiungi Argomento
+.content-aggiungi-argomento
+  width: 100%
+  text-align: center
+
+  h2
+    margin-bottom: 15px
+    color: $color-text-third
+
+  h3
+    font-size: .8em
+    font-weight: 300
+    color: $color-text-third
+    margin: 0 0 60px 0
+
+    .label-nome-categoria
+      font-weight: 500
+
+  div
+    margin-bottom: $dialog-item-margin
+
+  .main-input
+    width: 30%
+
+//Done
+.content-done-add
+  width: 100%
+  text-align: center
+
+  h2
+    margin-bottom: 30px
+    color: $color-text-third
+
+  .content-ic-done
+    display: block
+
+    .ic-done
+      width: 114px
+      height: 114px
