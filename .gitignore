@@ -50,3 +50,5 @@ Temporary Items
 bin/
 node_modules/
 obj/
+Global.asax
+Global.asax.vb
