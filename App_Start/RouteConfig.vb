@@ -10,34 +10,46 @@ Public Module RouteConfig
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
 
         routes.MapRoute(
-            name:="AggiungiArgomento",
-            url:="aggiungi-argomento",
-            defaults:=New With {.controller = "Todo", .action = "AggiungiArgomento"}
+            name:="AddArgument",
+            url:="add-argument",
+            defaults:=New With {.controller = "Todo", .action = "AddArgument"}
             )
 
         routes.MapRoute(
-            name:="AggiungiCategoria",
-            url:="aggiungi-categoria",
-            defaults:=New With {.controller = "Todo", .action = "AggiungiCategoria"}
+            name:="AddCategory",
+            url:="add-category",
+            defaults:=New With {.controller = "Todo", .action = "AddCategory"}
             )
 
         routes.MapRoute(
-            name:="CancellaCategoria",
-            url:="cancella-categoria",
-            defaults:=New With {.controller = "Todo", .action = "CancellaCategoria"}
+            name:="DeleteArgument",
+            url:="delete-argument",
+            defaults:=New With {.controller = "Todo", .action = "DeleteArgument"}
             )
 
         routes.MapRoute(
-            name:="ArgomentiByCategoria",
-            url:="argomenti-by-categoria",
-            defaults:=New With {.controller = "Todo", .action = "GetArgomentiByCategoria"}
+            name:="DeleteCategory",
+            url:="delete-category",
+            defaults:=New With {.controller = "Todo", .action = "DeleteCategory"}
             )
 
         routes.MapRoute(
-            name:="Categorie",
-            url:="categorie",
-            defaults:=New With {.controller = "Todo", .action = "GetAllCategorie"}
+            name:="FetchArgumentsByCategory",
+            url:="fetch-arguments-by-category",
+            defaults:=New With {.controller = "Todo", .action = "FetchArgumentsByCategory"}
             )
+
+        routes.MapRoute(
+            name:="FetchAllCategories",
+            url:="fetch-all-categories",
+            defaults:=New With {.controller = "Todo", .action = "FetchAllCategories"}
+            )
+
+        routes.MapRoute(
+            name:="CatchAll",
+            url:="{*url}",
+            defaults:=New With {.controller = "Todo", .action = "Index", .id = UrlParameter.Optional}
+        )
 
         routes.MapRoute(
             name:="Default",
@@ -45,6 +57,5 @@ Public Module RouteConfig
             defaults:=New With {.controller = "Todo", .action = "Index", .id = UrlParameter.Optional}
         )
 
-        'defaults:=New With {.controller = "Home", .action = "Index", .id = UrlParameter.Optional}
     End Sub
 End Module

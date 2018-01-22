@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -179,6 +180,8 @@
     <Content Include="Scripts\components\AggiungiArgomento.js" />
     <Content Include="Scripts\components\AggiungiCategoria.js" />
     <Content Include="Scripts\components\Argomento.js" />
+    <Content Include="Scripts\components\ButtonCancellaArgomento.js" />
+    <Content Include="Scripts\components\ButtonCancellaCategoria.js" />
     <Content Include="Scripts\components\Categoria.js" />
     <Content Include="Scripts\components\DialogAdd.js" />
     <Content Include="Scripts\components\DoneAdd.js" />
@@ -188,27 +191,43 @@
     <Content Include="Scripts\components\ScegliCategoria.js" />
     <Content Include="Scripts\components\ScegliAdd.js" />
     <Content Include="Scripts\constants\Config.js" />
+    <Content Include="Scripts\containers\FiltriCategorie.js" />
+    <Content Include="Scripts\containers\ListaArgomentiTodo.js" />
+    <Content Include="Scripts\containers\DialogAddContainer.js" />
     <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\reducers\dialogAdd.js" />
+    <Content Include="Scripts\reducers\visibilityDialogAdd.js" />
     <Content Include="Scripts\reducers\filtri.js" />
     <Content Include="Scripts\reducers\filtroAll.js" />
     <Content Include="Scripts\reducers\index.js" />
     <Content Include="Scripts\reducers\processoAdd.js" />
+    <Content Include="Scripts\reducers\selezioneCategoria.js" />
     <Content Include="Scripts\reducers\todoArgomenti.js" />
     <Content Include="static\bundle.js" />
     <Content Include="static\css\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Labels.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\TodoController.vb" />
+    <Compile Include="Data\Tables\TableArgument.vb" />
+    <Compile Include="Data\Tables\TableCategory.vb" />
     <Compile Include="Filters\ValidateJsonAntiForgeryTokenAttribute.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Argomento.vb" />
-    <Compile Include="Models\Categoria.vb" />
+    <Compile Include="Models\Argument.vb" />
+    <Compile Include="Models\Category.vb" />
+    <Compile Include="Models\response\ArgumentResponse.vb" />
+    <Compile Include="Models\response\ArgumentsResponse.vb" />
+    <Compile Include="Models\response\BaseResponse.vb" />
+    <Compile Include="Models\response\CategoriesResponse.vb" />
+    <Compile Include="Models\response\CategoryResponse.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -230,6 +249,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels.Designer.vb</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

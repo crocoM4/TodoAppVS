@@ -3,14 +3,14 @@ import Categoria from './Categoria';
 //Dopo 15.5
 import PropTypes from 'prop-types';
 
-import * as action from '../actions';
+//import * as action from '../actions';
 
 class MenuCategorie extends React.Component {
 
     constructor() {
         super();
-        this.selezionaCategoria = this.selezionaCategoria.bind(this);
-        this.cancellaCategoria = this.cancellaCategoria.bind(this);
+        //this.selezionaCategoria = this.selezionaCategoria.bind(this);
+        //this.cancellaCategoria = this.cancellaCategoria.bind(this);
     }
 
     componentDidMount() {
@@ -18,55 +18,55 @@ class MenuCategorie extends React.Component {
     }
 
 
-    selezionaCategoria(store, categoria, e) {
-        //Se seleziono la categoria "All" tolgo lo stato selezionato a tutte le altre categorie
-        /*if(categoria._localId === "local0"){
-          this.state.listaCategorieSelezionate.splice(0, this.state.listaCategorieSelezionate.length);
-        }
-        else {
-          var catOnArray = this.state.listaCategorieSelezionate.indexOf(categoria);
-          if(catOnArray !== -1){
-            this.state.listaCategorieSelezionate.splice(catOnArray, 1);
-          }else {
-            this.state.listaCategorieSelezionate.push(categoria);
-          }
-        }
+    //selezionaCategoria(store, categoria, e) {
+    //    //Se seleziono la categoria "All" tolgo lo stato selezionato a tutte le altre categorie
+    //    /*if(categoria._localId === "local0"){
+    //      this.state.listaCategorieSelezionate.splice(0, this.state.listaCategorieSelezionate.length);
+    //    }
+    //    else {
+    //      var catOnArray = this.state.listaCategorieSelezionate.indexOf(categoria);
+    //      if(catOnArray !== -1){
+    //        this.state.listaCategorieSelezionate.splice(catOnArray, 1);
+    //      }else {
+    //        this.state.listaCategorieSelezionate.push(categoria);
+    //      }
+    //    }
     
-        this.setState({listaCategorieSelezionate: this.state.listaCategorieSelezionate});*/
+    //    this.setState({listaCategorieSelezionate: this.state.listaCategorieSelezionate});*/
 
 
-        //Controlle che l'elemento cliccato sia il pulsance cancella
-        if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
+    //    //Controlle che l'elemento cliccato sia il pulsance cancella
+    //    if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
 
-            if (categoria.Id === "0") {
-                store.dispatch({
-                    type: 'SELEZIONA_CATEGORIA_ALL',
-                });
+    //        if (categoria.Id === "0") {
+    //            store.dispatch({
+    //                type: 'SELEZIONA_CATEGORIA_ALL',
+    //            });
 
-            } else {
-                store.dispatch({
-                    type: 'TOOGLE_CATEGORIA',
-                    oggettoCategoria: categoria
-                });
+    //        } else {
+    //            store.dispatch({
+    //                type: 'TOOGLE_CATEGORIA',
+    //                oggettoCategoria: categoria
+    //            });
 
-            }
+    //        }
 
-        }
+    //    }
         
-    }
+    //}
 
-    cancellaCategoria(store, categoria, e) {
-        action.cancellaCategoria(categoria, store.dispatch);
-    }
+    //cancellaCategoria(store, categoria, e) {
+    //    action.cancellaCategoria(categoria, store.dispatch);
+    //}
 
     render() {
 
-        const {store} = this.context;
+        //const {store} = this.context;
 
-        let oggettoFiltriCategorie = store.getState().filtriCategorie;
-        let oggettoFiltroAll = store.getState().filtroCategoriaAll;
+        //let oggettoFiltriCategorie = store.getState().filtriCategorie;
+        //let oggettoFiltroAll = store.getState().filtroCategoriaAll;
 
-        var that = this;
+        //var that = this;
 
         //Determino se la categoria "All" è selezionata o meno (Se c'è almeno una delle altre categorie è selezionata questa non è selezionata)
         /*let isCategoriaAllSelezionata = 1;//Categoria "All" selezionata
@@ -74,18 +74,34 @@ class MenuCategorie extends React.Component {
           isCategoriaAllSelezionata = -1;//Categoria "All" NON selezionata
         }*/
 
+        //return (
+        //    <div id="content-menu-categorie">
+        //        <Categoria categoria={this.props.categoriaAllObject}
+        //            isSelezionata={oggettoFiltroAll}
+        //            onSeleziona={that.selezionaCategoria.bind(null, store, this.props.categoriaAllObject)} />
+        //        {
+        //            oggettoFiltriCategorie.map(filtro => 
+        //                    <Categoria key={filtro.oggettoCategoria.Id} categoria={filtro.oggettoCategoria}
+        //                        isSelezionata={filtro.isSelezionata}
+        //                        onCancella={that.cancellaCategoria.bind(this, store, filtro.oggettoCategoria)}
+        //                        onSeleziona={that.selezionaCategoria.bind(this, store, filtro.oggettoCategoria)} />
+        //                )                    
+        //        }
+        //    </div>
+        //)
+        console.log(this.props.listaFiltriCategorie)
         return (
             <div id="content-menu-categorie">
                 <Categoria categoria={this.props.categoriaAllObject}
-                    isSelezionata={oggettoFiltroAll}
-                    onSeleziona={that.selezionaCategoria.bind(null, store, this.props.categoriaAllObject)} />
+                    isSelezionata={this.props.filtroCategoriaAll}
+                    onSeleziona={(e) => this.props.onSelezionaCategoria(this.props.categoriaAllObject, e)} />
                 {
-                    oggettoFiltriCategorie.map(filtro => 
-                            <Categoria key={filtro.oggettoCategoria.Id} categoria={filtro.oggettoCategoria}
-                                isSelezionata={filtro.isSelezionata}
-                                onCancella={that.cancellaCategoria.bind(this, store, filtro.oggettoCategoria)}
-                                onSeleziona={that.selezionaCategoria.bind(this, store, filtro.oggettoCategoria)} />
-                        )                    
+                    this.props.listaFiltriCategorie.map(filtro =>
+                        <Categoria key={filtro.oggettoCategoria.Id} categoria={filtro.oggettoCategoria}
+                            isSelezionata={filtro.isSelezionata}
+                            onCancella={() => this.props.onCancellaCategoria(filtro.oggettoCategoria)}
+                            onSeleziona={(e) => this.props.onSelezionaCategoria(filtro.oggettoCategoria, e)} />
+                    )
                 }
             </div>
         )
@@ -99,12 +115,24 @@ class MenuCategorie extends React.Component {
 //};
 //Dopo 15.5
 MenuCategorie.propTypes = {
-    categoriaAllObject: PropTypes.object.isRequired
+    categoriaAllObject: PropTypes.object.isRequired,
+    filtroCategoriaAll: PropTypes.bool.isRequired,
+    listaFiltriCategorie: PropTypes.arrayOf(
+        PropTypes.shape({
+            isSelezionata: PropTypes.bool.isRequired,
+            oggettoCategoria: PropTypes.shape({
+                Id: PropTypes.string.isRequired,
+                Nome: PropTypes.string.isRequired
+            }).isRequired
+        }).isRequired
+    ).isRequired,
+    onCancellaCategoria: PropTypes.func,
+    onSelezionaCategoria: PropTypes.func.isRequired
 };
 
 //ATTENZIONE: Questo mi permette di indicare che il component riceve il "context"
-MenuCategorie.contextTypes = {
-    store: PropTypes.object
-};
+//MenuCategorie.contextTypes = {
+//    store: PropTypes.object
+//};
 
 export default MenuCategorie;

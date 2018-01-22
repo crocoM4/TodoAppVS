@@ -1,16 +1,14 @@
 ﻿import { combineReducers } from 'redux';
-import filtriCategorie from './filtri';
-import filtroCategoriaAll from './filtroAll';
-import todoArgomenti from './todoArgomenti';
+import categories from './categories';
+import todoArguments from './todoArguments';
 import dialogAdd from './dialogAdd';
-import processoAdd from './processoAdd';
+import selezioneCategoria from './selezioneCategoria';
 
 const reducersTodoApp = combineReducers({
-    filtriCategorie,
-    filtroCategoriaAll,
-    todoArgomenti,
-    dialogAdd,
-    processoAdd
+  categories,
+  todoArguments,
+  dialogAdd,
+  selezioneCategoria,
 });
 
-export default reducersTodoApp
+export default reducersTodoApp;

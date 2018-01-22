@@ -14,117 +14,102 @@ Namespace Controllers
             Return View()
         End Function
 
-
-        '<OutputCache(Location:=OutputCacheLocation.None)>
-        'Function GetAllCategorie() As ActionResult
-        '    Dim query = New ParseQuery(Of ParseObject)("categorie")
-        '    Dim task = query.FindAsync()
-        '    Dim c As List(Of Categoria)
-        '    Try
-        '        task.Wait()
-        '        Dim res = New List(Of ParseObject)(task.Result)
-        '        c = Categoria.getListaCategorieFromListaParseObject(res)
-        '        Return Json(c, JsonRequestBehavior.AllowGet)
-        '    Catch ex As Exception
-        '        Return Json(New With {.errore = "errore durante il caricamento delle categorie"}, JsonRequestBehavior.AllowGet)
-        '    End Try
-        'End Function
-
-
-        ' ASINCRONO
-
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function GetAllCategorie() As Threading.Tasks.Task(Of ActionResult)
-            Dim query = New ParseQuery(Of ParseObject)("categorie")
-            Dim res = New List(Of ParseObject)(Await query.FindAsync())
+        Async Function FetchAllCategories() As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New CategoriesResponse()
+            Dim query = New ParseQuery(Of ParseObject)(TableCategory.Name)
             Try
-
-                Dim c = Categoria.getListaCategorieFromListaParseObject(res)
-                Return Json(c, JsonRequestBehavior.AllowGet)
+                Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
+                response.setSuccess(Category.getList(queryResult))
             Catch ex As Exception
-                Return Json(New With {.errore = "errore durante il caricamento delle categorie"}, JsonRequestBehavior.AllowGet)
+                response.setError(Resources.Labels.msgErrorRead)
             End Try
+            Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function GetArgomentiByCategoria(ByVal categoria As Categoria) As Threading.Tasks.Task(Of ActionResult)
-            Dim query = New ParseQuery(Of ParseObject)("argomenti")
-            If categoria.Id IsNot Nothing Then
-                query = query.WhereEqualTo("categoria", categoria.Id)
+        Async Function FetchArgumentsByCategory(ByVal category As Category) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New ArgumentsResponse()
+            Dim query = New ParseQuery(Of ParseObject)(TableArgument.Name)
+            If category.id IsNot Nothing Then
+                Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, category.id)
+                query = query.WhereEqualTo(TableArgument.Columns.Category, parseCategory)
             End If
-            Dim c As List(Of Argomento)
             Try
-                Dim res = New List(Of ParseObject)(Await query.FindAsync())
-                c = Argomento.getListaArgomentiFromListaParseObject(res)
-                Return Json(c, JsonRequestBehavior.AllowGet)
+                Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
+                response.setSuccess(Argument.getList(queryResult))
             Catch ex As Exception
-                Return Json(New With {.errore = "errore durante il caricamento dei dati"}, JsonRequestBehavior.AllowGet)
+                response.setError(Resources.Labels.msgErrorRead)
             End Try
-
+            Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function CancellaCategoria(ByVal categoria As Categoria) As Threading.Tasks.Task(Of ActionResult)
-
+        Async Function DeleteCategory(ByVal category As Category) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New BaseResponse()
             Try
-                Dim obj As ParseObject = ParseObject.CreateWithoutData("categorie", categoria.Id)
-                Await obj.DeleteAsync()
-                Return Json(New With {.result = "true"}, JsonRequestBehavior.AllowGet)
+                Dim parseCategory As ParseObject = ParseObject.CreateWithoutData(TableCategory.Name, category.id)
+                Await parseCategory.DeleteAsync()
+                response.setSuccess()
             Catch ex As Exception
-                Return Json(New With {.errore = "Errore durante la cancellazione della categoria"}, JsonRequestBehavior.AllowGet)
+                response.setError(Resources.Labels.msgErrorDelete)
             End Try
-
-
+            Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function AggiungiCategoria(ByVal nomeCategoria As String) As Threading.Tasks.Task(Of ActionResult)
-            Dim pObjCategoria As ParseObject = New ParseObject("categorie")
-            pObjCategoria("nome") = nomeCategoria
+        Async Function DeleteArgument(ByVal argument As Argument) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New BaseResponse()
             Try
-
-                Await pObjCategoria.SaveAsync()
-
-                Dim queryObj As ParseQuery(Of ParseObject) = New ParseQuery(Of ParseObject)("categorie")
-                queryObj = queryObj.WhereEqualTo("nome", nomeCategoria)
-
-                Dim obj = Await queryObj.FirstAsync()
-
-                Dim c = Categoria.getCategoriaFromParseObject(obj)
-
-                Return Json(c, JsonRequestBehavior.AllowGet)
-
+                Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, argument.id)
+                Await parseArgument.DeleteAsync()
+                response.setSuccess()
             Catch ex As Exception
-                Return Json(New With {.errore = "errore durante il caricamento delle categorie"}, JsonRequestBehavior.AllowGet)
+                response.setError(Resources.Labels.msgErrorDelete)
             End Try
+            Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function AggiungiArgomento(ByVal titoloArgomento As String, ByVal idCategoria As String) As Threading.Tasks.Task(Of ActionResult)
-
-            Dim categoriaCollegata As ParseObject = ParseObject.CreateWithoutData("categorie", idCategoria)
-
-            Dim pObjArgomento As ParseObject = New ParseObject("argomenti")
-            pObjArgomento("titolo") = titoloArgomento
-            pObjArgomento("descrizione") = ""
-            pObjArgomento("completato") = False
-            pObjArgomento("categoria") = categoriaCollegata
+        Async Function AddCategory(ByVal name As String) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New CategoryResponse()
+            Dim parseCategory As ParseObject = New ParseObject(TableCategory.Name)
+            parseCategory(TableCategory.Columns.Name) = name
             Try
-                Await pObjArgomento.SaveAsync()
-                Return Json(New With {.result = "true"}, JsonRequestBehavior.AllowGet)
+                Await parseCategory.SaveAsync()
+                response.setSuccess(New Category(parseCategory))
             Catch ex As Exception
-                Return Json(New With {.errore = "errore durante il caricamento delle categorie"}, JsonRequestBehavior.AllowGet)
+                response.setError(Resources.Labels.msgErrorSave)
             End Try
+            Return Json(response, JsonRequestBehavior.AllowGet)
+        End Function
+
+        <HttpPost()>
+        <ValidateJsonAntiForgeryToken>
+        <OutputCache(Location:=OutputCacheLocation.None)>
+        Async Function AddArgument(ByVal title As String, ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New ArgumentResponse()
+            Dim parseArgument As ParseObject = New ParseObject(TableArgument.Name)
+            parseArgument(TableArgument.Columns.Title) = title
+            parseArgument(TableArgument.Columns.Completed) = False
+            parseArgument(TableArgument.Columns.Category) = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
+            Try
+                Await parseArgument.SaveAsync()
+                response.setSuccess(New Argument(parseArgument))
+            Catch ex As Exception
+                response.setError(Resources.Labels.msgErrorSave)
+            End Try
+            Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
     End Class

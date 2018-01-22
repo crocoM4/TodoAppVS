@@ -17,6 +17,8 @@ ricorda di usare => npm init -y => crea il file package.json
 -watchify => npm install -g watchify
 -sass nodemon => npm install -D node-sass nodemon
 -redux => (npm install --save redux) (npm install --save react-redux) e (npm install --save-dev redux-devtools)
+---- Build produzione
+-npm install --save-dev envify uglify-js uglifyify 
 
 da react 15.5 +
 -prop-types => npm install --save prop-types
@@ -28,6 +30,8 @@ link utili:
 https://www.sitepoint.com/getting-started-react-jsx/
 http://stackoverflow.com/questions/31593694/do-i-need-require-js-when-i-use-babel
 http://stackoverflow.com/questions/39557999/cannot-find-module-react
+
+https://reactjs.org/docs/optimizing-performance.html#use-the-production-build
 
 
 //npm update -> aggiorna pacchetti in locale

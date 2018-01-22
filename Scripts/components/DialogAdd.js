@@ -1,72 +1,21 @@
 ﻿import React from 'react'
-//Dopo 15.5
 import PropTypes from 'prop-types';
-import ScegliAdd from './ScegliAdd';
-import AggiungiCategoria from './AggiungiCategoria';
-import ScegliCategoria from './ScegliCategoria';
-import AggiungiArgomento from './AggiungiArgomento';
-import DoneAdd from './DoneAdd';
 import * as action from '../actions';
 
 class DialogAdd extends React.Component {
-
-
     constructor() {
         super();    
     }
 
-    chiudiDialog(store, e) {
-        action.toogleDialog(store.dispatch);
-    }
-
-    tornaIndiero(store) {
-        action.precedenteProcessoAdd(store);
-    }
-
-    renderContent(store) {
-
-        let listaStati = store.getState().processoAdd;
-
-        if (listaStati.length === 0) {
-            return <ScegliAdd />
-        }
-
-        let ultimoStato = listaStati[listaStati.length - 1];
-        
-        switch (ultimoStato.tipoAvanzamento) {
-            case 'aggiungi-categoria':
-                return <AggiungiCategoria />
-                break;
-            case 'scegli-categoria':
-                return <ScegliCategoria />
-                break;
-            case 'aggiungi-argomento':
-                return <AggiungiArgomento />
-                break;
-            case 'done-add':
-                return <DoneAdd />
-                break;
-            default:
-                return <ScegliAdd />
-        }
-    }
-
     render() {
-
-        const { store } = this.context;
-
-        //console.log(store.getState().dialogAdd);
-
-
-        let that = this;
 
         let cssValue = {
             height: '0px',
             opacity: '0',
             visibility: 'hidden'
         };
-      
-        if (store.getState().dialogAdd) {
+
+        if (this.props.visibilityDialog) {
             cssValue = {
                 display: 'block',
                 height: '100vh',
@@ -80,18 +29,18 @@ class DialogAdd extends React.Component {
             <div id="backdrop-dialog" style={cssValue}>
                 <div id="dialog-add" >
                     <div className="dialog-header">
-                        <button id="main-close-button" onClick={that.chiudiDialog.bind(this, store)}>
+                        <button id="main-close-button" onClick={() => this.props.onChiudiDialog()}>
                             <i className="material-icons">&#xE5CD;</i>
                         </button>
                     </div>
-                
+
                     <div className="dialog-container" ref="dialogContainer">
-                        {that.renderContent(store)}
+                        {this.props.renderContent}
                     </div>
 
                     <div className="dialog-footer">
                         <button id="back-button-dialog" className="text-button"
-                            onClick={that.tornaIndiero.bind(this,store)}>NEVER MIND, GO BACK</button>
+                            onClick={() => this.props.onTornaIndietro(this.props.counterProcessi)}>NEVER MIND, GO BACK</button>
                     </div>
                 </div>
             </div>
@@ -99,9 +48,12 @@ class DialogAdd extends React.Component {
     }
 }
 
-//ATTENZIONE: Questo mi permette di indicare che il component riceve il "context"
-DialogAdd.contextTypes = {
-    store: PropTypes.object
-};
+DialogAdd.propTypes = {
+    visibilityDialog: PropTypes.bool.isRequired,
+    renderContent: PropTypes.object.isRequired,
+    counterProcessi: PropTypes.number.isRequired,
+    onChiudiDialog: PropTypes.func.isRequired,
+    onTornaIndietro: PropTypes.func.isRequired
+}
 
 export default DialogAdd;

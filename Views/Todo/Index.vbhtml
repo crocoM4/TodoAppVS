@@ -19,13 +19,8 @@ End Code
 
     <div id="root"> 
     </div>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>*@
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>*@
 
-
-    @*@Scripts.Render("~/bundles/main")
-    @Html.ReactInitJavaScript()*@
     <script src="@Url.Content("~/static/bundle.js")"></script>
+
 </body>
 </html>

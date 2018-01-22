@@ -1,36 +1,46 @@
 {
   "name": "todoapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "todo app in .net con utilizzo di reactjs",
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass --include-path sass Style/sass/main.sass static/css/main.css",
-    "watch-js": "watchify Scripts/index.js -o static/bundle.js -v -t [ babelify --presets [ env react stage-3 ] ]",
+    "watch-js": "watchify Scripts/index.jsx --extension=.jsx -o static/bundle.js -v -t [ babelify --presets [ env react stage-3 ] ]",
     "watch-css": "nodemon -e sass -x \"npm run build-css\"",
     "watch": "concurrently \"npm run watch-css\" \"npm run watch-js\"",
-    "develop": "babel --presets es2015,react --watch Scripts/ --out-dir static",
-    "develop2": "browserify Scripts/index.jsx -o static/bundle.js -t [ babelify --presets [ es2015 react stage-3 ] ]"
+    "develop": "browserify Scripts/index.jsx -o static/bundle.js -t [ babelify --presets [ env react stage-3 ] ]",
+    "min": "browserify static/bundle.js -g [ babelify --presets [ env react stage-3 ] ] -g [ envify --NODE_ENV production ] -g uglifyify | uglifyjs --compress --mangle > static/bundle.min.js"
   },
   "author": "Enrico Guerra",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "babelify": "^7.3.0",
-    "node-sass": "^4.5.2",
-    "nodemon": "^1.11.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "babelify": "^8.0.0",
+    "envify": "^4.1.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.14.11",
+    "uglify-js": "^3.3.8",
+    "uglifyify": "^4.0.5",
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
+    "browserify": "^14.5.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   }
 }

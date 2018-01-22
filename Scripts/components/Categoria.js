@@ -1,4 +1,6 @@
 ﻿import React from 'react'
+import PropTypes from 'prop-types'
+import ButtonCancellaCategoria from './ButtonCancellaCategoria';
 
 class Categoria extends React.Component {
 
@@ -26,8 +28,8 @@ class Categoria extends React.Component {
     render() {
         let pulsanteCancella = null;
 
-        if (this.props.categoria.Id !== "0") {
-            pulsanteCancella = <BottoneCancellaCategoria onCancella={this.props.onCancella} />
+        if (this.props.categoria.Id !== "0" && this.props.onCancella !== undefined) {
+            pulsanteCancella = <ButtonCancellaCategoria onCancella={this.props.onCancella} />
         }
 
         //var isSelezionata = this.state.isCategoriaSelezionata;
@@ -48,12 +50,13 @@ class Categoria extends React.Component {
     }
 }
 
-const BottoneCancellaCategoria = (props) => {
-    return (
-        <button className="button-cancella-categoria" onClick={props.onCancella}>
-            <i className="material-icons">&#xE5CD;</i>
-        </button>
-    )
+Categoria.propTypes = {
+    onCancella: PropTypes.func,
+    onSeleziona: PropTypes.func.isRequired,
+    categoria: PropTypes.shape({
+        Id: PropTypes.string.isRequired,
+        Nome: PropTypes.string.isRequired
+    }).isRequired
 }
 
 

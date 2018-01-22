@@ -158,15 +158,31 @@ input::-ms-input-placeholder {
   position: relative;
   overflow: hidden;
   display: block;
-  margin: 15px; }
+  margin: 15px;
+  display: grid;
+  grid-template-columns: 5fr 1fr; }
   .item-argomento .titolo-argomento {
     font-size: 1.6em;
     color: #a0acba;
     font-weight: 300;
     padding: 15px 40px;
-    cursor: pointer; }
+    cursor: pointer;
+    align-self: center; }
   .item-argomento .titolo-argomento:hover {
     color: #fff; }
+  .item-argomento .button-cancella-argomento {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    align-self: center;
+    justify-self: end;
+    margin-right: 40px; }
+    .item-argomento .button-cancella-argomento i {
+      font-size: 2.2em;
+      color: #2d3b4d; }
+  .item-argomento .button-cancella-argomento:hover i {
+    color: #ffffff; }
 
 #main-add-button {
   width: 97px;
@@ -317,3 +333,7 @@ input::-ms-input-placeholder {
     .content-done-add .content-ic-done .ic-done {
       width: 114px;
       height: 114px; }
+
+#content-scelta-categorie-add {
+  box-sizing: border-box;
+  padding-bottom: 3.5em; }

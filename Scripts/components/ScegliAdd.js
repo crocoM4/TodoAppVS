@@ -1,33 +1,40 @@
 ﻿import React from 'react'
-
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
 import * as action from '../actions';
 
-class ScegliAdd extends React.Component {
-
-    constructor(){
-        super();
-        this.selezionaProssimoProcesso = this.selezionaProssimoProcesso.bind(this);
+let createHandlers = (dispatch) => {
+    let onClickAggiungiCategoria = () => {
+        action.avanzaProcessoAdd(dispatch, "aggiungi-categoria", null);  
+    }
+    let onClickAggiungiArgomento = () => {
+        action.avanzaProcessoAdd(dispatch, "scegli-categoria", null);
     }
 
-    selezionaProssimoProcesso(store, tipoAvanzamento) {        
-        action.avanzaProcessoAdd(store.dispatch, tipoAvanzamento, null);        
+    return {
+        onClickAggiungiCategoria,
+        onClickAggiungiArgomento
+    }
+}
+
+class ScegliAdd extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.actionHandlers = createHandlers(this.props.dispatch)
     }
 
     render() {
-
-        let that = this;
-        const { store } = this.context;
 
         return (
             <div className="content-scelta-add">
                 <h2>What would you like to add?</h2>
                 <div className="item-scelta-add">
-                    <p className="titolo-scelta" onClick={that.selezionaProssimoProcesso.bind(this,store,"aggiungi-categoria")}>CATEGORY</p>
+                    <p className="titolo-scelta" onClick={this.actionHandlers.onClickAggiungiCategoria}>CATEGORY</p>
                 </div>
                 <div className="item-scelta-add">
-                    <p className="titolo-scelta" onClick={that.selezionaProssimoProcesso.bind(this, store,"scegli-categoria")}>ARGUMENT</p>
+                    <p className="titolo-scelta" onClick={this.actionHandlers.onClickAggiungiArgomento}>ARGUMENT</p>
                 </div>
             </div>
            
@@ -35,8 +42,4 @@ class ScegliAdd extends React.Component {
     }
 }
 
-ScegliAdd.contextTypes = {
-    store: PropTypes.object
-};
-
-export default ScegliAdd;
+export default connect()(ScegliAdd);

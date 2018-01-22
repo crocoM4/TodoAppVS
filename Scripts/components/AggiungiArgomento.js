@@ -25,8 +25,6 @@ class AggiungiArgomento extends React.Component {
         let that = this;
         const { store } = this.context;
 
-        console.log(store.getState())
-
         let listaStatiProcesso = store.getState().processoAdd;
         let categoriaCollegata = listaStatiProcesso[listaStatiProcesso.length - 1].oggettoCategoria;
 
