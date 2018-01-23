@@ -15,15 +15,15 @@ $icon-button-color: #2d3b4d
 $icon-button-color-hover: #FFF
 
 //Chips
-$chip-categoria-border: 1px solid #1e252f
-$chip-categoria-border-hover: 1px solid $color-accent
-$chip-hover-text: #ffffff
+$category-chip-border: 1px solid #1e252f
+$category-chip-border-hover: 1px solid $color-accent
+$category-chip-text: #ffffff
 $chip-hover-button-action: #c0d9d7
 $chip-button-action-hover: #00695C
 
 //Item Argomento actions
-$item-argomento-button-action-secondary: #2d3b4d
-$item-argomento-button-action-secondary-hover: #ffffff
+$argument-item-button-action-secondary: #2d3b4d
+$argument-item-button-action-secondary-hover: #ffffff
 
 //Input text
 $input-background-color: #0c1622
@@ -128,7 +128,7 @@ input::-ms-input-placeholder
   width: 80%
   margin: 0 auto 2.5em auto
 
-.centra-elementi
+.align-items-center
   display: -ms-inline-flex
   display: -webkit-inline-flex
   display: inline-flex
@@ -168,23 +168,23 @@ input::-ms-input-placeholder
   border-radius: $container-border-radius
 
 
-.chip-categoria
+.category-chip
   padding: 15px
   margin: 0 1.25em
   background-color: trasparent
   border-radius: 50px
-  border: $chip-categoria-border
+  border: $category-chip-border
   cursor: pointer
   transition: all 150ms ease-in-out
 
-  .testo-categoria
+  .category-text
     color: $color-text-secondary
     font-size: 0.7em
     font-weight: 500
     text-transform: uppercase
     margin: 0 1em 0 1em
 
-  .button-cancella-categoria
+  .button-delete-category
     background: none
     outline: none
     border: none
@@ -195,29 +195,29 @@ input::-ms-input-placeholder
       font-size: 1.3em
       color: $icon-button-color
 
-.chip-categoria:hover
-  border: $chip-categoria-border-hover
+.category-chip:hover
+  border: $category-chip-border-hover
 
-.chip-categoria.categoria-selezionata
+.category-chip.category-selected
   background-color: $color-accent
 
 
-.chip-categoria.categoria-selezionata, .chip-categoria:hover
+.category-chip.categoria-selezionata, .category-chip:hover
 
-  .testo-categoria
+  .category-text
     color: $chip-hover-text
 
-  .button-cancella-categoria
+  .button-delete-category
 
     i
       color: $chip-hover-button-action
 
-  .button-cancella-categoria:hover
+  .button-delete-category:hover
 
     i
       color: $chip-button-action-hover
 
-.item-argomento
+.argument-item
   position: relative
   overflow: hidden
   display: block
@@ -225,7 +225,7 @@ input::-ms-input-placeholder
   display: grid
   grid-template-columns: 5fr 1fr
 
-  .titolo-argomento
+  .argument-title
     font-size: 1.6em
     color: $color-text-secondary
     font-weight: 300
@@ -233,11 +233,11 @@ input::-ms-input-placeholder
     cursor: pointer
     align-self: center
 
-  .titolo-argomento:hover
+  .argument-title:hover
     color: $color-text-primary
 
 
-  .button-cancella-argomento
+  .button-delete-argument
     background: none
     outline: none
     border: none
@@ -248,12 +248,12 @@ input::-ms-input-placeholder
 
     i
       font-size: 2.2em
-      color: $item-argomento-button-action-secondary
+      color: $argument-item-button-action-secondary
 
-  .button-cancella-argomento:hover
+  .button-delete-argument:hover
 
     i
-      color: $item-argomento-button-action-secondary-hover
+      color: $argument-item-button-action-secondary-hover
 
 //BUTTON ADD  ----------------------------------------------
 
