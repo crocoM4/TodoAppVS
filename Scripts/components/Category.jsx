@@ -14,7 +14,7 @@ const Category = ({ category, onClick, onDelete }) => {
       onClick={onClick}
       role="presentation"
     >
-      <span className="category-tex">{category.name}</span>
+      <span className="category-text">{category.name}</span>
       {
         (category.id !== '0' && onDelete !== undefined) &&
           <ButtonDeleteCategory onClick={onDelete} />
