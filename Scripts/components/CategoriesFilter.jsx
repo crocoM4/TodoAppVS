@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Category from './Category';
 
 const CategoriesFilter = ({ categoriesFilterList, onDeleteCategory, onCilckCategory }) => (
-  <div id="content-menu-categorie">
+  <div id="content-categories-filter">
     {
       categoriesFilterList.map(categoryFilter => (
         <Category
