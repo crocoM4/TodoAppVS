@@ -1,49 +1,50 @@
 ﻿import React from 'react';
-
 import { connect } from 'react-redux';
-import DialogAdd from '../components/DialogAdd';
 import * as action from '../actions';
+import { SELECT_WANT_TO_ADD, ADD_CATEGORY, ADD_ARGUMENT, SELECT_CATEGORY, DONE } from '../constants/steps';
 
-import ScegliAdd from '../components/ScegliAdd';
-import AggiungiCategoria from '../components/AggiungiCategoria';
-import ScegliCategoria from '../components/ScegliCategoria';
-import AggiungiArgomento from '../components/AggiungiArgomento';
-import DoneAdd from '../components/DoneAdd';
+import DialogAdd from '../components/dialogAdd/DialogAdd';
+import SelectActionAdd from '../components/dialogAdd/SelectActionAdd';
+import AggiungiCategoria from '../components/dialogAdd/AggiungiCategoria';
+import ScegliCategoria from '../components/dialogAdd/ScegliCategoria';
+import AggiungiArgomento from '../components/dialogAdd/AggiungiArgomento';
+import DoneAdd from '../components/dialogAdd/DoneAdd';
 
-const getRenderContent = (listaStati) => {
-  if (listaStati.length === 0) {
-    return <ScegliAdd />;
+const getContentToRender = (steps) => {
+  if (steps.length === 0) {
+    return <SelectActionAdd />;
   }
-  const ultimoStato = listaStati[listaStati.length - 1];
-  switch (ultimoStato.tipoAvanzamento) {
-    case 'aggiungi-categoria':
+  const lastStep = steps[steps.length - 1];
+  switch (lastStep.stepId) {
+    case SELECT_WANT_TO_ADD:
+      return <SelectActionAdd />;
+    case ADD_CATEGORY:
       return <AggiungiCategoria />;
-    case 'scegli-categoria':
-      return <ScegliCategoria />;
-    case 'aggiungi-argomento':
+    case ADD_ARGUMENT:
       return <AggiungiArgomento />;
-    case 'done-add':
+    case SELECT_CATEGORY:
+      return <ScegliCategoria />;
+    case DONE:
       return <DoneAdd />;
     default:
-      return <ScegliAdd />;
+      return <SelectActionAdd />;
   }
 };
 
 const mapStateToProps = state => (
   {
-    visibilityDialog: state.visibilityDialogAdd,
-    renderContent: getRenderContent(state.processoAdd),
-    counterProcessi: state.processoAdd.length,
+    isOpen: state.dialogAdd.isOpen,
+    contentToRender: getContentToRender(state.dialogAdd.steps),
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
-    onChiudiDialog: () => {
-      action.toogleDialog(dispatch);
+    onClose: () => {
+      dispatch(action.toogleDialog(false));
     },
-    onTornaIndietro: (counterProcessi) => {
-      action.precedenteProcessoAdd(dispatch, counterProcessi);
+    onBack: (stepCount) => {
+      dispatch(action.goPreviousStep(stepCount));
     },
   }
 );

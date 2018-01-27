@@ -17,8 +17,10 @@ const dialogAdd = (state = initialState, action) => {
         ...state,
         steps: [
           ...state, {
-            step: action.step,
-            selectedCategory: action.selectedCategory,
+            stepId: action.stepId,
+            options: {
+              selectedCategory: action.selectedCategory,
+            },
           },
         ],
       };
@@ -35,9 +37,10 @@ const dialogAdd = (state = initialState, action) => {
       //    ...state.slice(0, index),
       //    ...state.slice(index+1)
       // ];
-    case actionTypes.RESTART_STEPS_DIALOG_ADD:
+    case actionTypes.RESET_STEPS_DIALOG_ADD:
       return {
         ...state,
+        isOpen: false,
         steps: [],
       };
     default:
