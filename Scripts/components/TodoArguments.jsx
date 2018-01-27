@@ -1,13 +1,13 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
-import Argument from './Argument';
+import TodoArgument from './TodoArgument';
 
-const Arguments = ({ todoArguments, onDeleteArgument }) => (
-  <div id="content-arguments-todo">
+const TodoArguments = ({ listTodoArguments, onDeleteArgument }) => (
+  <div id="content-todo-arguments">
     {
-      todoArguments.map(arg => (
-        <Argument
+      listTodoArguments.map(arg => (
+        <TodoArgument
           key={arg.id}
           argument={arg}
           onDelete={() => onDeleteArgument(arg)}
@@ -17,9 +17,9 @@ const Arguments = ({ todoArguments, onDeleteArgument }) => (
   </div>
 );
 
-Arguments.propTypes = {
+TodoArguments.propTypes = {
   onDeleteArgument: PropTypes.func.isRequired,
-  todoArguments: PropTypes.arrayOf(PropTypes.shape({
+  listTodoArguments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     completed: PropTypes.string.isRequired,
@@ -27,4 +27,4 @@ Arguments.propTypes = {
   }).isRequired).isRequired,
 };
 
-export default Arguments;
+export default TodoArguments;

@@ -78,7 +78,7 @@ input::-ms-input-placeholder {
   width: 80%;
   margin: 0 auto 2.5em auto; }
 
-.centra-elementi {
+.align-items-center {
   display: -ms-inline-flex;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -98,14 +98,14 @@ input::-ms-input-placeholder {
   flex-direction: row;
   padding: 2.5em 0; }
 
-#content-menu-categorie {
+#content-categories-filter {
   flex-direction: row;
   width: 100%; }
 
-#content-lista-argomenti {
+#content-todo-arguments {
   flex-direction: column; }
 
-#content-menu-categorie, #content-lista-argomenti {
+#content-categories-filter, #content-todo-arguments {
   display: flex;
   background-color: #050e19;
   box-sizing: border-box;
@@ -115,7 +115,7 @@ input::-ms-input-placeholder {
   -webkit-border-radius: 10px;
   border-radius: 10px; }
 
-.chip-categoria {
+.category-chip {
   padding: 15px;
   margin: 0 1.25em;
   background-color: trasparent;
@@ -123,54 +123,54 @@ input::-ms-input-placeholder {
   border: 1px solid #1e252f;
   cursor: pointer;
   transition: all 150ms ease-in-out; }
-  .chip-categoria .testo-categoria {
+  .category-chip .category-text {
     color: #a0acba;
     font-size: 0.7em;
     font-weight: 500;
     text-transform: uppercase;
     margin: 0 1em 0 1em; }
-  .chip-categoria .button-cancella-categoria {
+  .category-chip .button-delete-category {
     background: none;
     outline: none;
     border: none;
     height: 17px;
     cursor: pointer; }
-    .chip-categoria .button-cancella-categoria i {
+    .category-chip .button-delete-category i {
       font-size: 1.3em;
       color: #2d3b4d; }
 
-.chip-categoria:hover {
+.category-chip:hover {
   border: 1px solid #009688; }
 
-.chip-categoria.categoria-selezionata {
+.category-chip.category-selected {
   background-color: #009688; }
 
-.chip-categoria.categoria-selezionata .testo-categoria, .chip-categoria:hover .testo-categoria {
+.category-chip.categoria-selezionata .category-text, .category-chip:hover .category-text {
   color: #ffffff; }
 
-.chip-categoria.categoria-selezionata .button-cancella-categoria i, .chip-categoria:hover .button-cancella-categoria i {
+.category-chip.categoria-selezionata .button-delete-category i, .category-chip:hover .button-delete-category i {
   color: #c0d9d7; }
 
-.chip-categoria.categoria-selezionata .button-cancella-categoria:hover i, .chip-categoria:hover .button-cancella-categoria:hover i {
+.category-chip.categoria-selezionata .button-delete-category:hover i, .category-chip:hover .button-delete-category:hover i {
   color: #00695C; }
 
-.item-argomento {
+.argument-item {
   position: relative;
   overflow: hidden;
   display: block;
   margin: 15px;
   display: grid;
   grid-template-columns: 5fr 1fr; }
-  .item-argomento .titolo-argomento {
+  .argument-item .argument-title {
     font-size: 1.6em;
     color: #a0acba;
     font-weight: 300;
     padding: 15px 40px;
     cursor: pointer;
     align-self: center; }
-  .item-argomento .titolo-argomento:hover {
+  .argument-item .argument-title:hover {
     color: #fff; }
-  .item-argomento .button-cancella-argomento {
+  .argument-item .button-delete-argument {
     background: none;
     outline: none;
     border: none;
@@ -178,10 +178,10 @@ input::-ms-input-placeholder {
     align-self: center;
     justify-self: end;
     margin-right: 40px; }
-    .item-argomento .button-cancella-argomento i {
+    .argument-item .button-delete-argument i {
       font-size: 2.2em;
       color: #2d3b4d; }
-  .item-argomento .button-cancella-argomento:hover i {
+  .argument-item .button-delete-argument:hover i {
     color: #ffffff; }
 
 #main-add-button {

@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import ButtonDeleteArgument from './ButtonDeleteArgument';
 
-const Argument = ({ argument, onDelete }) => (
+const TodoArgument = ({ argument, onDelete }) => (
   <div className="argument-item">
     <p className="argument-title">{argument.title}</p>
     {
@@ -12,7 +12,7 @@ const Argument = ({ argument, onDelete }) => (
   </div>
 );
 
-Argument.propTypes = {
+TodoArgument.propTypes = {
   onDelete: PropTypes.func,
   argument: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -22,8 +22,8 @@ Argument.propTypes = {
   }).isRequired,
 };
 
-Argument.defaultProps = {
+TodoArgument.defaultProps = {
   onDelete: undefined,
 };
 
-export default Argument;
+export default TodoArgument;
