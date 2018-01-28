@@ -2,22 +2,31 @@
 import PropTypes from 'prop-types';
 import ButtonDeleteCategory from './ButtonDeleteCategory';
 
-const Category = ({ category, onClick, onDelete }) => {
+const Category = ({
+  category, selected, onClick, onDelete,
+}) => {
   let cssClass = '';
 
-  if (this.props.isSelezionata) {
+  const onChipClick = () => {
+    onClick(category);
+  };
+  const onDeleteClick = () => {
+    onDelete(category);
+  };
+
+  if (selected) {
     cssClass = 'category-selected';
   }
   return (
     <div
       className={`${cssClass} category-chip align-items-center`}
-      onClick={onClick}
+      onClick={onChipClick}
       role="presentation"
     >
       <span className="category-text">{category.name}</span>
       {
         (category.id !== '0' && onDelete !== undefined) &&
-          <ButtonDeleteCategory onClick={onDelete} />
+          <ButtonDeleteCategory onClick={onDeleteClick} />
       }
     </div>
   );
@@ -30,6 +39,7 @@ Category.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 Category.defaultProps = {

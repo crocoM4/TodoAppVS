@@ -3,31 +3,31 @@ import { connect } from 'react-redux';
 import * as action from '../actions';
 import { SELECT_WANT_TO_ADD, ADD_CATEGORY, ADD_ARGUMENT, SELECT_CATEGORY, DONE } from '../constants/steps';
 
-import DialogAdd from '../components/dialogAdd/DialogAdd';
-import SelectActionAdd from '../components/dialogAdd/SelectActionAdd';
-import AggiungiCategoria from '../components/dialogAdd/AggiungiCategoria';
-import ScegliCategoria from '../components/dialogAdd/ScegliCategoria';
-import AggiungiArgomento from '../components/dialogAdd/AggiungiArgomento';
-import DoneAdd from '../components/dialogAdd/DoneAdd';
+import Dialog from '../components/dialogAdd/Dialog';
+import SelectAction from '../components/dialogAdd/SelectAction';
+import AddCategory from '../components/dialogAdd/AddCategory';
+import SelectCategory from '../components/dialogAdd/SelectCategory';
+import AddTodoArgument from '../components/dialogAdd/AddTodoArgument';
+import Done from '../components/dialogAdd/Done';
 
 const getContentToRender = (steps) => {
   if (steps.length === 0) {
-    return <SelectActionAdd />;
+    return <SelectAction />;
   }
   const lastStep = steps[steps.length - 1];
   switch (lastStep.stepId) {
     case SELECT_WANT_TO_ADD:
-      return <SelectActionAdd />;
+      return <SelectAction />;
     case ADD_CATEGORY:
-      return <AggiungiCategoria />;
+      return <AddCategory />;
     case ADD_ARGUMENT:
-      return <AggiungiArgomento />;
+      return <AddTodoArgument />;
     case SELECT_CATEGORY:
-      return <ScegliCategoria />;
+      return <SelectCategory />;
     case DONE:
-      return <DoneAdd />;
+      return <Done />;
     default:
-      return <SelectActionAdd />;
+      return <SelectAction />;
   }
 };
 
@@ -52,6 +52,6 @@ const mapDispatchToProps = dispatch => (
 const DialogAddContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DialogAdd);
+)(Dialog);
 
 export default DialogAddContainer;

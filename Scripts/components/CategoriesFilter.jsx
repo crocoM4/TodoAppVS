@@ -9,10 +9,10 @@ const CategoriesFilter = ({ categoriesFilterList, onDeleteCategory, onCilckCateg
       categoriesFilterList.map(categoryFilter => (
         <Category
           key={categoryFilter.category.id}
-          categoria={categoryFilter.category}
-          isSelezionata={categoryFilter.selected}
-          onDelete={() => onDeleteCategory(categoryFilter.category)}
-          onClick={e => onCilckCategory(categoryFilter.category, e)}
+          category={categoryFilter.category}
+          selected={categoryFilter.selected}
+          onDelete={onDeleteCategory}
+          onClick={onCilckCategory}
         />
       ))
     }
