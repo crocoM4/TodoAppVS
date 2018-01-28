@@ -1,7 +1,16 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
-import * as action from '../actions';
-import { SELECT_WANT_TO_ADD, ADD_CATEGORY, ADD_ARGUMENT, SELECT_CATEGORY, DONE } from '../constants/steps';
+import {
+  toogleOpen,
+  goPreviousStep,
+} from '../actions/dialogAddActions';
+import {
+  SELECT_WANT_TO_ADD,
+  ADD_CATEGORY,
+  ADD_ARGUMENT,
+  SELECT_CATEGORY,
+  DONE,
+} from '../constants/steps';
 
 import Dialog from '../components/dialogAdd/Dialog';
 import SelectAction from '../components/dialogAdd/SelectAction';
@@ -41,10 +50,10 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     onClose: () => {
-      dispatch(action.toogleDialog(false));
+      dispatch(toogleOpen(false));
     },
-    onBack: (stepCount) => {
-      dispatch(action.goPreviousStep(stepCount));
+    onBack: () => {
+      dispatch(goPreviousStep());
     },
   }
 );

@@ -2,13 +2,13 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import * as action from '../../actions';
+import { resetSteps } from '../../actions/dialogAddActions';
 
 class Done extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const { dispatch } = this.props;
-      dispatch(action.resetStepsDialogAdd());
+      dispatch(resetSteps());
     }, 3000);
   }
 

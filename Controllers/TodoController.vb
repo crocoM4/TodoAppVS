@@ -66,10 +66,10 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function DeleteArgument(ByVal argument As Argument) As Threading.Tasks.Task(Of ActionResult)
+        Async Function DeleteArgument(ByVal todoArgument As Argument) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseResponse()
             Try
-                Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, argument.id)
+                Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgument.id)
                 Await parseArgument.DeleteAsync()
                 response.setSuccess()
             Catch ex As Exception

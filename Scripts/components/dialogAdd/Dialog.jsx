@@ -36,7 +36,7 @@ const DialogAdd = ({
           <button
             id="back-button-dialog"
             className="text-button"
-            onClick={() => onBack(this.props.counterProcessi)}
+            onClick={() => onBack()}
           >
             NEVER MIND, GO BACK
           </button>

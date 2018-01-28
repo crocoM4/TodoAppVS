@@ -17,7 +17,7 @@ const todoArguments = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        items: action.arguments,
+        items: action.todoArguments,
       };
     case actionTypes.ERROR_FETCH_ARGUMENTS:
       return {
@@ -30,7 +30,7 @@ const todoArguments = (state = initialState, action) => {
         ...state,
         items: [
           ...state.items,
-          action.argument,
+          action.todoArgument,
         ],
       };
     default:

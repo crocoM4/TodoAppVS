@@ -1,6 +1,10 @@
 ﻿import { connect } from 'react-redux';
 import CategoriesFilter from '../components/CategoriesFilter';
-import * as action from '../actions';
+import {
+  toogleSelectCategory,
+  toogleSelectCategoryAll,
+  deleteCategory,
+} from '../actions/categoriesActions';
 
 const mapStateToProps = state => (
   {
@@ -11,14 +15,14 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     onDeleteCategory: (category) => {
-      dispatch(action.deleteCategory(category));
+      dispatch(deleteCategory(category));
     },
     onCilckCategory: (category, e) => {
       if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
         if (category.Id === '0') {
-          dispatch(action.selectCategoryAll());
+          dispatch(toogleSelectCategoryAll());
         } else {
-          dispatch(action.selectCategory(category));
+          dispatch(toogleSelectCategory(category));
         }
       }
     },

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Category from '../Category';
-import * as action from '../../actions';
+import { ADD_ARGUMENT } from '../../constants/steps';
+import { goNextStep } from '../../actions/dialogAddActions';
+
 
 class SelectCategory extends React.Component {
   constructor() {
@@ -70,8 +72,8 @@ const mapStateToProp = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    onConfirmCategory: (category) => {
-      dispatch(action.categorySelected(category));
+    onConfirmCategory: (selectedCategory) => {
+      dispatch(goNextStep(ADD_ARGUMENT, { options: { selectedCategory } }));
     },
   }
 );

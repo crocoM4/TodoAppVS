@@ -2,15 +2,15 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import * as action from '../../actions';
+import { goNextStep } from '../../actions/dialogAddActions';
 import { ADD_CATEGORY, SELECT_CATEGORY } from '../../constants/steps';
 
 const createHandlers = (dispatch) => {
   const onAddCategoryClick = () => {
-    dispatch(action.goNextStep(ADD_CATEGORY, null));
+    dispatch(goNextStep(ADD_CATEGORY));
   };
   const onAddArgumentClick = () => {
-    dispatch(action.goNextStep(SELECT_CATEGORY, null));
+    dispatch(goNextStep(SELECT_CATEGORY));
   };
 
   return {

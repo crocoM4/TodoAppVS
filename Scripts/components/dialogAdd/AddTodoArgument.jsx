@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { DONE } from '../../constants/steps';
-import * as action from '../../actions';
+import { executeAddTodoArgument } from '../../actions/todoArgumentsActions';
 
 class AddTodoArgument extends React.Component {
   constructor() {
@@ -21,7 +21,11 @@ class AddTodoArgument extends React.Component {
 
   onButtonAddClick() {
     const { onAddClick, options } = this.props;
-    onAddClick(this.state.title, options.selectedCategory, DONE);
+    const { title } = this.state;
+    if (title === '') {
+      return;
+    }
+    onAddClick(title, options.selectedCategory, DONE);
   }
 
   render() {
@@ -77,7 +81,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => (
   {
     onAddClick: (argumentTitle, category, nextStep) =>
-      dispatch(action.addArgument(argumentTitle, category, nextStep)),
+      dispatch(executeAddTodoArgument(argumentTitle, category.id, nextStep)),
   }
 );
 

@@ -2,11 +2,11 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import * as action from '../actions';
+import { toogleOpen } from '../actions/dialogAddActions';
 
 const createHandlers = (dispatch) => {
   const onClick = () => {
-    action.toogleDialog(dispatch);
+    dispatch(toogleOpen(true));
   };
   return {
     onClick,

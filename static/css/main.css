@@ -293,33 +293,33 @@ input::-ms-input-placeholder {
     .content-scelta-add .item-scelta-add .titolo-scelta:hover {
       color: #fff; }
 
-.content-aggiungi-categoria {
+.content-add-category {
   width: 100%;
   text-align: center; }
-  .content-aggiungi-categoria h2 {
+  .content-add-category h2 {
     margin-bottom: 60px;
     color: #475b75; }
-  .content-aggiungi-categoria div {
+  .content-add-category div {
     margin-bottom: 60px; }
-  .content-aggiungi-categoria .main-input {
+  .content-add-category .main-input {
     width: 30%; }
 
-.content-aggiungi-argomento {
+.content-add-argument {
   width: 100%;
   text-align: center; }
-  .content-aggiungi-argomento h2 {
+  .content-add-argument h2 {
     margin-bottom: 15px;
     color: #475b75; }
-  .content-aggiungi-argomento h3 {
+  .content-add-argument h3 {
     font-size: .8em;
     font-weight: 300;
     color: #475b75;
     margin: 0 0 60px 0; }
-    .content-aggiungi-argomento h3 .label-nome-categoria {
+    .content-add-argument h3 .label-category-name {
       font-weight: 500; }
-  .content-aggiungi-argomento div {
+  .content-add-argument div {
     margin-bottom: 60px; }
-  .content-aggiungi-argomento .main-input {
+  .content-add-argument .main-input {
     width: 30%; }
 
 .content-done-add {
@@ -334,6 +334,9 @@ input::-ms-input-placeholder {
       width: 114px;
       height: 114px; }
 
-#content-scelta-categorie-add {
-  box-sizing: border-box;
-  padding-bottom: 3.5em; }
+.content-select-category {
+  width: 100%;
+  text-align: center; }
+  .content-select-category #content-categories {
+    box-sizing: border-box;
+    padding-bottom: 3.5em; }

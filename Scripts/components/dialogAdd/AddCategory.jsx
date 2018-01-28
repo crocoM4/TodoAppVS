@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { ADD_ARGUMENT } from '../../constants/steps';
-import * as action from '../../actions';
+import { executeAddCategory } from '../../actions/categoriesActions';
 
 const createHandlers = (dispatch) => {
   const onAddClick = (categoryName) => {
-    dispatch(action.addCategory(categoryName, ADD_ARGUMENT));
+    dispatch(executeAddCategory(categoryName, ADD_ARGUMENT));
   };
   return {
     onAddClick,
@@ -30,7 +30,11 @@ class AddCategory extends React.Component {
   }
 
   onButtonAddClick() {
-    this.handlers.onAddClick(this.state.name);
+    const { name } = this.state;
+    if (name === '') {
+      return;
+    }
+    this.handlers.onAddClick(name);
   }
 
   render() {

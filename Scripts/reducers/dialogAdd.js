@@ -18,9 +18,7 @@ const dialogAdd = (state = initialState, action) => {
         steps: [
           ...state, {
             stepId: action.stepId,
-            options: {
-              selectedCategory: action.selectedCategory,
-            },
+            options: action.options,
           },
         ],
       };

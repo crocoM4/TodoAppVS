@@ -1,6 +1,8 @@
 ﻿import { connect } from 'react-redux';
 import TodoArguments from '../components/TodoArguments';
-import * as action from '../actions';
+import {
+  deleteTodoArgument,
+} from '../actions/todoArgumentsActions';
 
 const mapStateToProps = state => (
   {
@@ -11,7 +13,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     onDeleteArgument: (argument) => {
-      dispatch(action.deleteArgument(argument));
+      dispatch(deleteTodoArgument(argument));
     },
   }
 );
