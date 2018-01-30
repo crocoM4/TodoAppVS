@@ -38,13 +38,12 @@ const addArgument = todoArgument => (
 export const fetchTodoArgumentsByCategory = (category = {}) => (dispatch) => {
   dispatch(requestFetchArguments());
   const request = callApi('fetch-arguments-by-category', { category });
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
-        dispatch(receiveFetchArguments(objectResponse.arguments));
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(receiveFetchArguments(response.arguments));
       } else {
-        dispatch(errorFetchArguments(objectResponse.messageError));
+        dispatch(errorFetchArguments(response.messageError));
       }
     },
     error => ({ error }),
@@ -53,10 +52,9 @@ export const fetchTodoArgumentsByCategory = (category = {}) => (dispatch) => {
 
 export const deleteTodoArgument = (todoArgument = {}) => (dispatch) => {
   const request = callApi('delete-argument', { todoArgument });
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
+  return request.then(
+    (response) => {
+      if (response.success) {
         // dispatch(addArgument(objectResponse.argument));
       } else {
         // console.log(objectResponse.messageError);
@@ -68,16 +66,15 @@ export const deleteTodoArgument = (todoArgument = {}) => (dispatch) => {
 
 export const executeAddTodoArgument = (title = '', categoryId = '', nextStep = '') => (dispatch) => {
   const request = callApi('add-argument', { title, categoryId });
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
-        dispatch(addArgument(objectResponse.argument));
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(addArgument(response.argument));
         if (nextStep !== '') {
           dispatch(goNextStep(nextStep));
         }
       } else {
-        console.log(objectResponse.messageError);
+        console.log(response.messageError);
       }
     },
     error => ({ error }),

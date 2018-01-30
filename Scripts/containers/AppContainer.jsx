@@ -6,6 +6,19 @@ import { fetchAllCategories } from '../actions/categoriesActions';
 
 const AppContainer = props => <App {...props} />;
 
-export default connect({}, {
-  fetchAllCategories,
-})(AppContainer);
+const mapStateToProps = state => (
+  {
+
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    dispatch,
+    initFetchAllCategories: () => {
+      dispatch(fetchAllCategories());
+    },
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

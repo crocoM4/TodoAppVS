@@ -8,16 +8,19 @@ import DialogAddContainer from '../containers/DialogAddContainer';
 
 class App extends Component {
   componentWillMount() {
-    const { fetchAllCategories } = this.props;
-    fetchAllCategories();
+    const { initFetchAllCategories } = this.props;
+    initFetchAllCategories();
   }
 
   render() {
+    const { dispatch } = this.props;
     return (
       <div id="main-container">
         <div id="main-top-bar">
           <CategoriesFilterContainer />
-          <MainAddButton />
+          <MainAddButton
+            dispatch={dispatch}
+          />
         </div>
         <TodoArgumentsContainer />
         <DialogAddContainer />
@@ -27,7 +30,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fetchAllCategories: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  initFetchAllCategories: PropTypes.func.isRequired,
 };
 
 export default App;

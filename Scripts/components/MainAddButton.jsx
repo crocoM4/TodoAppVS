@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import { toogleOpen } from '../actions/dialogAddActions';
 
@@ -26,4 +25,4 @@ MainAddButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(MainAddButton);
+export default MainAddButton;

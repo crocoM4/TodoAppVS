@@ -5,7 +5,7 @@ const getAntiForgeryToken = () => {
   return inputsToken[0].value;
 };
 
-const callApi = (url, options = {}) => (
+export const callApi = (url, options = {}) => (
   fetch(url, {
     method: 'POST',
     headers: {
@@ -16,8 +16,8 @@ const callApi = (url, options = {}) => (
   })
     .then(
       response => (response.ok ?
-        response.json :
-        Promise.reject(response.text)
+        response.json() :
+        Promise.reject(response.text())
       ),
       error => Promise.reject(error),
     )

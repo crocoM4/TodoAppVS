@@ -14,7 +14,8 @@ Public Class ValidateJsonAntiForgeryTokenAttribute
 
         Dim httpContext = filterContext.HttpContext
         Dim coockie = httpContext.Request.Cookies.Get(AntiForgeryConfig.CookieName)
-        AntiForgery.Validate(coockie.Value, httpContext.Request.Headers.Get("__RequestVerificationToken"))
-
+        If coockie IsNot Nothing Then
+            AntiForgery.Validate(coockie.Value, httpContext.Request.Headers.Get("__RequestVerificationToken"))
+        End If
     End Sub
 End Class

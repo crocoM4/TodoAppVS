@@ -6,7 +6,7 @@ import {
 
 const mapStateToProps = state => (
   {
-    todoArguments: state.todoArguments.items,
+    listTodoArguments: state.todoArguments.items,
   }
 );
 

@@ -1,18 +1,18 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 import reducers from './reducers';
-import * as config from './constants/config';
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <App categoriaAllObject={config.categoriaAllObject} />
+      <AppContainer />
     </Provider>,
     document.getElementById('root'),
   );

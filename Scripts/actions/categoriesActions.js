@@ -9,7 +9,7 @@ import {
 } from '../constants/actionTypes';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
 import { goNextStep } from './dialogAddActions';
-import * as config from '../constants/config';
+import categoryAll from '../constants/config';
 
 const requestFetchAllCategories = () => (
   {
@@ -55,15 +55,13 @@ export const toogleSelectCategoryAll = () => (
 export const fetchAllCategories = () => (dispatch) => {
   dispatch(requestFetchAllCategories());
   const request = callApi('fetch-all-categories');
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
-        dispatch(receiveFetchAllCategories(objectResponse.categories));
-        dispatch(fetchTodoArgumentsByCategory(config.categoryAll));
-      } else {
-        dispatch(errorFetchAllCategories(objectResponse.messageError));
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(receiveFetchAllCategories(response.categories));
+        dispatch(fetchTodoArgumentsByCategory(categoryAll));
       }
+      dispatch(errorFetchAllCategories(response.messageError));
     },
     error => ({ error }),
   );
@@ -71,13 +69,10 @@ export const fetchAllCategories = () => (dispatch) => {
 
 export const deleteCategory = (category = {}) => (dispatch) => {
   const request = callApi('delete-category', { category });
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
+  return request.then(
+    (response) => {
+      if (response.success) {
         dispatch(fetchAllCategories());
-      } else {
-        // console.log(objectResponse.messageError);
       }
     },
     error => ({ error }),
@@ -86,16 +81,13 @@ export const deleteCategory = (category = {}) => (dispatch) => {
 
 export const executeAddCategory = (name = '', nextStep = '') => (dispatch) => {
   const request = callApi('add-category', { name });
-  request.then(
-    (json) => {
-      const objectResponse = JSON.parse(json);
-      if (objectResponse.success) {
-        dispatch(addCategory(objectResponse.category));
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(addCategory(response.category));
         if (nextStep !== '') {
           dispatch(goNextStep(nextStep));
         }
-      } else {
-        console.log(objectResponse.messageError);
       }
     },
     error => ({ error }),

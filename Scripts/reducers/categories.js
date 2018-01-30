@@ -4,7 +4,10 @@ import categoryAll from '../constants/config';
 const initialState = {
   isFetching: false,
   items: [
-    categoryAll,
+    {
+      category: categoryAll,
+      selected: true,
+    },
   ],
   error: '',
 };
@@ -20,12 +23,15 @@ const categories = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        items: action.categories.map(category => (
-          {
-            category,
-            selected: false,
-          }
-        )),
+        items: [
+          ...state.items,
+          ...action.categories.map(category => (
+            {
+              category,
+              selected: false,
+            }
+          )),
+        ],
       };
     case actionTypes.ERROR_FETCH_ALL_CATEGORIES:
       return {
