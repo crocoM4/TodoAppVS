@@ -59,7 +59,7 @@ export const fetchAllCategories = () => (dispatch) => {
     (response) => {
       if (response.success) {
         dispatch(receiveFetchAllCategories(response.categories));
-        dispatch(fetchTodoArgumentsByCategory(categoryAll));
+        dispatch(fetchTodoArgumentsByCategory(categoryAll.id));
       }
       dispatch(errorFetchAllCategories(response.messageError));
     },
@@ -67,8 +67,8 @@ export const fetchAllCategories = () => (dispatch) => {
   );
 };
 
-export const deleteCategory = (category = {}) => (dispatch) => {
-  const request = callApi('delete-category', { category });
+export const deleteCategory = (categoryId = '') => (dispatch) => {
+  const request = callApi('delete-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {

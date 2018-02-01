@@ -32,11 +32,11 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function FetchArgumentsByCategory(ByVal category As Category) As Threading.Tasks.Task(Of ActionResult)
+        Async Function FetchArgumentsByCategory(<Http.FromBody()> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New ArgumentsResponse()
             Dim query = New ParseQuery(Of ParseObject)(TableArgument.Name)
-            If category.id IsNot Nothing Then
-                Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, category.id)
+            If categoryId IsNot Nothing Then
+                Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 query = query.WhereEqualTo(TableArgument.Columns.Category, parseCategory)
             End If
             Try
@@ -51,10 +51,10 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function DeleteCategory(ByVal category As Category) As Threading.Tasks.Task(Of ActionResult)
+        Async Function DeleteCategory(<Http.FromBody> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseResponse()
             Try
-                Dim parseCategory As ParseObject = ParseObject.CreateWithoutData(TableCategory.Name, category.id)
+                Dim parseCategory As ParseObject = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 Await parseCategory.DeleteAsync()
                 response.setSuccess()
             Catch ex As Exception
@@ -66,10 +66,10 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function DeleteArgument(ByVal todoArgument As Argument) As Threading.Tasks.Task(Of ActionResult)
+        Async Function DeleteArgument(<Http.FromBody> ByVal todoArgumentId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseResponse()
             Try
-                Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgument.id)
+                Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId)
                 Await parseArgument.DeleteAsync()
                 response.setSuccess()
             Catch ex As Exception
@@ -81,7 +81,7 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function AddCategory(ByVal name As String) As Threading.Tasks.Task(Of ActionResult)
+        Async Function AddCategory(<Http.FromBody> ByVal name As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New CategoryResponse()
             Dim parseCategory As ParseObject = New ParseObject(TableCategory.Name)
             parseCategory(TableCategory.Columns.Name) = name
@@ -97,7 +97,7 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function AddArgument(ByVal title As String, ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
+        Async Function AddArgument(<Http.FromBody> ByVal title As String, <Http.FromBody> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New ArgumentResponse()
             Dim parseArgument As ParseObject = New ParseObject(TableArgument.Name)
             parseArgument(TableArgument.Columns.Title) = title

@@ -67,7 +67,7 @@ var fetchAllCategories = exports.fetchAllCategories = function fetchAllCategorie
     return request.then(function (response) {
       if (response.success) {
         dispatch(receiveFetchAllCategories(response.categories));
-        dispatch((0, _todoArgumentsActions.fetchTodoArgumentsByCategory)(_config2.default));
+        dispatch((0, _todoArgumentsActions.fetchTodoArgumentsByCategory)(_config2.default.id));
       }
       dispatch(errorFetchAllCategories(response.messageError));
     }, function (error) {
@@ -77,9 +77,9 @@ var fetchAllCategories = exports.fetchAllCategories = function fetchAllCategorie
 };
 
 var deleteCategory = exports.deleteCategory = function deleteCategory() {
-  var category = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var categoryId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return function (dispatch) {
-    var request = (0, _ApiUtils.callApi)('delete-category', { category: category });
+    var request = (0, _ApiUtils.callApi)('delete-category', { categoryId: categoryId });
     return request.then(function (response) {
       if (response.success) {
         dispatch(fetchAllCategories());
@@ -212,10 +212,10 @@ var addArgument = function addArgument(todoArgument) {
 };
 
 var fetchTodoArgumentsByCategory = exports.fetchTodoArgumentsByCategory = function fetchTodoArgumentsByCategory() {
-  var category = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var categoryId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return function (dispatch) {
     dispatch(requestFetchArguments());
-    var request = (0, _ApiUtils.callApi)('fetch-arguments-by-category', { category: category });
+    var request = (0, _ApiUtils.callApi)('fetch-arguments-by-category', { categoryId: categoryId });
     return request.then(function (response) {
       if (response.success) {
         dispatch(receiveFetchArguments(response.arguments));
@@ -229,9 +229,9 @@ var fetchTodoArgumentsByCategory = exports.fetchTodoArgumentsByCategory = functi
 };
 
 var deleteTodoArgument = exports.deleteTodoArgument = function deleteTodoArgument() {
-  var todoArgument = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var todoArgumentId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return function (dispatch) {
-    var request = (0, _ApiUtils.callApi)('delete-argument', { todoArgument: todoArgument });
+    var request = (0, _ApiUtils.callApi)('delete-argument', { todoArgumentId: todoArgumentId });
     return request.then(function (response) {
       if (response.success) {
         // dispatch(addArgument(objectResponse.argument));

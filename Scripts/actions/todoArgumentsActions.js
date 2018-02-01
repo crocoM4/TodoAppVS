@@ -35,9 +35,9 @@ const addArgument = todoArgument => (
   }
 );
 
-export const fetchTodoArgumentsByCategory = (category = {}) => (dispatch) => {
+export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   dispatch(requestFetchArguments());
-  const request = callApi('fetch-arguments-by-category', { category });
+  const request = callApi('fetch-arguments-by-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
@@ -50,8 +50,8 @@ export const fetchTodoArgumentsByCategory = (category = {}) => (dispatch) => {
   );
 };
 
-export const deleteTodoArgument = (todoArgument = {}) => (dispatch) => {
-  const request = callApi('delete-argument', { todoArgument });
+export const deleteTodoArgument = (todoArgumentId = '') => (dispatch) => {
+  const request = callApi('delete-argument', { todoArgumentId });
   return request.then(
     (response) => {
       if (response.success) {
