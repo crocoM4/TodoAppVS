@@ -7,13 +7,14 @@ import {
 const mapStateToProps = state => (
   {
     listTodoArguments: state.todoArguments.items,
+    selectedCategories: state.categories.items.filter(category => category.selected),
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
     onDeleteArgument: (argument) => {
-      dispatch(deleteTodoArgument(argument));
+      dispatch(deleteTodoArgument(argument.id));
     },
   }
 );

@@ -27,7 +27,7 @@ const SelectActionAdd = ({ dispatch }) => {
       <div className="item-scelta-add">
         <p
           className="titolo-scelta"
-          onClick={actionHandlers.onClickAggiungiCategoria}
+          onClick={actionHandlers.onAddCategoryClick}
           role="presentation"
         >
           CATEGORY
@@ -36,7 +36,7 @@ const SelectActionAdd = ({ dispatch }) => {
       <div className="item-scelta-add">
         <p
           className="titolo-scelta"
-          onClick={actionHandlers.onClickAggiungiArgomento}
+          onClick={actionHandlers.onAddArgumentClick}
           role="presentation"
         >
           ARGUMENT

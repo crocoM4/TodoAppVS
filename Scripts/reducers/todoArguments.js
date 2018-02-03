@@ -25,12 +25,20 @@ const todoArguments = (state = initialState, action) => {
         isFetching: false,
         error: action.error,
       };
-    case actionTypes.ADD_ARGUMENT:
+    case actionTypes.ADD_ARGUMENT_LOCAL:
       return {
         ...state,
         items: [
           ...state.items,
           action.todoArgument,
+        ],
+      };
+    case actionTypes.REMOVE_ARGUMENT_LOCAL:
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, action.todoArgumentIndex),
+          ...state.items.slice(action.todoArgumentIndex + 1),
         ],
       };
     default:

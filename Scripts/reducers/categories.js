@@ -5,7 +5,7 @@ const initialState = {
   isFetching: false,
   items: [
     {
-      category: categoryAll,
+      ...categoryAll,
       selected: true,
     },
   ],
@@ -24,10 +24,13 @@ const categories = (state = initialState, action) => {
         ...state,
         isFetching: false,
         items: [
-          ...state.items,
+          {
+            ...categoryAll,
+            selected: true,
+          },
           ...action.categories.map(category => (
             {
-              category,
+              ...category,
               selected: false,
             }
           )),
@@ -39,15 +42,23 @@ const categories = (state = initialState, action) => {
         isFetching: false,
         error: action.error,
       };
-    case actionTypes.ADD_CATEGORY:
+    case actionTypes.ADD_CATEGORY_LOCAL:
       return {
         ...state,
         items: [
           ...state.items,
           {
-            category: action.category,
+            ...action.category,
             selected: false,
           },
+        ],
+      };
+    case actionTypes.REMOVE_CATEGORY_LOCAL:
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, action.categoryIndex),
+          ...state.items.slice(action.categoryIndex + 1),
         ],
       };
     case actionTypes.TOOGLE_SELECT_CATEGORY:

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import Category from './Category';
 
-const CategoriesFilter = ({ categoriesFilterList, onDeleteCategory, onCilckCategory }) => (
+const CategoriesFilter = ({ categoryList, onDeleteCategory, onCilckCategory }) => (
   <div id="content-categories-filter">
     {
-      categoriesFilterList.map(categoryFilter => (
+      categoryList.map(category => (
         <Category
-          key={categoryFilter.category.id}
-          category={categoryFilter.category}
-          selected={categoryFilter.selected}
+          key={category.id}
+          category={category}
+          selected={category.selected}
           onDelete={onDeleteCategory}
           onClick={onCilckCategory}
         />
@@ -20,12 +20,10 @@ const CategoriesFilter = ({ categoriesFilterList, onDeleteCategory, onCilckCateg
 );
 
 CategoriesFilter.propTypes = {
-  categoriesFilterList: PropTypes.arrayOf(PropTypes.shape({
+  categoryList: PropTypes.arrayOf(PropTypes.shape({
     selected: PropTypes.bool.isRequired,
-    category: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired).isRequired,
   onDeleteCategory: PropTypes.func,
   onCilckCategory: PropTypes.func.isRequired,

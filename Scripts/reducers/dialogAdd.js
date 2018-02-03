@@ -30,11 +30,6 @@ const dialogAdd = (state = initialState, action) => {
           ...state.steps.slice(0, state.length - 1),
         ],
       };
-      // Remove item by index
-      // return [
-      //    ...state.slice(0, index),
-      //    ...state.slice(index+1)
-      // ];
     case actionTypes.RESET_STEPS_DIALOG_ADD:
       return {
         ...state,

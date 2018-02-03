@@ -8,8 +8,8 @@ import { goNextStep } from '../../actions/dialogAddActions';
 
 
 class SelectCategory extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedCategory: this.props.categoriesList[0],
     };
@@ -46,7 +46,7 @@ class SelectCategory extends React.Component {
         <div>
           <button
             className="main-button"
-            onClick={this.onButtonNextClick()}
+            onClick={this.onButtonNextClick}
           >
             NEXT
           </button>
@@ -57,10 +57,10 @@ class SelectCategory extends React.Component {
 }
 
 SelectCategory.propTypes = {
-  categoriesList: PropTypes.shape({
+  categoriesList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-  }).isRequired,
+  }).isRequired).isRequired,
   onConfirmCategory: PropTypes.func.isRequired,
 };
 
@@ -73,7 +73,7 @@ const mapStateToProp = state => (
 const mapDispatchToProps = dispatch => (
   {
     onConfirmCategory: (selectedCategory) => {
-      dispatch(goNextStep(ADD_ARGUMENT, { options: { selectedCategory } }));
+      dispatch(goNextStep(ADD_ARGUMENT, { selectedCategory }));
     },
   }
 );

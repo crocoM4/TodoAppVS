@@ -3,7 +3,8 @@ import {
   REQUEST_FETCH_ALL_CATEGORIES,
   RECEIVE_FETCH_ALL_CATEGORIES,
   ERROR_FETCH_ALL_CATEGORIES,
-  ADD_CATEGORY,
+  ADD_CATEGORY_LOCAL,
+  REMOVE_CATEGORY_LOCAL,
   TOOGLE_SELECT_CATEGORY,
   TOOGLE_SELECT_CATEGORY_ALL,
 } from '../constants/actionTypes';
@@ -31,10 +32,17 @@ const errorFetchAllCategories = error => (
   }
 );
 
-const addCategory = category => (
+const addCategoryLocal = category => (
   {
-    type: ADD_CATEGORY,
+    type: ADD_CATEGORY_LOCAL,
     category,
+  }
+);
+
+const removeCategoryLocal = categoryIndex => (
+  {
+    type: REMOVE_CATEGORY_LOCAL,
+    categoryIndex,
   }
 );
 
@@ -67,12 +75,14 @@ export const fetchAllCategories = () => (dispatch) => {
   );
 };
 
-export const deleteCategory = (categoryId = '') => (dispatch) => {
+export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
   const request = callApi('delete-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(fetchAllCategories());
+        const { items } = getState().categories;
+        const categoryIndex = items.findIndex(category => category.id === categoryId);
+        dispatch(removeCategoryLocal(categoryIndex));
       }
     },
     error => ({ error }),
@@ -84,9 +94,9 @@ export const executeAddCategory = (name = '', nextStep = '') => (dispatch) => {
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addCategory(response.category));
+        dispatch(addCategoryLocal(response.category));
         if (nextStep !== '') {
-          dispatch(goNextStep(nextStep));
+          dispatch(goNextStep(nextStep, { selectedCategory: response.category }));
         }
       }
     },

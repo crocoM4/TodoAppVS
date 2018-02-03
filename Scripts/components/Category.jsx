@@ -7,8 +7,8 @@ const Category = ({
 }) => {
   let cssClass = '';
 
-  const onChipClick = () => {
-    onClick(category);
+  const onChipClick = (e) => {
+    onClick(category, e);
   };
   const onDeleteClick = () => {
     onDelete(category);

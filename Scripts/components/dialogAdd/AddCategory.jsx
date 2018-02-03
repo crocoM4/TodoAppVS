@@ -15,8 +15,8 @@ const createHandlers = (dispatch) => {
 };
 
 class AddCategory extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
     };
@@ -52,7 +52,7 @@ class AddCategory extends React.Component {
         <div>
           <button
             className="main-button"
-            onClick={this.onButtonClick}
+            onClick={this.onButtonAddClick}
           >
             ADD
           </button>

@@ -337,6 +337,9 @@ input::-ms-input-placeholder {
 .content-select-category {
   width: 100%;
   text-align: center; }
+  .content-select-category h2 {
+    margin-bottom: 60px;
+    color: #475b75; }
   .content-select-category #content-categories {
     box-sizing: border-box;
     padding-bottom: 3.5em; }

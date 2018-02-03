@@ -3,7 +3,8 @@ import {
   REQUEST_FETCH_ARGUMENTS,
   RECEIVE_FETCH_ARGUMENTS,
   ERROR_FETCH_ARGUMENTS,
-  ADD_ARGUMENT,
+  ADD_ARGUMENT_LOCAL,
+  REMOVE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 
 import { goNextStep } from './dialogAddActions';
@@ -28,10 +29,17 @@ const errorFetchArguments = error => (
   }
 );
 
-const addArgument = todoArgument => (
+const addArgumentLocal = todoArgument => (
   {
-    type: ADD_ARGUMENT,
+    type: ADD_ARGUMENT_LOCAL,
     todoArgument,
+  }
+);
+
+const removeArgumentLocal = todoArgumentIndex => (
+  {
+    type: REMOVE_ARGUMENT_LOCAL,
+    todoArgumentIndex,
   }
 );
 
@@ -50,12 +58,14 @@ export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   );
 };
 
-export const deleteTodoArgument = (todoArgumentId = '') => (dispatch) => {
+export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) => {
   const request = callApi('delete-argument', { todoArgumentId });
   return request.then(
     (response) => {
       if (response.success) {
-        // dispatch(addArgument(objectResponse.argument));
+        const { items } = getState().todoArguments;
+        const todoArgumentIndex = items.findIndex(category => category.id === todoArgumentId);
+        dispatch(removeArgumentLocal(todoArgumentIndex));
       } else {
         // console.log(objectResponse.messageError);
       }
@@ -69,7 +79,7 @@ export const executeAddTodoArgument = (title = '', categoryId = '', nextStep = '
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addArgument(response.argument));
+        dispatch(addArgumentLocal(response.argument));
         if (nextStep !== '') {
           dispatch(goNextStep(nextStep));
         }

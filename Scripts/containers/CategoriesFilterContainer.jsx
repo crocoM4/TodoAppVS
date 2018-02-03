@@ -8,14 +8,14 @@ import {
 
 const mapStateToProps = state => (
   {
-    categoriesFilterList: state.categories.items,
+    categoryList: state.categories.items,
   }
 );
 
 const mapDispatchToProps = dispatch => (
   {
     onDeleteCategory: (category) => {
-      dispatch(deleteCategory(category));
+      dispatch(deleteCategory(category.id));
     },
     onCilckCategory: (category, e) => {
       if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {

@@ -29,14 +29,14 @@ class AddTodoArgument extends React.Component {
   }
 
   render() {
-    const { options } = this.props;
+    const { selectedCategory } = this.props.options;
     return (
       <div className="content-add-argument">
         <h2>Add new ARGUMENT</h2>
         <h3>
           for the category:
           <span className="label-category-name">
-            {` ${options.selectedCategory.name}`}
+            {` ${selectedCategory.name}`}
           </span>
         </h3>
         <div>

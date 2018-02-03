@@ -35,10 +35,11 @@ Namespace Controllers
         Async Function FetchArgumentsByCategory(<Http.FromBody()> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New ArgumentsResponse()
             Dim query = New ParseQuery(Of ParseObject)(TableArgument.Name)
-            If categoryId IsNot Nothing Then
+            If categoryId IsNot Nothing And Not categoryId.Equals("0") Then
                 Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 query = query.WhereEqualTo(TableArgument.Columns.Category, parseCategory)
             End If
+            query = query.Include(TableArgument.Columns.Category)
             Try
                 Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
                 response.setSuccess(Argument.getList(queryResult))
@@ -102,7 +103,8 @@ Namespace Controllers
             Dim parseArgument As ParseObject = New ParseObject(TableArgument.Name)
             parseArgument(TableArgument.Columns.Title) = title
             parseArgument(TableArgument.Columns.Completed) = False
-            parseArgument(TableArgument.Columns.Category) = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
+            Dim category = Await ParseObject.CreateWithoutData(TableCategory.Name, categoryId).FetchIfNeededAsync()
+            parseArgument(TableArgument.Columns.Category) = category
             Try
                 Await parseArgument.SaveAsync()
                 response.setSuccess(New Argument(parseArgument))
