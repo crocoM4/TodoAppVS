@@ -16,7 +16,7 @@ const dialogAdd = (state = initialState, action) => {
       return {
         ...state,
         steps: [
-          ...state, {
+          ...state.steps, {
             stepId: action.stepId,
             options: action.options,
           },
@@ -27,7 +27,7 @@ const dialogAdd = (state = initialState, action) => {
       return {
         ...state,
         steps: [
-          ...state.steps.slice(0, state.length - 1),
+          ...state.steps.slice(0, state.steps.length - 1),
         ],
       };
     case actionTypes.RESET_STEPS_DIALOG_ADD:

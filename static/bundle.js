@@ -1834,7 +1834,7 @@ var dialogAdd = function dialogAdd() {
       });
     case actionTypes.ON_NEXT_STEP_DIALOG_ADD:
       return _extends({}, state, {
-        steps: [].concat(_toConsumableArray(state), [{
+        steps: [].concat(_toConsumableArray(state.steps), [{
           stepId: action.stepId,
           options: action.options
         }])
@@ -1842,7 +1842,7 @@ var dialogAdd = function dialogAdd() {
 
     case actionTypes.ON_PREVIOUS_STEP_DIALOG_ADD:
       return _extends({}, state, {
-        steps: [].concat(_toConsumableArray(state.steps.slice(0, state.length - 1)))
+        steps: [].concat(_toConsumableArray(state.steps.slice(0, state.steps.length - 1)))
       });
     case actionTypes.RESET_STEPS_DIALOG_ADD:
       return _extends({}, state, {
