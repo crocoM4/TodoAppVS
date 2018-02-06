@@ -1306,7 +1306,7 @@ var SelectCategory = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SelectCategory.__proto__ || Object.getPrototypeOf(SelectCategory)).call(this, props));
 
     _this.state = {
-      selectedCategory: _this.props.categoriesList[0]
+      selectedCategory: undefined
     };
     _this.onCategoryClick = _this.onCategoryClick.bind(_this);
     _this.onButtonNextClick = _this.onButtonNextClick.bind(_this);
@@ -1321,7 +1321,11 @@ var SelectCategory = function (_React$Component) {
   }, {
     key: 'onButtonNextClick',
     value: function onButtonNextClick() {
-      this.props.onConfirmCategory(this.state.selectedCategory);
+      var selectedCategory = this.state.selectedCategory;
+
+      if (selectedCategory !== undefined) {
+        this.props.onConfirmCategory(selectedCategory);
+      }
     }
   }, {
     key: 'render',
@@ -1343,12 +1347,12 @@ var SelectCategory = function (_React$Component) {
           'div',
           { id: 'content-categories' },
           categoriesList.map(function (category) {
-            return _react2.default.createElement(_Category2.default, {
+            return category.id !== '0' ? _react2.default.createElement(_Category2.default, {
               key: category.id,
               category: category,
-              selected: category.id === selectedCategory.id,
+              selected: selectedCategory !== undefined && category.id === selectedCategory.id,
               onClick: _this2.onCategoryClick
-            });
+            }) : undefined;
           })
         ),
         _react2.default.createElement(

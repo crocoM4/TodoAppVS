@@ -11,7 +11,7 @@ class SelectCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCategory: this.props.categoriesList[0],
+      selectedCategory: undefined,
     };
     this.onCategoryClick = this.onCategoryClick.bind(this);
     this.onButtonNextClick = this.onButtonNextClick.bind(this);
@@ -22,7 +22,10 @@ class SelectCategory extends React.Component {
   }
 
   onButtonNextClick() {
-    this.props.onConfirmCategory(this.state.selectedCategory);
+    const { selectedCategory } = this.state;
+    if (selectedCategory !== undefined) {
+      this.props.onConfirmCategory(selectedCategory);
+    }
   }
 
   render() {
@@ -34,12 +37,14 @@ class SelectCategory extends React.Component {
         <div id="content-categories">
           {
             categoriesList.map(category => (
-              <Category
+              (category.id !== '0')
+              ? <Category
                 key={category.id}
                 category={category}
-                selected={category.id === selectedCategory.id}
+                selected={selectedCategory !== undefined && category.id === selectedCategory.id}
                 onClick={this.onCategoryClick}
               />
+              : undefined
             ))
           }
         </div>
