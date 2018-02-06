@@ -18,5 +18,5 @@ This repo is just made for allow to teach at myself something new everyday.
 - make this app installable and working offline
 - code optimization (it never ends...)
 
-this list will continue growing... eventualy.
+this list will continue growing... eventually.
 
