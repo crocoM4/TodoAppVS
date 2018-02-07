@@ -4,10 +4,11 @@ import {
   deleteTodoArgument,
 } from '../actions/todoArgumentsActions';
 
+import { getFilteredTodoArguments } from '../selectors/commonSelectors';
+
 const mapStateToProps = state => (
   {
-    listTodoArguments: state.todoArguments.items,
-    selectedCategories: state.categories.items.filter(category => category.selected),
+    listFilteredTodoArguments: getFilteredTodoArguments(state),
   }
 );
 
