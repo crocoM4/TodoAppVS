@@ -1,10 +1,10 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 
-import App from '../components/App';
+import Root from '../components/Root';
 import { fetchAllCategories } from '../actions/categoriesActions';
 
-const AppContainer = props => <App {...props} />;
+const RootContainer = props => <Root {...props} />;
 
 const mapStateToProps = state => (
   {
@@ -21,4 +21,4 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);

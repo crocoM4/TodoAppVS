@@ -1,14 +1,6 @@
 import { createSelector } from 'reselect';
+import { getSelectedCategories } from './categoriesSelectors';
 
-// categories selectors
-export const getCategories = state => state.categories;
-export const getCategoriesList = state => state.categories.items;
-export const getSelectedCategories = createSelector(
-  getCategoriesList,
-  items => items.filter(item => item.selected),
-);
-
-// todo arguments selectors
 export const getTodoArguments = state => state.todoArguments;
 export const getTodoArgumentsList = state => state.todoArguments.items;
 
