@@ -3,7 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', 'react-hot-loader/patch', './src/index.jsx'],
+  watch: true,
+  entry: ['babel-polyfill', './src/index.jsx'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -21,7 +22,6 @@ module.exports = {
       {
         test: /\.sass$/,
         use: [
-          { loader: 'css-hot-loader' },
           { loader: 'style-loader' },
           { loader: 'css-loader' },
           {
@@ -36,7 +36,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.IgnorePlugin(/\.svg$/),
