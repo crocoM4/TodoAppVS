@@ -6,9 +6,11 @@ import {
   deleteCategory,
 } from '../actions/categoriesActions';
 
+import { getCategoriesList } from '../selectors/categoriesSelectors';
+
 const mapStateToProps = state => (
   {
-    categoryList: state.categories.items,
+    categoryList: getCategoriesList(state),
   }
 );
 

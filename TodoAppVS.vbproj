@@ -181,36 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Start\ReactConfig.cs" />
+    <Content Include="dist\bundle.js" />
+    <Content Include="dist\css\main.css" />
+    <Content Include="dist\vendor.js" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\actions\index.js" />
-    <Content Include="Scripts\App.js" />
-    <Content Include="Scripts\components\AggiungiArgomento.js" />
-    <Content Include="Scripts\components\AggiungiCategoria.js" />
-    <Content Include="Scripts\components\Argomento.js" />
-    <Content Include="Scripts\components\ButtonCancellaArgomento.js" />
-    <Content Include="Scripts\components\ButtonCancellaCategoria.js" />
-    <Content Include="Scripts\components\Categoria.js" />
-    <Content Include="Scripts\components\DialogAdd.js" />
-    <Content Include="Scripts\components\DoneAdd.js" />
-    <Content Include="Scripts\components\ListaArgomenti.js" />
-    <Content Include="Scripts\components\MainAddButton.js" />
-    <Content Include="Scripts\components\MenuCategorie.js" />
-    <Content Include="Scripts\components\ScegliCategoria.js" />
-    <Content Include="Scripts\components\ScegliAdd.js" />
-    <Content Include="Scripts\constants\Config.js" />
-    <Content Include="Scripts\containers\FiltriCategorie.js" />
-    <Content Include="Scripts\containers\ListaArgomentiTodo.js" />
-    <Content Include="Scripts\containers\DialogAddContainer.js" />
-    <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\reducers\visibilityDialogAdd.js" />
-    <Content Include="Scripts\reducers\filtri.js" />
-    <Content Include="Scripts\reducers\filtroAll.js" />
-    <Content Include="Scripts\reducers\index.js" />
-    <Content Include="Scripts\reducers\processoAdd.js" />
-    <Content Include="Scripts\reducers\selezioneCategoria.js" />
-    <Content Include="Scripts\reducers\todoArgomenti.js" />
-    <Content Include="static\bundle.js" />
-    <Content Include="static\css\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

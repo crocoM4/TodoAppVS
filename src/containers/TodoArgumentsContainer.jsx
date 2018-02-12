@@ -4,7 +4,7 @@ import {
   deleteTodoArgument,
 } from '../actions/todoArgumentsActions';
 
-import { getFilteredTodoArguments } from '../selectors/commonSelectors';
+import { getFilteredTodoArguments } from '../selectors/todoArgumentsSelectors';
 
 const mapStateToProps = state => (
   {

@@ -11,16 +11,17 @@ End Code
     <title>Index</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="~/static/css/main.css" />
+    @*<link rel="stylesheet" type="text/css" href="~/dist/css/main.css" />*@
 </head>
 <body>
 
     @Html.AntiForgeryToken()
 
-    <div id="root"> 
+    <div id="root">
     </div>
 
-    <script src="@Url.Content("~/static/bundle.js")"></script>
+    @*<script src="@Url.Content("~/dist/vendor.js")"></script>*@
+    <script src="@Url.Content("~/dist/bundle.js")"></script>
 
 </body>
 </html>

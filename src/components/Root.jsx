@@ -6,7 +6,7 @@ import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAddContainer from '../containers/DialogAddContainer';
 
-class App extends Component {
+class Root extends Component {
   componentWillMount() {
     const { initFetchAllCategories } = this.props;
     initFetchAllCategories();
@@ -29,9 +29,9 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+Root.propTypes = {
   dispatch: PropTypes.func.isRequired,
   initFetchAllCategories: PropTypes.func.isRequired,
 };
 
-export default App;
+export default Root;

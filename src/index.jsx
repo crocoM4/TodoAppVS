@@ -1,21 +1,24 @@
-﻿import React from 'react';
+﻿import 'babel-polyfill';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import AppContainer from './containers/AppContainer';
+import RootContainer from './containers/RootContainer';
 import reducers from './reducers';
+
+import '../Style/sass/main.sass';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
-const render = () => {
+const render = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
-      <AppContainer />
+      <Component />
     </Provider>,
     document.getElementById('root'),
   );
 };
 
-render();
+render(RootContainer);
