@@ -17,9 +17,10 @@ End Code
 
     @Html.AntiForgeryToken()
 
-    <div id="root"> 
+    <div id="root">
     </div>
 
+    @*<script src="@Url.Content("~/dist/vendor.js")"></script>*@
     <script src="@Url.Content("~/dist/bundle.js")"></script>
 
 </body>

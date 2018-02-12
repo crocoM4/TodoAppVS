@@ -5,7 +5,7 @@
   "description": "todo app in .net con utilizzo di reactjs",
   "main": "src/index.js",
   "scripts": {
-    "min": "browserify dist/bundle.js -g [ babelify --presets [ env react stage-3 ] ] -g [ envify --NODE_ENV production ] -g uglifyify | uglifyjs --compress --mangle > dist/bundle.min.js",
+    "build": "webpack -p --config webpack.prod.config.js",
     "start": "webpack --config webpack.dev.config.js"
   },
   "author": "Enrico Guerra",
@@ -16,7 +16,6 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "babelify": "^8.0.0",
     "css-loader": "^0.28.9",
     "envify": "^4.1.0",
     "eslint": "^4.17.0",
@@ -30,14 +29,12 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "uglify-js": "^3.3.9",
-    "uglifyify": "^4.0.5",
-    "watchify": "^3.10.0"
+    "uglifyify": "^4.0.5"
   },
   "dependencies": {
     "autoprefixer": "^7.2.6",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "browserify": "^14.5.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
