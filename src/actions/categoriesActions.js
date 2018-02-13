@@ -62,7 +62,7 @@ export const toogleSelectCategoryAll = () => (
 
 export const fetchAllCategories = () => (dispatch) => {
   dispatch(requestFetchAllCategories());
-  const request = callApi('fetch-all-categories');
+  const request = callApi('/fetch-all-categories');
   return request.then(
     (response) => {
       if (response.success) {
@@ -76,7 +76,7 @@ export const fetchAllCategories = () => (dispatch) => {
 };
 
 export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
-  const request = callApi('delete-category', { categoryId });
+  const request = callApi('/delete-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
@@ -90,7 +90,7 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
 };
 
 export const executeAddCategory = (name = '', nextStep = '') => (dispatch) => {
-  const request = callApi('add-category', { name });
+  const request = callApi('/add-category', { name });
   return request.then(
     (response) => {
       if (response.success) {
