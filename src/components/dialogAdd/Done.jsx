@@ -1,14 +1,11 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { resetSteps } from '../../actions/dialogAddActions';
 
 class Done extends React.Component {
   componentDidMount() {
     setTimeout(() => {
-      const { dispatch } = this.props;
-      dispatch(resetSteps());
+      const { onClose } = this.props;
+      onClose();
     }, 3000);
   }
 
@@ -29,7 +26,7 @@ class Done extends React.Component {
 }
 
 Done.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
-export default connect()(Done);
+export default Done;

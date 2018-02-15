@@ -5,24 +5,15 @@ import { connect } from 'react-redux';
 import { ADD_ARGUMENT } from '../../constants/steps';
 import { executeAddCategory } from '../../actions/categoriesActions';
 
-const createHandlers = (dispatch) => {
-  const onAddClick = (categoryName) => {
-    dispatch(executeAddCategory(categoryName, ADD_ARGUMENT));
-  };
-  return {
-    onAddClick,
-  };
-};
-
 class AddCategory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
     };
-    this.handlers = createHandlers(this.props.dispatch);
     this.onInputTextChange = this.onInputTextChange.bind(this);
     this.onButtonAddClick = this.onButtonAddClick.bind(this);
+    this.onCategoryCreated = this.onCategoryCreated.bind(this);
   }
 
   onInputTextChange(e) {
@@ -31,10 +22,16 @@ class AddCategory extends React.Component {
 
   onButtonAddClick() {
     const { name } = this.state;
+    const { dispatch } = this.props;
     if (name === '') {
       return;
     }
-    this.handlers.onAddClick(name);
+    dispatch(executeAddCategory(name, this.onCategoryCreated));
+  }
+
+  onCategoryCreated(selectedCategory) {
+    const { onNext } = this.props;
+    onNext({ stepId: ADD_ARGUMENT, options: { selectedCategory } });
   }
 
   render() {
@@ -64,6 +61,7 @@ class AddCategory extends React.Component {
 
 AddCategory.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
 export default connect()(AddCategory);

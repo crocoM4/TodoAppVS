@@ -31248,9 +31248,7 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__ = __webpack_require__("./src/utils/ApiUtils.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__ = __webpack_require__("./src/constants/actionTypes.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__todoArgumentsActions__ = __webpack_require__("./src/actions/todoArgumentsActions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_config__ = __webpack_require__("./src/constants/config.js");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_config__ = __webpack_require__("./src/constants/config.js");
 
 
 
@@ -31258,13 +31256,13 @@ module.exports = function(module) {
 
 var requestFetchAllCategories = function requestFetchAllCategories() {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["k" /* REQUEST_FETCH_ALL_CATEGORIES */]
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["i" /* REQUEST_FETCH_ALL_CATEGORIES */]
   };
 };
 
 var receiveFetchAllCategories = function receiveFetchAllCategories(categories) {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["g" /* RECEIVE_FETCH_ALL_CATEGORIES */],
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["e" /* RECEIVE_FETCH_ALL_CATEGORIES */],
     categories: categories
   };
 };
@@ -31285,21 +31283,21 @@ var addCategoryLocal = function addCategoryLocal(category) {
 
 var removeCategoryLocal = function removeCategoryLocal(categoryIndex) {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["j" /* REMOVE_CATEGORY_LOCAL */],
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["h" /* REMOVE_CATEGORY_LOCAL */],
     categoryIndex: categoryIndex
   };
 };
 
 var toogleSelectCategory = function toogleSelectCategory(selectedCategory) {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["o" /* TOOGLE_SELECT_CATEGORY */],
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["k" /* TOOGLE_SELECT_CATEGORY */],
     selectedCategory: selectedCategory
   };
 };
 
 var toogleSelectCategoryAll = function toogleSelectCategoryAll() {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["p" /* TOOGLE_SELECT_CATEGORY_ALL */]
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["l" /* TOOGLE_SELECT_CATEGORY_ALL */]
   };
 };
 
@@ -31310,7 +31308,7 @@ var fetchAllCategories = function fetchAllCategories() {
     return request.then(function (response) {
       if (response.success) {
         dispatch(receiveFetchAllCategories(response.categories));
-        dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__todoArgumentsActions__["c" /* fetchTodoArgumentsByCategory */])(__WEBPACK_IMPORTED_MODULE_4__constants_config__["a" /* default */].id));
+        dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__todoArgumentsActions__["c" /* fetchTodoArgumentsByCategory */])(__WEBPACK_IMPORTED_MODULE_3__constants_config__["a" /* default */].id));
       }
       dispatch(errorFetchAllCategories(response.messageError));
     }, function (error) {
@@ -31338,86 +31336,26 @@ var deleteCategory = function deleteCategory() {
   };
 };
 
+/**
+ * Request to add a category
+ * @param {String} name category name to add
+ * @param {Function} callback function that need to handle the category created
+ */
 var executeAddCategory = function executeAddCategory() {
   var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var nextStep = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
   return function (dispatch) {
     var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-category', { name: name });
     return request.then(function (response) {
       if (response.success) {
         dispatch(addCategoryLocal(response.category));
-        if (nextStep !== '') {
-          dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__dialogAddActions__["a" /* goNextStep */])(nextStep, { selectedCategory: response.category }));
+        if (callback !== undefined) {
+          callback(response.category);
         }
       }
     }, function (error) {
       return { error: error };
     });
-  };
-};
-
-/***/ }),
-
-/***/ "./src/actions/dialogAddActions.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return toogleOpen; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return goNextStep; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return goPreviousStep; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return resetSteps; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__ = __webpack_require__("./src/constants/actionTypes.js");
-
-
-var onNextStep = function onNextStep(stepId, options) {
-  return {
-    type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["e" /* ON_NEXT_STEP_DIALOG_ADD */],
-    stepId: stepId,
-    options: options
-  };
-};
-
-var onPreviousStep = function onPreviousStep() {
-  return {
-    type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["f" /* ON_PREVIOUS_STEP_DIALOG_ADD */]
-  };
-};
-
-var resetStepsDialog = function resetStepsDialog() {
-  return {
-    type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["m" /* RESET_STEPS_DIALOG_ADD */]
-  };
-};
-
-var toogleOpen = function toogleOpen(open) {
-  return {
-    type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["n" /* TOOGLE_OPEN_DIALOG_ADD */],
-    open: open
-  };
-};
-
-var goNextStep = function goNextStep() {
-  var nextStep = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return function (dispatch) {
-    dispatch(onNextStep(nextStep, options));
-  };
-};
-
-var goPreviousStep = function goPreviousStep() {
-  return function (dispatch, getState) {
-    var stepCount = getState().dialogAdd.steps.length;
-    if (stepCount === 0) {
-      dispatch(resetStepsDialog());
-    } else {
-      dispatch(onPreviousStep());
-    }
-  };
-};
-
-var resetSteps = function resetSteps() {
-  return function (dispatch) {
-    dispatch(resetStepsDialog());
   };
 };
 
@@ -31432,21 +31370,18 @@ var resetSteps = function resetSteps() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return executeAddTodoArgument; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__ = __webpack_require__("./src/utils/ApiUtils.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__ = __webpack_require__("./src/constants/actionTypes.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
-
-
 
 
 
 var requestFetchArguments = function requestFetchArguments() {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["l" /* REQUEST_FETCH_ARGUMENTS */]
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["j" /* REQUEST_FETCH_ARGUMENTS */]
   };
 };
 
 var receiveFetchArguments = function receiveFetchArguments(todoArguments) {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["h" /* RECEIVE_FETCH_ARGUMENTS */],
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["f" /* RECEIVE_FETCH_ARGUMENTS */],
     todoArguments: todoArguments
   };
 };
@@ -31467,7 +31402,7 @@ var addArgumentLocal = function addArgumentLocal(todoArgument) {
 
 var removeArgumentLocal = function removeArgumentLocal(todoArgumentIndex) {
   return {
-    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["i" /* REMOVE_ARGUMENT_LOCAL */],
+    type: __WEBPACK_IMPORTED_MODULE_1__constants_actionTypes__["g" /* REMOVE_ARGUMENT_LOCAL */],
     todoArgumentIndex: todoArgumentIndex
   };
 };
@@ -31513,14 +31448,14 @@ var deleteTodoArgument = function deleteTodoArgument() {
 var executeAddTodoArgument = function executeAddTodoArgument() {
   var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var categoryId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var nextStep = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
   return function (dispatch) {
     var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-argument', { title: title, categoryId: categoryId });
     return request.then(function (response) {
       if (response.success) {
         dispatch(addArgumentLocal(response.argument));
-        if (nextStep !== '') {
-          dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__dialogAddActions__["a" /* goNextStep */])(nextStep));
+        if (callback !== undefined) {
+          callback();
         }
       } else {
         console.log(response.messageError);
@@ -31721,28 +31656,14 @@ Category.defaultProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
 
 
-
-
-
-var createHandlers = function createHandlers(dispatch) {
-  var onClick = function onClick() {
-    dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_dialogAddActions__["d" /* toogleOpen */])(true));
-  };
-  return {
-    onClick: onClick
-  };
-};
 
 var MainAddButton = function MainAddButton(_ref) {
-  var dispatch = _ref.dispatch;
-
-  var handlers = createHandlers(dispatch);
+  var onClick = _ref.onClick;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'button',
-    { id: 'main-add-button', onClick: handlers.onClick },
+    { id: 'main-add-button', onClick: onClick },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'i',
       { className: 'material-icons' },
@@ -31752,7 +31673,7 @@ var MainAddButton = function MainAddButton(_ref) {
 };
 
 MainAddButton.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onClick: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (MainAddButton);
@@ -31770,7 +31691,7 @@ MainAddButton.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MainAddButton__ = __webpack_require__("./src/components/MainAddButton.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__containers_CategoriesFilterContainer__ = __webpack_require__("./src/containers/CategoriesFilterContainer.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_TodoArgumentsContainer__ = __webpack_require__("./src/containers/TodoArgumentsContainer.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__containers_DialogAddContainer__ = __webpack_require__("./src/containers/DialogAddContainer.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dialogAdd_DialogAdd__ = __webpack_require__("./src/components/dialogAdd/DialogAdd.jsx");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31790,10 +31711,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Root = function (_Component) {
   _inherits(Root, _Component);
 
-  function Root() {
+  function Root(props) {
     _classCallCheck(this, Root);
 
-    return _possibleConstructorReturn(this, (Root.__proto__ || Object.getPrototypeOf(Root)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Root.__proto__ || Object.getPrototypeOf(Root)).call(this, props));
+
+    _this.state = {
+      isDialogAddOpen: false
+    };
+    return _this;
   }
 
   _createClass(Root, [{
@@ -31806,7 +31732,9 @@ var Root = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var dispatch = this.props.dispatch;
+      var _this2 = this;
+
+      var isDialogAddOpen = this.state.isDialogAddOpen;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -31816,11 +31744,18 @@ var Root = function (_Component) {
           { id: 'main-top-bar' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__containers_CategoriesFilterContainer__["a" /* default */], null),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_MainAddButton__["a" /* default */], {
-            dispatch: dispatch
+            onClick: function onClick() {
+              return _this2.setState({ isDialogAddOpen: true });
+            }
           })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__containers_TodoArgumentsContainer__["a" /* default */], null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__containers_DialogAddContainer__["a" /* default */], null)
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__dialogAdd_DialogAdd__["a" /* default */], {
+          isOpen: isDialogAddOpen,
+          onClose: function onClose() {
+            return _this2.setState({ isDialogAddOpen: false });
+          }
+        })
       );
     }
   }]);
@@ -31829,7 +31764,6 @@ var Root = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 Root.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   initFetchAllCategories: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
@@ -31955,15 +31889,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var createHandlers = function createHandlers(dispatch) {
-  var onAddClick = function onAddClick(categoryName) {
-    dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_categoriesActions__["b" /* executeAddCategory */])(categoryName, __WEBPACK_IMPORTED_MODULE_3__constants_steps__["a" /* ADD_ARGUMENT */]));
-  };
-  return {
-    onAddClick: onAddClick
-  };
-};
-
 var AddCategory = function (_React$Component) {
   _inherits(AddCategory, _React$Component);
 
@@ -31975,9 +31900,9 @@ var AddCategory = function (_React$Component) {
     _this.state = {
       name: ''
     };
-    _this.handlers = createHandlers(_this.props.dispatch);
     _this.onInputTextChange = _this.onInputTextChange.bind(_this);
     _this.onButtonAddClick = _this.onButtonAddClick.bind(_this);
+    _this.onCategoryCreated = _this.onCategoryCreated.bind(_this);
     return _this;
   }
 
@@ -31990,11 +31915,19 @@ var AddCategory = function (_React$Component) {
     key: 'onButtonAddClick',
     value: function onButtonAddClick() {
       var name = this.state.name;
+      var dispatch = this.props.dispatch;
 
       if (name === '') {
         return;
       }
-      this.handlers.onAddClick(name);
+      dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_categoriesActions__["b" /* executeAddCategory */])(name, this.onCategoryCreated));
+    }
+  }, {
+    key: 'onCategoryCreated',
+    value: function onCategoryCreated(selectedCategory) {
+      var onNext = this.props.onNext;
+
+      onNext({ stepId: __WEBPACK_IMPORTED_MODULE_3__constants_steps__["a" /* ADD_ARGUMENT */], options: { selectedCategory: selectedCategory } });
     }
   }, {
     key: 'render',
@@ -32037,7 +31970,8 @@ var AddCategory = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 AddCategory.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
+  onNext: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])()(AddCategory));
@@ -32083,6 +32017,7 @@ var AddTodoArgument = function (_React$Component) {
     };
     _this.onInputTextChange = _this.onInputTextChange.bind(_this);
     _this.onButtonAddClick = _this.onButtonAddClick.bind(_this);
+    _this.onTodoArgumentCreated = _this.onTodoArgumentCreated.bind(_this);
     return _this;
   }
 
@@ -32094,15 +32029,20 @@ var AddTodoArgument = function (_React$Component) {
   }, {
     key: 'onButtonAddClick',
     value: function onButtonAddClick() {
-      var _props = this.props,
-          onAddClick = _props.onAddClick,
-          options = _props.options;
+      var options = this.props.options;
       var title = this.state.title;
 
       if (title === '') {
         return;
       }
-      onAddClick(title, options.selectedCategory, __WEBPACK_IMPORTED_MODULE_3__constants_steps__["c" /* DONE */]);
+      Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(title, options.selectedCategory, this.onTodoArgumentCreated);
+    }
+  }, {
+    key: 'onTodoArgumentCreated',
+    value: function onTodoArgumentCreated() {
+      var onNext = this.props.onNext;
+
+      onNext({ stepId: __WEBPACK_IMPORTED_MODULE_3__constants_steps__["c" /* DONE */], options: {} });
     }
   }, {
     key: 'render',
@@ -32163,31 +32103,14 @@ AddTodoArgument.propTypes = {
       name: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired
     }).isRequired
   }).isRequired,
-  onAddClick: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onNext: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-  var steps = state.dialogAdd.steps;
-
-  var lastStep = steps[steps.length - 1];
-  return {
-    options: lastStep.options
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onAddClick: function onAddClick(argumentTitle, category, nextStep) {
-      return dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(argumentTitle, category.id, nextStep));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(AddTodoArgument));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])()(AddTodoArgument));
 
 /***/ }),
 
-/***/ "./src/components/dialogAdd/Dialog.jsx":
+/***/ "./src/components/dialogAdd/DialogAdd.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32195,80 +32118,177 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__ = __webpack_require__("./src/components/dialogAdd/SelectActionAdd.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AddCategory__ = __webpack_require__("./src/components/dialogAdd/AddCategory.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SelectCategory__ = __webpack_require__("./src/components/dialogAdd/SelectCategory.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AddTodoArgument__ = __webpack_require__("./src/components/dialogAdd/AddTodoArgument.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Done__ = __webpack_require__("./src/components/dialogAdd/Done.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_steps__ = __webpack_require__("./src/constants/steps.js");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
-var DialogAdd = function DialogAdd(_ref) {
-  var isOpen = _ref.isOpen,
-      contentToRender = _ref.contentToRender,
-      onClose = _ref.onClose,
-      onBack = _ref.onBack;
 
-  var cssValue = {
-    height: '0px',
-    opacity: '0',
-    visibility: 'hidden'
-  };
 
-  if (isOpen) {
-    cssValue = {
-      display: 'block',
-      height: '100vh',
-      opacity: '1',
-      visibility: 'visible'
+
+
+
+
+
+
+
+var getContentToRender = function getContentToRender(steps, props) {
+  if (steps.length === 0) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__["a" /* default */], null);
+  }
+  var lastStep = steps[steps.length - 1];
+  switch (lastStep.stepId) {
+    case __WEBPACK_IMPORTED_MODULE_7__constants_steps__["e" /* SELECT_WANT_TO_ADD */]:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__["a" /* default */], props);
+    case __WEBPACK_IMPORTED_MODULE_7__constants_steps__["b" /* ADD_CATEGORY */]:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__AddCategory__["a" /* default */], props);
+    case __WEBPACK_IMPORTED_MODULE_7__constants_steps__["a" /* ADD_ARGUMENT */]:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__AddTodoArgument__["a" /* default */], _extends({}, props, { options: lastStep.options }));
+    case __WEBPACK_IMPORTED_MODULE_7__constants_steps__["d" /* SELECT_CATEGORY */]:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SelectCategory__["a" /* default */], props);
+    case __WEBPACK_IMPORTED_MODULE_7__constants_steps__["c" /* DONE */]:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Done__["a" /* default */], props);
+    default:
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__["a" /* default */], props);
+  }
+};
+
+var DialogAdd = function (_React$Component) {
+  _inherits(DialogAdd, _React$Component);
+
+  function DialogAdd(props) {
+    _classCallCheck(this, DialogAdd);
+
+    var _this = _possibleConstructorReturn(this, (DialogAdd.__proto__ || Object.getPrototypeOf(DialogAdd)).call(this, props));
+
+    _this.state = {
+      steps: []
     };
+    _this.onBack = _this.onBack.bind(_this);
+    _this.onNext = _this.onNext.bind(_this);
+    return _this;
   }
 
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    'div',
-    { id: 'backdrop-dialog', style: cssValue },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      'div',
-      { id: 'dialog-add' },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+  _createClass(DialogAdd, [{
+    key: 'onBack',
+    value: function onBack() {
+      var steps = this.state.steps;
+      var onClose = this.props.onClose;
+
+      var stepCount = steps.length;
+      if (stepCount === 0) {
+        // Returned to the first steps, close the dialog
+        this.setState({ steps: [] });
+        onClose();
+      } else {
+        this.setState({
+          steps: [].concat(_toConsumableArray(steps.slice(0, steps.length - 1)))
+        });
+      }
+    }
+  }, {
+    key: 'onNext',
+    value: function onNext() {
+      var step = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { stepId: '', options: {} };
+      var steps = this.state.steps;
+
+      this.setState({
+        steps: [].concat(_toConsumableArray(steps), [_extends({}, step)])
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var steps = this.state.steps;
+      var _props = this.props,
+          isOpen = _props.isOpen,
+          onClose = _props.onClose;
+      var onNext = this.onNext;
+
+      var cssValue = {
+        height: '0px',
+        opacity: '0',
+        visibility: 'hidden'
+      };
+
+      if (isOpen) {
+        cssValue = {
+          display: 'block',
+          height: '100vh',
+          opacity: '1',
+          visibility: 'visible'
+        };
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'dialog-header' },
+        { id: 'backdrop-dialog', style: cssValue },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { id: 'main-close-button', onClick: function onClick() {
-              return onClose();
-            } },
+          'div',
+          { id: 'dialog-add' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'i',
-            { className: 'material-icons' },
-            '\uE5CD'
+            'div',
+            { className: 'dialog-header' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { id: 'main-close-button', onClick: function onClick() {
+                  return onClose();
+                } },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'i',
+                { className: 'material-icons' },
+                '\uE5CD'
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'dialog-container' },
+            getContentToRender(steps, { onNext: onNext, onClose: onClose })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'dialog-footer' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              {
+                id: 'back-button-dialog',
+                className: 'text-button',
+                onClick: function onClick() {
+                  return _this2.onBack();
+                }
+              },
+              'NEVER MIND, GO BACK'
+            )
           )
         )
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'dialog-container' },
-        contentToRender
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'dialog-footer' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          {
-            id: 'back-button-dialog',
-            className: 'text-button',
-            onClick: function onClick() {
-              return onBack();
-            }
-          },
-          'NEVER MIND, GO BACK'
-        )
-      )
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return DialogAdd;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 DialogAdd.propTypes = {
   isOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired,
-  contentToRender: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.element.isRequired,
-  onClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
-  onBack: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (DialogAdd);
@@ -32283,8 +32303,6 @@ DialogAdd.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32292,9 +32310,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
 
 
 
@@ -32314,9 +32329,9 @@ var Done = function (_React$Component) {
       var _this2 = this;
 
       setTimeout(function () {
-        var dispatch = _this2.props.dispatch;
+        var onClose = _this2.props.onClose;
 
-        dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_dialogAddActions__["c" /* resetSteps */])());
+        onClose();
       }, 3000);
     }
   }, {
@@ -32347,14 +32362,14 @@ var Done = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 Done.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onClose: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])()(Done));
+/* harmony default export */ __webpack_exports__["a"] = (Done);
 
 /***/ }),
 
-/***/ "./src/components/dialogAdd/SelectAction.jsx":
+/***/ "./src/components/dialogAdd/SelectActionAdd.jsx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32362,34 +32377,14 @@ Done.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__("./node_modules/prop-types/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_steps__ = __webpack_require__("./src/constants/steps.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_steps__ = __webpack_require__("./src/constants/steps.js");
 
 
 
 
-
-
-
-var createHandlers = function createHandlers(dispatch) {
-  var onAddCategoryClick = function onAddCategoryClick() {
-    dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_dialogAddActions__["a" /* goNextStep */])(__WEBPACK_IMPORTED_MODULE_4__constants_steps__["b" /* ADD_CATEGORY */]));
-  };
-  var onAddArgumentClick = function onAddArgumentClick() {
-    dispatch(Object(__WEBPACK_IMPORTED_MODULE_3__actions_dialogAddActions__["a" /* goNextStep */])(__WEBPACK_IMPORTED_MODULE_4__constants_steps__["d" /* SELECT_CATEGORY */]));
-  };
-
-  return {
-    onAddCategoryClick: onAddCategoryClick,
-    onAddArgumentClick: onAddArgumentClick
-  };
-};
 
 var SelectActionAdd = function SelectActionAdd(_ref) {
-  var dispatch = _ref.dispatch;
-
-  var actionHandlers = createHandlers(dispatch);
+  var onNext = _ref.onNext;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
     { className: 'content-scelta-add' },
@@ -32405,7 +32400,9 @@ var SelectActionAdd = function SelectActionAdd(_ref) {
         'p',
         {
           className: 'titolo-scelta',
-          onClick: actionHandlers.onAddCategoryClick,
+          onClick: function onClick() {
+            return onNext({ stepId: __WEBPACK_IMPORTED_MODULE_2__constants_steps__["b" /* ADD_CATEGORY */], options: {} });
+          },
           role: 'presentation'
         },
         'CATEGORY'
@@ -32418,7 +32415,9 @@ var SelectActionAdd = function SelectActionAdd(_ref) {
         'p',
         {
           className: 'titolo-scelta',
-          onClick: actionHandlers.onAddArgumentClick,
+          onClick: function onClick() {
+            return onNext({ stepId: __WEBPACK_IMPORTED_MODULE_2__constants_steps__["d" /* SELECT_CATEGORY */], options: {} });
+          },
           role: 'presentation'
         },
         'ARGUMENT'
@@ -32428,10 +32427,10 @@ var SelectActionAdd = function SelectActionAdd(_ref) {
 };
 
 SelectActionAdd.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onNext: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])()(SelectActionAdd));
+/* harmony default export */ __webpack_exports__["a"] = (SelectActionAdd);
 
 /***/ }),
 
@@ -32446,7 +32445,6 @@ SelectActionAdd.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Category__ = __webpack_require__("./src/components/Category.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_steps__ = __webpack_require__("./src/constants/steps.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32454,7 +32452,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -32488,9 +32485,10 @@ var SelectCategory = function (_React$Component) {
     key: 'onButtonNextClick',
     value: function onButtonNextClick() {
       var selectedCategory = this.state.selectedCategory;
+      var onNext = this.props.onNext;
 
       if (selectedCategory !== undefined) {
-        this.props.onConfirmCategory(selectedCategory);
+        onNext({ stepId: __WEBPACK_IMPORTED_MODULE_4__constants_steps__["a" /* ADD_ARGUMENT */], options: { selectedCategory: selectedCategory } });
       }
     }
   }, {
@@ -32545,7 +32543,7 @@ SelectCategory.propTypes = {
     id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
     name: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired
   }).isRequired).isRequired,
-  onConfirmCategory: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  onNext: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
 };
 
 var mapStateToProp = function mapStateToProp(state) {
@@ -32554,15 +32552,7 @@ var mapStateToProp = function mapStateToProp(state) {
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onConfirmCategory: function onConfirmCategory(selectedCategory) {
-      dispatch(Object(__WEBPACK_IMPORTED_MODULE_5__actions_dialogAddActions__["a" /* goNextStep */])(__WEBPACK_IMPORTED_MODULE_4__constants_steps__["a" /* ADD_ARGUMENT */], { selectedCategory: selectedCategory }));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapStateToProp, mapDispatchToProps)(SelectCategory));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapStateToProp)(SelectCategory));
 
 /***/ }),
 
@@ -32570,22 +32560,22 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return REQUEST_FETCH_ALL_CATEGORIES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return RECEIVE_FETCH_ALL_CATEGORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return REQUEST_FETCH_ALL_CATEGORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return RECEIVE_FETCH_ALL_CATEGORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ERROR_FETCH_ALL_CATEGORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ADD_CATEGORY_LOCAL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return REMOVE_CATEGORY_LOCAL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return TOOGLE_SELECT_CATEGORY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return TOOGLE_SELECT_CATEGORY_ALL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return REQUEST_FETCH_ARGUMENTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return RECEIVE_FETCH_ARGUMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return REMOVE_CATEGORY_LOCAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return TOOGLE_SELECT_CATEGORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return TOOGLE_SELECT_CATEGORY_ALL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return REQUEST_FETCH_ARGUMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return RECEIVE_FETCH_ARGUMENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return ERROR_FETCH_ARGUMENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADD_ARGUMENT_LOCAL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return REMOVE_ARGUMENT_LOCAL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return TOOGLE_OPEN_DIALOG_ADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return ON_NEXT_STEP_DIALOG_ADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return ON_PREVIOUS_STEP_DIALOG_ADD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return RESET_STEPS_DIALOG_ADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return REMOVE_ARGUMENT_LOCAL; });
+/* unused harmony export TOOGLE_OPEN_DIALOG_ADD */
+/* unused harmony export ON_NEXT_STEP_DIALOG_ADD */
+/* unused harmony export ON_PREVIOUS_STEP_DIALOG_ADD */
+/* unused harmony export RESET_STEPS_DIALOG_ADD */
 // Categories
 var REQUEST_FETCH_ALL_CATEGORIES = 'REQUEST_FETCH_ALL_CATEGORIES';
 var RECEIVE_FETCH_ALL_CATEGORIES = 'RECEIVE_FETCH_ALL_CATEGORIES';
@@ -32674,78 +32664,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 var CategoriesFilterContainer = Object(__WEBPACK_IMPORTED_MODULE_0_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(__WEBPACK_IMPORTED_MODULE_1__components_CategoriesFilter__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (CategoriesFilterContainer);
-
-/***/ }),
-
-/***/ "./src/containers/DialogAddContainer.jsx":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_dialogAddActions__ = __webpack_require__("./src/actions/dialogAddActions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_steps__ = __webpack_require__("./src/constants/steps.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_dialogAdd_Dialog__ = __webpack_require__("./src/components/dialogAdd/Dialog.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_dialogAdd_SelectAction__ = __webpack_require__("./src/components/dialogAdd/SelectAction.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_dialogAdd_AddCategory__ = __webpack_require__("./src/components/dialogAdd/AddCategory.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_dialogAdd_SelectCategory__ = __webpack_require__("./src/components/dialogAdd/SelectCategory.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_dialogAdd_AddTodoArgument__ = __webpack_require__("./src/components/dialogAdd/AddTodoArgument.jsx");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_dialogAdd_Done__ = __webpack_require__("./src/components/dialogAdd/Done.jsx");
-
-
-
-
-
-
-
-
-
-
-
-
-var getContentToRender = function getContentToRender(steps) {
-  if (steps.length === 0) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_dialogAdd_SelectAction__["a" /* default */], null);
-  }
-  var lastStep = steps[steps.length - 1];
-  switch (lastStep.stepId) {
-    case __WEBPACK_IMPORTED_MODULE_3__constants_steps__["e" /* SELECT_WANT_TO_ADD */]:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_dialogAdd_SelectAction__["a" /* default */], null);
-    case __WEBPACK_IMPORTED_MODULE_3__constants_steps__["b" /* ADD_CATEGORY */]:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_dialogAdd_AddCategory__["a" /* default */], null);
-    case __WEBPACK_IMPORTED_MODULE_3__constants_steps__["a" /* ADD_ARGUMENT */]:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_dialogAdd_AddTodoArgument__["a" /* default */], null);
-    case __WEBPACK_IMPORTED_MODULE_3__constants_steps__["d" /* SELECT_CATEGORY */]:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_dialogAdd_SelectCategory__["a" /* default */], null);
-    case __WEBPACK_IMPORTED_MODULE_3__constants_steps__["c" /* DONE */]:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_dialogAdd_Done__["a" /* default */], null);
-    default:
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_dialogAdd_SelectAction__["a" /* default */], null);
-  }
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    isOpen: state.dialogAdd.isOpen,
-    contentToRender: getContentToRender(state.dialogAdd.steps)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onClose: function onClose() {
-      dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_dialogAddActions__["d" /* toogleOpen */])(false));
-    },
-    onBack: function onBack() {
-      dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_dialogAddActions__["b" /* goPreviousStep */])());
-    }
-  };
-};
-
-var DialogAddContainer = Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(__WEBPACK_IMPORTED_MODULE_4__components_dialogAdd_Dialog__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (DialogAddContainer);
 
 /***/ }),
 
@@ -32890,11 +32808,11 @@ var categories = function categories() {
   var action = arguments[1];
 
   switch (action.type) {
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["k" /* REQUEST_FETCH_ALL_CATEGORIES */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["i" /* REQUEST_FETCH_ALL_CATEGORIES */]:
       return _extends({}, state, {
         isFetching: true
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["g" /* RECEIVE_FETCH_ALL_CATEGORIES */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["e" /* RECEIVE_FETCH_ALL_CATEGORIES */]:
       return _extends({}, state, {
         isFetching: false,
         items: [_extends({}, __WEBPACK_IMPORTED_MODULE_1__constants_config__["a" /* default */], {
@@ -32916,11 +32834,11 @@ var categories = function categories() {
           selected: false
         })])
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["j" /* REMOVE_CATEGORY_LOCAL */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["h" /* REMOVE_CATEGORY_LOCAL */]:
       return _extends({}, state, {
         items: [].concat(_toConsumableArray(state.items.slice(0, action.categoryIndex)), _toConsumableArray(state.items.slice(action.categoryIndex + 1)))
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["o" /* TOOGLE_SELECT_CATEGORY */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["k" /* TOOGLE_SELECT_CATEGORY */]:
       return _extends({}, state, {
         isFetching: false,
         items: state.items.map(function (category) {
@@ -32940,7 +32858,7 @@ var categories = function categories() {
         //   category.id === action.selectedCategory.id),
         //   category => category.selected = !category.selected),
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["p" /* TOOGLE_SELECT_CATEGORY_ALL */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["l" /* TOOGLE_SELECT_CATEGORY_ALL */]:
       return _extends({}, state, {
         isFetching: false,
         items: state.items.map(function (category) {
@@ -32963,57 +32881,6 @@ var categories = function categories() {
 
 /***/ }),
 
-/***/ "./src/reducers/dialogAdd.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__ = __webpack_require__("./src/constants/actionTypes.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-
-
-var initialState = {
-  isOpen: false,
-  steps: []
-};
-
-var dialogAdd = function dialogAdd() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["n" /* TOOGLE_OPEN_DIALOG_ADD */]:
-      return _extends({}, state, {
-        isOpen: action.open
-      });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["e" /* ON_NEXT_STEP_DIALOG_ADD */]:
-      return _extends({}, state, {
-        steps: [].concat(_toConsumableArray(state.steps), [{
-          stepId: action.stepId,
-          options: action.options
-        }])
-      });
-
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["f" /* ON_PREVIOUS_STEP_DIALOG_ADD */]:
-      return _extends({}, state, {
-        steps: [].concat(_toConsumableArray(state.steps.slice(0, state.steps.length - 1)))
-      });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["m" /* RESET_STEPS_DIALOG_ADD */]:
-      return _extends({}, state, {
-        isOpen: false,
-        steps: []
-      });
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (dialogAdd);
-
-/***/ }),
-
 /***/ "./src/reducers/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -33021,16 +32888,15 @@ var dialogAdd = function dialogAdd() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__("./node_modules/redux/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__categories__ = __webpack_require__("./src/reducers/categories.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__todoArguments__ = __webpack_require__("./src/reducers/todoArguments.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dialogAdd__ = __webpack_require__("./src/reducers/dialogAdd.js");
 
 
 
-
+// import dialogAdd from './dialogAdd';
 
 var reducersTodoApp = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
   categories: __WEBPACK_IMPORTED_MODULE_1__categories__["a" /* default */],
-  todoArguments: __WEBPACK_IMPORTED_MODULE_2__todoArguments__["a" /* default */],
-  dialogAdd: __WEBPACK_IMPORTED_MODULE_3__dialogAdd__["a" /* default */]
+  todoArguments: __WEBPACK_IMPORTED_MODULE_2__todoArguments__["a" /* default */]
+  // dialogAdd,
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (reducersTodoApp);
@@ -33059,11 +32925,11 @@ var todoArguments = function todoArguments() {
   var action = arguments[1];
 
   switch (action.type) {
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["l" /* REQUEST_FETCH_ARGUMENTS */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["j" /* REQUEST_FETCH_ARGUMENTS */]:
       return _extends({}, state, {
         isFetching: true
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["h" /* RECEIVE_FETCH_ARGUMENTS */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["f" /* RECEIVE_FETCH_ARGUMENTS */]:
       return _extends({}, state, {
         isFetching: false,
         items: action.todoArguments
@@ -33077,7 +32943,7 @@ var todoArguments = function todoArguments() {
       return _extends({}, state, {
         items: [].concat(_toConsumableArray(state.items), [action.todoArgument])
       });
-    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["i" /* REMOVE_ARGUMENT_LOCAL */]:
+    case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["g" /* REMOVE_ARGUMENT_LOCAL */]:
       return _extends({}, state, {
         items: [].concat(_toConsumableArray(state.items.slice(0, action.todoArgumentIndex)), _toConsumableArray(state.items.slice(action.todoArgumentIndex + 1)))
       });

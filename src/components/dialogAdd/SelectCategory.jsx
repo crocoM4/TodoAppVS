@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import Category from '../Category';
 import { ADD_ARGUMENT } from '../../constants/steps';
-import { goNextStep } from '../../actions/dialogAddActions';
 
 
 class SelectCategory extends React.Component {
@@ -23,8 +22,9 @@ class SelectCategory extends React.Component {
 
   onButtonNextClick() {
     const { selectedCategory } = this.state;
+    const { onNext } = this.props;
     if (selectedCategory !== undefined) {
-      this.props.onConfirmCategory(selectedCategory);
+      onNext({ stepId: ADD_ARGUMENT, options: { selectedCategory } });
     }
   }
 
@@ -66,7 +66,7 @@ SelectCategory.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired).isRequired,
-  onConfirmCategory: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
 const mapStateToProp = state => (
@@ -75,12 +75,4 @@ const mapStateToProp = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
-  {
-    onConfirmCategory: (selectedCategory) => {
-      dispatch(goNextStep(ADD_ARGUMENT, { selectedCategory }));
-    },
-  }
-);
-
-export default connect(mapStateToProp, mapDispatchToProps)(SelectCategory);
+export default connect(mapStateToProp)(SelectCategory);

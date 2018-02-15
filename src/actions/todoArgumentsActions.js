@@ -7,8 +7,6 @@ import {
   REMOVE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 
-import { goNextStep } from './dialogAddActions';
-
 const requestFetchArguments = () => (
   {
     type: REQUEST_FETCH_ARGUMENTS,
@@ -74,14 +72,14 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
   );
 };
 
-export const executeAddTodoArgument = (title = '', categoryId = '', nextStep = '') => (dispatch) => {
+export const executeAddTodoArgument = (title = '', categoryId = '', callback = () => {}) => (dispatch) => {
   const request = callApi('/add-argument', { title, categoryId });
   return request.then(
     (response) => {
       if (response.success) {
         dispatch(addArgumentLocal(response.argument));
-        if (nextStep !== '') {
-          dispatch(goNextStep(nextStep));
+        if (callback !== undefined) {
+          callback();
         }
       } else {
         console.log(response.messageError);

@@ -13,6 +13,7 @@ class AddTodoArgument extends React.Component {
     };
     this.onInputTextChange = this.onInputTextChange.bind(this);
     this.onButtonAddClick = this.onButtonAddClick.bind(this);
+    this.onTodoArgumentCreated = this.onTodoArgumentCreated.bind(this);
   }
 
   onInputTextChange(e) {
@@ -20,12 +21,17 @@ class AddTodoArgument extends React.Component {
   }
 
   onButtonAddClick() {
-    const { onAddClick, options } = this.props;
+    const { options } = this.props;
     const { title } = this.state;
     if (title === '') {
       return;
     }
-    onAddClick(title, options.selectedCategory, DONE);
+    executeAddTodoArgument(title, options.selectedCategory, this.onTodoArgumentCreated);
+  }
+
+  onTodoArgumentCreated() {
+    const { onNext } = this.props;
+    onNext({ stepId: DONE, options: { } });
   }
 
   render() {
@@ -67,22 +73,7 @@ AddTodoArgument.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  onAddClick: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { steps } = state.dialogAdd;
-  const lastStep = steps[steps.length - 1];
-  return ({
-    options: lastStep.options,
-  });
-};
-
-const mapDispatchToProps = dispatch => (
-  {
-    onAddClick: (argumentTitle, category, nextStep) =>
-      dispatch(executeAddTodoArgument(argumentTitle, category.id, nextStep)),
-  }
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddTodoArgument);
+export default connect()(AddTodoArgument);
