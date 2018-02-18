@@ -32908,12 +32908,10 @@ var categories = function categories() {
 
 
 
-// import dialogAdd from './dialogAdd';
 
 var reducersTodoApp = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["c" /* combineReducers */])({
   categories: __WEBPACK_IMPORTED_MODULE_1__categories__["a" /* default */],
   todoArguments: __WEBPACK_IMPORTED_MODULE_2__todoArguments__["a" /* default */]
-  // dialogAdd,
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (reducersTodoApp);
