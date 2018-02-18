@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
-import SelectAction from './SelectActionAdd';
+import SelectActionAdd from './SelectActionAdd';
 import AddCategory from './AddCategory';
 import SelectCategory from './SelectCategory';
 import AddTodoArgument from './AddTodoArgument';
@@ -17,12 +17,12 @@ import {
 
 const getContentToRender = (steps, props) => {
   if (steps.length === 0) {
-    return <SelectAction />;
+    return <SelectActionAdd {...props} />;
   }
   const lastStep = steps[steps.length - 1];
   switch (lastStep.stepId) {
     case SELECT_WANT_TO_ADD:
-      return <SelectAction {...props} />;
+      return <SelectActionAdd {...props} />;
     case ADD_CATEGORY:
       return <AddCategory {...props} />;
     case ADD_ARGUMENT:
@@ -32,7 +32,7 @@ const getContentToRender = (steps, props) => {
     case DONE:
       return <Done {...props} />;
     default:
-      return <SelectAction {...props} />;
+      return <SelectActionAdd {...props} />;
   }
 };
 
@@ -44,6 +44,7 @@ class DialogAdd extends React.Component {
     };
     this.onBack = this.onBack.bind(this);
     this.onNext = this.onNext.bind(this);
+    this.onResetAndClose = this.onResetAndClose.bind(this);
   }
 
   onBack() {
@@ -74,10 +75,18 @@ class DialogAdd extends React.Component {
     });
   }
 
+  onResetAndClose() {
+    const { onClose } = this.props;
+    onClose();
+    setTimeout(() => {
+      this.setState({ steps: [] });
+    }, 500);
+  }
+
   render() {
     const { steps } = this.state;
     const { isOpen, onClose } = this.props;
-    const { onNext } = this;
+    const { onNext, onResetAndClose } = this;
     let cssValue = {
       height: '0px',
       opacity: '0',
@@ -103,7 +112,7 @@ class DialogAdd extends React.Component {
           </div>
 
           <div className="dialog-container">
-            {getContentToRender(steps, { onNext, onClose })}
+            {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
           </div>
 
           <div className="dialog-footer">

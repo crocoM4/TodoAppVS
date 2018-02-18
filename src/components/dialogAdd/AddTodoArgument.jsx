@@ -21,12 +21,12 @@ class AddTodoArgument extends React.Component {
   }
 
   onButtonAddClick() {
-    const { options } = this.props;
+    const { options, dispatch } = this.props;
     const { title } = this.state;
     if (title === '') {
       return;
     }
-    executeAddTodoArgument(title, options.selectedCategory, this.onTodoArgumentCreated);
+    dispatch(executeAddTodoArgument(title, options.selectedCategory, this.onTodoArgumentCreated));
   }
 
   onTodoArgumentCreated() {
@@ -67,6 +67,7 @@ class AddTodoArgument extends React.Component {
 }
 
 AddTodoArgument.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   options: PropTypes.shape({
     selectedCategory: PropTypes.shape({
       id: PropTypes.string.isRequired,

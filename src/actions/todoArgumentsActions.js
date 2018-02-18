@@ -72,8 +72,8 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
   );
 };
 
-export const executeAddTodoArgument = (title = '', categoryId = '', callback = () => {}) => (dispatch) => {
-  const request = callApi('/add-argument', { title, categoryId });
+export const executeAddTodoArgument = (title = '', category = { id: '' }, callback = undefined) => (dispatch) => {
+  const request = callApi('/add-argument', { title, categoryId: category.id });
   return request.then(
     (response) => {
       if (response.success) {

@@ -31343,7 +31343,7 @@ var deleteCategory = function deleteCategory() {
  */
 var executeAddCategory = function executeAddCategory() {
   var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
   return function (dispatch) {
     var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-category', { name: name });
     return request.then(function (response) {
@@ -31447,10 +31447,10 @@ var deleteTodoArgument = function deleteTodoArgument() {
 
 var executeAddTodoArgument = function executeAddTodoArgument() {
   var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var categoryId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+  var category = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { id: '' };
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
   return function (dispatch) {
-    var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-argument', { title: title, categoryId: categoryId });
+    var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-argument', { title: title, categoryId: category.id });
     return request.then(function (response) {
       if (response.success) {
         dispatch(addArgumentLocal(response.argument));
@@ -32029,13 +32029,15 @@ var AddTodoArgument = function (_React$Component) {
   }, {
     key: 'onButtonAddClick',
     value: function onButtonAddClick() {
-      var options = this.props.options;
+      var _props = this.props,
+          options = _props.options,
+          dispatch = _props.dispatch;
       var title = this.state.title;
 
       if (title === '') {
         return;
       }
-      Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(title, options.selectedCategory, this.onTodoArgumentCreated);
+      dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(title, options.selectedCategory, this.onTodoArgumentCreated));
     }
   }, {
     key: 'onTodoArgumentCreated',
@@ -32097,6 +32099,7 @@ var AddTodoArgument = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 AddTodoArgument.propTypes = {
+  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   options: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({
     selectedCategory: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.shape({
       id: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
@@ -32149,7 +32152,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var getContentToRender = function getContentToRender(steps, props) {
   if (steps.length === 0) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__["a" /* default */], null);
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SelectActionAdd__["a" /* default */], props);
   }
   var lastStep = steps[steps.length - 1];
   switch (lastStep.stepId) {
@@ -32181,6 +32184,7 @@ var DialogAdd = function (_React$Component) {
     };
     _this.onBack = _this.onBack.bind(_this);
     _this.onNext = _this.onNext.bind(_this);
+    _this.onResetAndClose = _this.onResetAndClose.bind(_this);
     return _this;
   }
 
@@ -32212,15 +32216,28 @@ var DialogAdd = function (_React$Component) {
       });
     }
   }, {
+    key: 'onResetAndClose',
+    value: function onResetAndClose() {
+      var _this2 = this;
+
+      var onClose = this.props.onClose;
+
+      onClose();
+      setTimeout(function () {
+        _this2.setState({ steps: [] });
+      }, 500);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var steps = this.state.steps;
       var _props = this.props,
           isOpen = _props.isOpen,
           onClose = _props.onClose;
-      var onNext = this.onNext;
+      var onNext = this.onNext,
+          onResetAndClose = this.onResetAndClose;
 
       var cssValue = {
         height: '0px',
@@ -32261,7 +32278,7 @@ var DialogAdd = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'dialog-container' },
-            getContentToRender(steps, { onNext: onNext, onClose: onClose })
+            getContentToRender(steps, { onNext: onNext, onClose: onResetAndClose })
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -32272,7 +32289,7 @@ var DialogAdd = function (_React$Component) {
                 id: 'back-button-dialog',
                 className: 'text-button',
                 onClick: function onClick() {
-                  return _this2.onBack();
+                  return _this3.onBack();
                 }
               },
               'NEVER MIND, GO BACK'
