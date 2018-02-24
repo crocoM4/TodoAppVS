@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import RootContainer from './containers/RootContainer';
 import reducers from './reducers';
 
-import '../Style/sass/main.sass';
+import '../Style/main.sass';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 

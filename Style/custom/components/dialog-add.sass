@@ -1,0 +1,56 @@
+#backdrop-dialog
+  position: fixed
+  background-color: $background-color
+  height: 100vh
+  width: 100vw
+  top: 0
+  left: 0
+  padding: 0 10%
+  box-sizing: border-box
+  -webkit-transition: all 250ms ease-in-out
+  -moz-transition: all 250ms ease-in-out
+  -ms-transition: all 250ms ease-in-out
+  -o-transition: all 250ms ease-in-out
+  transition: all 250ms ease-in-out
+
+#dialog-add
+  //position: absolute
+  height: calc(100vh - 2.5em * 2)
+  width: 100%
+  margin: 2.5em 0
+  //top: 0
+  //left: 0
+  background-color: $background-color-night
+  -webkit-border-radius: $container-border-radius
+  border-radius: $container-border-radius
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+
+
+  .dialog-header
+    text-align: right
+    display: block
+
+    #main-close-button
+        width: 97px
+        min-width: 97px
+        height: 97px
+        display: inline-block
+        box-sizing: border-box
+        background-color: $background-color-night
+        outline: none
+        border: none
+        cursor: pointer
+
+        i
+          font-size: 2.5em
+          color: $icon-button-color
+
+    #main-close-button:hover
+
+        i
+          color: $icon-button-color-hover
+
+  .dialog-footer
+    display: block
+    text-align: center
