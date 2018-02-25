@@ -12,7 +12,7 @@ This repo is just made for allow to teach at myself something new everyday.
 <h2>What's next?</h2>
 
 - learn and integrate Reselect
-- split css in multiple file
+- ~split css in multiple file~~ **DONE**
 - allow to complete task
 - graphs showing completed tasks
 - make this app installable and working offline
