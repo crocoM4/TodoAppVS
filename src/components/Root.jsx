@@ -4,33 +4,42 @@ import PropTypes from 'prop-types';
 import MainAddButton from '../components/MainAddButton';
 import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
-import DialogAddContainer from '../containers/DialogAddContainer';
+import DialogAdd from './dialogAdd/DialogAdd';
 
 class Root extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDialogAddOpen: false,
+    };
+  }
+
   componentWillMount() {
     const { initFetchAllCategories } = this.props;
     initFetchAllCategories();
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { isDialogAddOpen } = this.state;
     return (
       <div id="main-container">
         <div id="main-top-bar">
           <CategoriesFilterContainer />
           <MainAddButton
-            dispatch={dispatch}
+            onClick={() => this.setState({ isDialogAddOpen: true })}
           />
         </div>
         <TodoArgumentsContainer />
-        <DialogAddContainer />
+        <DialogAdd
+          isOpen={isDialogAddOpen}
+          onClose={() => this.setState({ isDialogAddOpen: false })}
+        />
       </div>
     );
   }
 }
 
 Root.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   initFetchAllCategories: PropTypes.func.isRequired,
 };
 

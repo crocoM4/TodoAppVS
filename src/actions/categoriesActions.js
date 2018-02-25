@@ -9,7 +9,6 @@ import {
   TOOGLE_SELECT_CATEGORY_ALL,
 } from '../constants/actionTypes';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
-import { goNextStep } from './dialogAddActions';
 import categoryAll from '../constants/config';
 
 const requestFetchAllCategories = () => (
@@ -62,7 +61,7 @@ export const toogleSelectCategoryAll = () => (
 
 export const fetchAllCategories = () => (dispatch) => {
   dispatch(requestFetchAllCategories());
-  const request = callApi('fetch-all-categories');
+  const request = callApi('/fetch-all-categories');
   return request.then(
     (response) => {
       if (response.success) {
@@ -76,7 +75,7 @@ export const fetchAllCategories = () => (dispatch) => {
 };
 
 export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
-  const request = callApi('delete-category', { categoryId });
+  const request = callApi('/delete-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
@@ -89,14 +88,19 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
   );
 };
 
-export const executeAddCategory = (name = '', nextStep = '') => (dispatch) => {
-  const request = callApi('add-category', { name });
+/**
+ * Request to add a category
+ * @param {String} name category name to add
+ * @param {Function} callback function that need to handle the category created
+ */
+export const executeAddCategory = (name = '', callback = undefined) => (dispatch) => {
+  const request = callApi('/add-category', { name });
   return request.then(
     (response) => {
       if (response.success) {
         dispatch(addCategoryLocal(response.category));
-        if (nextStep !== '') {
-          dispatch(goNextStep(nextStep, { selectedCategory: response.category }));
+        if (callback !== undefined) {
+          callback(response.category);
         }
       }
     },

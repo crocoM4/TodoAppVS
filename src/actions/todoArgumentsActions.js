@@ -7,8 +7,6 @@ import {
   REMOVE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 
-import { goNextStep } from './dialogAddActions';
-
 const requestFetchArguments = () => (
   {
     type: REQUEST_FETCH_ARGUMENTS,
@@ -45,7 +43,7 @@ const removeArgumentLocal = todoArgumentIndex => (
 
 export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   dispatch(requestFetchArguments());
-  const request = callApi('fetch-arguments-by-category', { categoryId });
+  const request = callApi('/fetch-arguments-by-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
@@ -59,7 +57,7 @@ export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
 };
 
 export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) => {
-  const request = callApi('delete-argument', { todoArgumentId });
+  const request = callApi('/delete-argument', { todoArgumentId });
   return request.then(
     (response) => {
       if (response.success) {
@@ -74,14 +72,14 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
   );
 };
 
-export const executeAddTodoArgument = (title = '', categoryId = '', nextStep = '') => (dispatch) => {
-  const request = callApi('add-argument', { title, categoryId });
+export const executeAddTodoArgument = (title = '', category = { id: '' }, callback = undefined) => (dispatch) => {
+  const request = callApi('/add-argument', { title, categoryId: category.id });
   return request.then(
     (response) => {
       if (response.success) {
         dispatch(addArgumentLocal(response.argument));
-        if (nextStep !== '') {
-          dispatch(goNextStep(nextStep));
+        if (callback !== undefined) {
+          callback();
         }
       } else {
         console.log(response.messageError);
