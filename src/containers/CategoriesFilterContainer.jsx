@@ -5,6 +5,7 @@ import {
   toogleSelectCategoryAll,
   deleteCategory,
 } from '../actions/categoriesActions';
+import categoryAll from '../constants/config';
 
 import { getCategoriesList } from '../selectors/categoriesSelectors';
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = dispatch => (
     },
     onCilckCategory: (category, e) => {
       if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
-        if (category.Id === '0') {
+        if (category.id === categoryAll.id) {
           dispatch(toogleSelectCategoryAll());
         } else {
           dispatch(toogleSelectCategory(category));

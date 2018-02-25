@@ -32648,7 +32648,9 @@ var DONE = 'DONE';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux__ = __webpack_require__("./node_modules/react-redux/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CategoriesFilter__ = __webpack_require__("./src/components/CategoriesFilter.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_categoriesActions__ = __webpack_require__("./src/actions/categoriesActions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__selectors_categoriesSelectors__ = __webpack_require__("./src/selectors/categoriesSelectors.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_config__ = __webpack_require__("./src/constants/config.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selectors_categoriesSelectors__ = __webpack_require__("./src/selectors/categoriesSelectors.js");
+
 
 
 
@@ -32657,7 +32659,7 @@ var DONE = 'DONE';
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    categoryList: Object(__WEBPACK_IMPORTED_MODULE_3__selectors_categoriesSelectors__["a" /* getCategoriesList */])(state)
+    categoryList: Object(__WEBPACK_IMPORTED_MODULE_4__selectors_categoriesSelectors__["a" /* getCategoriesList */])(state)
   };
 };
 
@@ -32668,7 +32670,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     onCilckCategory: function onCilckCategory(category, e) {
       if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
-        if (category.Id === '0') {
+        if (category.id === __WEBPACK_IMPORTED_MODULE_3__constants_config__["a" /* default */].id) {
           dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_categoriesActions__["e" /* toogleSelectCategoryAll */])());
         } else {
           dispatch(Object(__WEBPACK_IMPORTED_MODULE_2__actions_categoriesActions__["d" /* toogleSelectCategory */])(category));
