@@ -69,7 +69,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{}!./node_modules/sass-loader/lib/loader.js!./Style/main.sass");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js??ref--1-2!./node_modules/sass-loader/lib/loader.js!./Style/main.sass");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -9364,7 +9364,7 @@ module.exports = __webpack_require__("./node_modules/babel-polyfill/node_modules
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{}!./node_modules/sass-loader/lib/loader.js!./Style/main.sass":
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js??ref--1-2!./node_modules/sass-loader/lib/loader.js!./Style/main.sass":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -9372,7 +9372,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".main-button {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 500;\n  font-size: 1.0em;\n  display: inline-block;\n  min-width: 150px;\n  padding: 15px 30px;\n  margin: 0 1.25em;\n  background-color: #009688;\n  color: #fff;\n  border-radius: 50px;\n  border: 1px solid #1e252f;\n  outline: none;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n\n.main-button:hover {\n  border: 1px solid #009688; }\n\n.text-button {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 500;\n  font-size: 1.0em;\n  color: #35383c;\n  background-color: transparent;\n  outline: none;\n  border: none;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n\n.text-button:hover {\n  color: #475b75; }\n\nbody, p, h1, h2, a {\n  margin: 0;\n  padding: 0; }\n\nbody {\n  font-family: \"Roboto\", sans-serif;\n  background-color: #0a1523; }\n\np {\n  color: #a0acba; }\n\nh2 {\n  color: #a0acba; }\n\n#main-container {\n  position: relative;\n  width: 80%;\n  margin: 0 auto 2.5em auto; }\n\n.align-items-center {\n  display: -ms-inline-flex;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -ms-flex-line-pack: center;\n  align-content: center;\n  -ms-flex-align: center;\n  align-items: center; }\n\ninput::-webkit-input-placeholder {\n  color: #1a293a; }\n\ninput:-moz-placeholder {\n  color: #1a293a;\n  opacity: 1; }\n\ninput::-moz-placeholder {\n  color: #1a293a;\n  opacity: 1; }\n\ninput:-ms-input-placeholder {\n  color: #1a293a; }\n\ninput::-ms-input-placeholder {\n  color: #1a293a; }\n\n.main-input {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 300;\n  background-color: #0c1622;\n  color: #fff;\n  font-size: 1.4em;\n  display: inline-block;\n  border: none;\n  outline: none;\n  padding: 15px 25px; }\n\n#main-add-button {\n  width: 97px;\n  min-width: 97px;\n  margin-left: 2.5em;\n  display: inline-block;\n  background-color: #020810;\n  box-sizing: border-box;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px;\n  outline: none;\n  border: none;\n  cursor: pointer; }\n  #main-add-button i {\n    color: #2d3b4d;\n    font-size: 2.5em; }\n\n#main-add-button:hover i {\n  color: #FFF; }\n\n#main-top-bar {\n  position: relative;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-direction: row;\n      flex-direction: row;\n  padding: 2.5em 0; }\n\n#content-categories-filter {\n  -ms-flex-direction: row;\n      flex-direction: row;\n  width: 100%; }\n\n#content-categories-filter {\n  display: -ms-flexbox;\n  display: flex;\n  background-color: #050e19;\n  box-sizing: border-box;\n  padding: 1.5em 1.25em;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px; }\n\n.category-chip {\n  padding: 15px;\n  margin: 0 1.25em;\n  background-color: trasparent;\n  border-radius: 50px;\n  border: 1px solid #1e252f;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n  .category-chip .category-text {\n    color: #ffffff;\n    font-size: 0.7em;\n    font-weight: 500;\n    text-transform: uppercase;\n    margin: 0 1em 0 1em; }\n  .category-chip .button-delete-category {\n    background: none;\n    outline: none;\n    border: none;\n    height: 17px;\n    cursor: pointer; }\n    .category-chip .button-delete-category i {\n      font-size: 1.3em;\n      color: #2d3b4d; }\n\n.category-chip:hover {\n  border: 1px solid #009688; }\n\n.category-chip.category-selected {\n  background-color: #009688; }\n\n.category-chip.categoria-selezionata .category-text, .category-chip:hover .category-text {\n  color: #ffffff; }\n\n.category-chip.categoria-selezionata .button-delete-category i, .category-chip:hover .button-delete-category i {\n  color: #c0d9d7; }\n\n.category-chip.categoria-selezionata .button-delete-category:hover i, .category-chip:hover .button-delete-category:hover i {\n  color: #00695C; }\n\n.content-add-argument {\n  width: 100%;\n  text-align: center; }\n  .content-add-argument h2 {\n    margin-bottom: 15px;\n    color: #475b75; }\n  .content-add-argument h3 {\n    font-size: .8em;\n    font-weight: 300;\n    color: #475b75;\n    margin: 0 0 60px 0; }\n    .content-add-argument h3 .label-category-name {\n      font-weight: 500; }\n  .content-add-argument div {\n    margin-bottom: 60px; }\n  .content-add-argument .main-input {\n    width: 30%; }\n\n.content-add-category {\n  width: 100%;\n  text-align: center; }\n  .content-add-category h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-add-category div {\n    margin-bottom: 60px; }\n  .content-add-category .main-input {\n    width: 30%; }\n\n.dialog-container {\n  position: relative;\n  height: calc(100% - 200px);\n  display: -ms-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -ms-flex-line-pack: center;\n  align-content: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -ms-flex-direction: column;\n      flex-direction: column;\n  opacity: 1; }\n  .dialog-container h2 {\n    font-family: \"Roboto\", sans-serif;\n    font-weight: 300;\n    display: inline-block;\n    font-size: 1.8em; }\n\n#backdrop-dialog {\n  position: fixed;\n  background-color: #0a1523;\n  height: 100vh;\n  width: 100vw;\n  top: 0;\n  left: 0;\n  padding: 0 10%;\n  box-sizing: border-box;\n  transition: all 250ms ease-in-out; }\n\n#dialog-add {\n  height: calc(100vh - 2.5em * 2);\n  width: 100%;\n  margin: 2.5em 0;\n  background-color: #020810;\n  border-radius: 10px;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); }\n  #dialog-add .dialog-header {\n    text-align: right;\n    display: block; }\n    #dialog-add .dialog-header #main-close-button {\n      width: 97px;\n      min-width: 97px;\n      height: 97px;\n      display: inline-block;\n      box-sizing: border-box;\n      background-color: #020810;\n      outline: none;\n      border: none;\n      cursor: pointer; }\n      #dialog-add .dialog-header #main-close-button i {\n        font-size: 2.5em;\n        color: #2d3b4d; }\n    #dialog-add .dialog-header #main-close-button:hover i {\n      color: #FFF; }\n  #dialog-add .dialog-footer {\n    display: block;\n    text-align: center; }\n\n.content-done-add {\n  width: 100%;\n  text-align: center; }\n  .content-done-add h2 {\n    margin-bottom: 30px;\n    color: #475b75; }\n  .content-done-add .content-ic-done {\n    display: block; }\n    .content-done-add .content-ic-done .ic-done {\n      width: 114px;\n      height: 114px; }\n\n.content-select-action-add {\n  width: 100%;\n  text-align: center; }\n  .content-select-action-add h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-select-action-add .item-select {\n    width: 100%;\n    display: block;\n    margin-bottom: 60px; }\n    .content-select-action-add .item-select .select-title {\n      font-size: 2em;\n      color: #a0acba;\n      font-weight: 300;\n      padding: 15px 40px;\n      cursor: pointer; }\n    .content-select-action-add .item-select .select-title:hover {\n      color: #fff; }\n\n.content-select-category {\n  width: 100%;\n  text-align: center; }\n  .content-select-category h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-select-category #content-categories {\n    box-sizing: border-box;\n    padding-bottom: 3.5em; }\n\n#content-todo-arguments {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-direction: column;\n      flex-direction: column;\n  background-color: #050e19;\n  box-sizing: border-box;\n  padding: 1.5em 1.25em;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px; }\n\n.argument-item {\n  position: relative;\n  overflow: hidden;\n  display: block;\n  margin: 15px;\n  display: grid;\n  grid-template-columns: 5fr 1fr; }\n  .argument-item .argument-title {\n    font-size: 1.6em;\n    color: #a0acba;\n    font-weight: 300;\n    padding: 15px 40px;\n    cursor: pointer;\n    -ms-flex-item-align: center;\n        align-self: center; }\n  .argument-item .argument-title:hover {\n    color: #fff; }\n  .argument-item .button-delete-argument {\n    background: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    -ms-flex-item-align: center;\n        align-self: center;\n    justify-self: end;\n    margin-right: 40px; }\n    .argument-item .button-delete-argument i {\n      font-size: 2.2em;\n      color: #2d3b4d; }\n  .argument-item .button-delete-argument:hover i {\n    color: #ffffff; }\n", ""]);
+exports.push([module.i, ".main-button {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 500;\n  font-size: 1.0em;\n  display: inline-block;\n  min-width: 150px;\n  padding: 15px 30px;\n  margin: 0 1.25em;\n  background-color: #009688;\n  color: #fff;\n  border-radius: 50px;\n  border: 1px solid #1e252f;\n  outline: none;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n\n.main-button:hover {\n  border: 1px solid #009688; }\n\n.text-button {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 500;\n  font-size: 1.0em;\n  color: #35383c;\n  background-color: transparent;\n  outline: none;\n  border: none;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n\n.text-button:hover {\n  color: #475b75; }\n\nbody, p, h1, h2, a {\n  margin: 0;\n  padding: 0; }\n\nbody {\n  font-family: \"Roboto\", sans-serif;\n  background-color: #0a1523; }\n\np {\n  color: #a0acba; }\n\nh2 {\n  color: #a0acba; }\n\n#main-container {\n  position: relative;\n  width: 80%;\n  margin: 0 auto 2.5em auto; }\n\n.align-items-center {\n  display: -ms-inline-flex;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -ms-flex-line-pack: center;\n  align-content: center;\n  -ms-flex-align: center;\n  align-items: center; }\n\ninput::-webkit-input-placeholder {\n  color: #1a293a; }\n\ninput:-moz-placeholder {\n  color: #1a293a;\n  opacity: 1; }\n\ninput::-moz-placeholder {\n  color: #1a293a;\n  opacity: 1; }\n\ninput:-ms-input-placeholder {\n  color: #1a293a; }\n\ninput::-ms-input-placeholder {\n  color: #1a293a; }\n\n.main-input {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 300;\n  background-color: #0c1622;\n  color: #fff;\n  font-size: 1.4em;\n  display: inline-block;\n  border: none;\n  outline: none;\n  padding: 15px 25px; }\n\n#main-add-button {\n  width: 97px;\n  min-width: 97px;\n  margin-left: 2.5em;\n  display: inline-block;\n  background-color: #020810;\n  box-sizing: border-box;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px;\n  outline: none;\n  border: none;\n  cursor: pointer; }\n  #main-add-button i {\n    color: #2d3b4d;\n    font-size: 2.5em; }\n\n#main-add-button:hover i {\n  color: #FFF; }\n\n#main-top-bar {\n  position: relative;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-direction: row;\n      flex-direction: row;\n  padding: 2.5em 0; }\n\n#content-categories-filter {\n  -ms-flex-direction: row;\n      flex-direction: row;\n  width: 100%; }\n\n#content-categories-filter {\n  display: -ms-flexbox;\n  display: flex;\n  background-color: #050e19;\n  box-sizing: border-box;\n  padding: 1.5em 1.25em;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px; }\n\n.category-chip {\n  padding: 15px;\n  margin: 0 1.25em;\n  background-color: trasparent;\n  border-radius: 50px;\n  border: 1px solid #1e252f;\n  cursor: pointer;\n  transition: all 150ms ease-in-out; }\n  .category-chip .category-text {\n    color: #ffffff;\n    font-size: 0.7em;\n    font-weight: 500;\n    text-transform: uppercase;\n    margin: 0 1em 0 1em; }\n  .category-chip .button-delete-category {\n    background: none;\n    outline: none;\n    border: none;\n    height: 17px;\n    cursor: pointer; }\n    .category-chip .button-delete-category i {\n      font-size: 1.3em;\n      color: #2d3b4d; }\n\n.category-chip:hover {\n  border: 1px solid #009688; }\n\n.category-chip.category-selected {\n  background-color: #009688; }\n\n.category-chip.categoria-selezionata .category-text, .category-chip:hover .category-text {\n  color: #ffffff; }\n\n.category-chip.categoria-selezionata .button-delete-category i, .category-chip:hover .button-delete-category i {\n  color: #c0d9d7; }\n\n.category-chip.categoria-selezionata .button-delete-category:hover i, .category-chip:hover .button-delete-category:hover i {\n  color: #00695C; }\n\n.content-add-argument {\n  width: 100%;\n  text-align: center; }\n  .content-add-argument h2 {\n    margin-bottom: 15px;\n    color: #475b75; }\n  .content-add-argument h3 {\n    font-size: .8em;\n    font-weight: 300;\n    color: #475b75;\n    margin: 0 0 60px 0; }\n    .content-add-argument h3 .label-category-name {\n      font-weight: 500; }\n  .content-add-argument div.content-fields {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: column;\n        flex-direction: column;\n    -ms-flex-align: center;\n        align-items: center;\n    -ms-flex-line-pack: center;\n        align-content: center;\n    margin-bottom: 60px; }\n  .content-add-argument .main-input {\n    width: 30%; }\n  .content-add-argument .main-input:first-child {\n    margin-bottom: 30px; }\n\n.content-add-category {\n  width: 100%;\n  text-align: center; }\n  .content-add-category h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-add-category div {\n    margin-bottom: 60px; }\n  .content-add-category .main-input {\n    width: 30%; }\n\n.dialog-container {\n  position: relative;\n  height: calc(100% - 200px);\n  display: -ms-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: center;\n  justify-content: center;\n  -ms-flex-line-pack: center;\n  align-content: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -ms-flex-direction: column;\n      flex-direction: column;\n  opacity: 1; }\n  .dialog-container h2 {\n    font-family: \"Roboto\", sans-serif;\n    font-weight: 300;\n    display: inline-block;\n    font-size: 1.8em; }\n\n#backdrop-dialog {\n  position: fixed;\n  background-color: #0a1523;\n  height: 100vh;\n  width: 100vw;\n  top: 0;\n  left: 0;\n  padding: 0 10%;\n  box-sizing: border-box;\n  transition: all 250ms ease-in-out; }\n\n#dialog-add {\n  height: calc(100vh - 2.5em * 2);\n  width: 100%;\n  margin: 2.5em 0;\n  background-color: #020810;\n  border-radius: 10px;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); }\n  #dialog-add .dialog-header {\n    text-align: right;\n    display: block; }\n    #dialog-add .dialog-header #main-close-button {\n      width: 97px;\n      min-width: 97px;\n      height: 97px;\n      display: inline-block;\n      box-sizing: border-box;\n      background-color: #020810;\n      outline: none;\n      border: none;\n      cursor: pointer; }\n      #dialog-add .dialog-header #main-close-button i {\n        font-size: 2.5em;\n        color: #2d3b4d; }\n    #dialog-add .dialog-header #main-close-button:hover i {\n      color: #FFF; }\n  #dialog-add .dialog-footer {\n    display: block;\n    text-align: center; }\n\n.content-done-add {\n  width: 100%;\n  text-align: center; }\n  .content-done-add h2 {\n    margin-bottom: 30px;\n    color: #475b75; }\n  .content-done-add .content-ic-done {\n    display: block; }\n    .content-done-add .content-ic-done .ic-done {\n      width: 114px;\n      height: 114px; }\n\n.content-select-action-add {\n  width: 100%;\n  text-align: center; }\n  .content-select-action-add h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-select-action-add .item-select {\n    width: 100%;\n    display: block;\n    margin-bottom: 60px; }\n    .content-select-action-add .item-select .select-title {\n      font-size: 2em;\n      color: #a0acba;\n      font-weight: 300;\n      padding: 15px 40px;\n      cursor: pointer; }\n    .content-select-action-add .item-select .select-title:hover {\n      color: #fff; }\n\n.content-select-category {\n  width: 100%;\n  text-align: center; }\n  .content-select-category h2 {\n    margin-bottom: 60px;\n    color: #475b75; }\n  .content-select-category #content-categories {\n    box-sizing: border-box;\n    padding-bottom: 3.5em; }\n\n#content-todo-arguments {\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-direction: column;\n      flex-direction: column;\n  background-color: #050e19;\n  box-sizing: border-box;\n  padding: 1.5em 1.25em;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 10px; }\n\n.argument-item {\n  position: relative;\n  overflow: hidden;\n  display: block;\n  margin: 15px;\n  display: grid;\n  grid-template-columns: 5fr 1fr; }\n  .argument-item .argument-title {\n    font-size: 1.6em;\n    color: #a0acba;\n    font-weight: 300;\n    padding: 15px 40px;\n    cursor: pointer;\n    -ms-flex-item-align: center;\n        align-self: center; }\n  .argument-item .argument-title:hover {\n    color: #fff; }\n  .argument-item .button-delete-argument {\n    background: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    -ms-flex-item-align: center;\n        align-self: center;\n    justify-self: end;\n    margin-right: 40px; }\n    .argument-item .button-delete-argument i {\n      font-size: 2.2em;\n      color: #2d3b4d; }\n  .argument-item .button-delete-argument:hover i {\n    color: #ffffff; }\n", ""]);
 
 // exports
 
@@ -10194,74 +10194,78 @@ module.exports = warning;
 /***/ "./node_modules/hoist-non-react-statics/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 /**
  * Copyright 2015, Yahoo! Inc.
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
-
-
-var REACT_STATICS = {
-    childContextTypes: true,
-    contextTypes: true,
-    defaultProps: true,
-    displayName: true,
-    getDefaultProps: true,
-    mixins: true,
-    propTypes: true,
-    type: true
-};
-
-var KNOWN_STATICS = {
-  name: true,
-  length: true,
-  prototype: true,
-  caller: true,
-  callee: true,
-  arguments: true,
-  arity: true
-};
-
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-var getPrototypeOf = Object.getPrototypeOf;
-var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
-var getOwnPropertyNames = Object.getOwnPropertyNames;
-
-module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-
-        if (objectPrototype) {
-            var inheritedComponent = getPrototypeOf(sourceComponent);
-            if (inheritedComponent && inheritedComponent !== objectPrototype) {
-                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+(function (global, factory) {
+     true ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.hoistNonReactStatics = factory());
+}(this, (function () {
+    'use strict';
+    
+    var REACT_STATICS = {
+        childContextTypes: true,
+        contextTypes: true,
+        defaultProps: true,
+        displayName: true,
+        getDefaultProps: true,
+        getDerivedStateFromProps: true,
+        mixins: true,
+        propTypes: true,
+        type: true
+    };
+    
+    var KNOWN_STATICS = {
+        name: true,
+        length: true,
+        prototype: true,
+        caller: true,
+        callee: true,
+        arguments: true,
+        arity: true
+    };
+    
+    var defineProperty = Object.defineProperty;
+    var getOwnPropertyNames = Object.getOwnPropertyNames;
+    var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+    var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    var getPrototypeOf = Object.getPrototypeOf;
+    var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
+    
+    return function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+        if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+            
+            if (objectPrototype) {
+                var inheritedComponent = getPrototypeOf(sourceComponent);
+                if (inheritedComponent && inheritedComponent !== objectPrototype) {
+                    hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+                }
             }
-        }
-
-        var keys = getOwnPropertyNames(sourceComponent);
-
-        if (getOwnPropertySymbols) {
-            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-        }
-
-        for (var i = 0; i < keys.length; ++i) {
-            var key = keys[i];
-            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
-                // Only hoist enumerables and non-enumerable functions
-                if(propIsEnumerable.call(sourceComponent, key) || typeof sourceComponent[key] === 'function') {
+            
+            var keys = getOwnPropertyNames(sourceComponent);
+            
+            if (getOwnPropertySymbols) {
+                keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+            }
+            
+            for (var i = 0; i < keys.length; ++i) {
+                var key = keys[i];
+                if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
+                    var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
                     try { // Avoid failures from read-only properties
-                        targetComponent[key] = sourceComponent[key];
+                        defineProperty(targetComponent, key, descriptor);
                     } catch (e) {}
                 }
             }
+            
+            return targetComponent;
         }
-
+        
         return targetComponent;
-    }
-
-    return targetComponent;
-};
+    };
+})));
 
 
 /***/ }),
@@ -27544,7 +27548,7 @@ selectorFactory) {
   var childContextTypes = (_childContextTypes = {}, _childContextTypes[subscriptionKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["b" /* subscriptionShape */], _childContextTypes);
 
   return function wrapWithConnect(WrappedComponent) {
-    __WEBPACK_IMPORTED_MODULE_1_invariant___default()(typeof WrappedComponent == 'function', 'You must pass a component to the function returned by ' + ('connect. Instead received ' + JSON.stringify(WrappedComponent)));
+    __WEBPACK_IMPORTED_MODULE_1_invariant___default()(typeof WrappedComponent == 'function', 'You must pass a component to the function returned by ' + (methodName + '. Instead received ' + JSON.stringify(WrappedComponent)));
 
     var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
@@ -28390,7 +28394,7 @@ function shallowEqual(objA, objB) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__("./node_modules/lodash-es/isPlainObject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/isPlainObject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__("./node_modules/react-redux/es/utils/warning.js");
 
 
@@ -28429,6 +28433,324 @@ function warning(message) {
   } catch (e) {}
   /* eslint-enable no-empty */
 }
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_Symbol.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_root.js");
+
+
+/** Built-in value references. */
+var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
+
+/* harmony default export */ __webpack_exports__["a"] = (Symbol);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_baseGetTag.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_Symbol.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_getRawTag.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_objectToString.js");
+
+
+
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = __WEBPACK_IMPORTED_MODULE_0__Symbol_js__["a" /* default */] ? __WEBPACK_IMPORTED_MODULE_0__Symbol_js__["a" /* default */].toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__getRawTag_js__["a" /* default */])(value)
+    : Object(__WEBPACK_IMPORTED_MODULE_2__objectToString_js__["a" /* default */])(value);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseGetTag);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_freeGlobal.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_getPrototype.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_overArg.js");
+
+
+/** Built-in value references. */
+var getPrototype = Object(__WEBPACK_IMPORTED_MODULE_0__overArg_js__["a" /* default */])(Object.getPrototypeOf, Object);
+
+/* harmony default export */ __webpack_exports__["a"] = (getPrototype);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_getRawTag.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_Symbol.js");
+
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = __WEBPACK_IMPORTED_MODULE_0__Symbol_js__["a" /* default */] ? __WEBPACK_IMPORTED_MODULE_0__Symbol_js__["a" /* default */].toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (getRawTag);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_objectToString.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (objectToString);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_overArg.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (overArg);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/_root.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_freeGlobal.js");
+
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || freeSelf || Function('return this')();
+
+/* harmony default export */ __webpack_exports__["a"] = (root);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/isObjectLike.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isObjectLike);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/lodash-es/isPlainObject.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_baseGetTag.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/_getPrototype.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__("./node_modules/react-redux/node_modules/lodash-es/isObjectLike.js");
+
+
+
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__["a" /* default */])(value) || Object(__WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__["a" /* default */])(value) != objectTag) {
+    return false;
+  }
+  var proto = Object(__WEBPACK_IMPORTED_MODULE_1__getPrototype_js__["a" /* default */])(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isPlainObject);
+
 
 /***/ }),
 
@@ -31075,7 +31397,7 @@ module.exports = function (css) {
 			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
 
 		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
 		  return fullMatch;
 		}
 
@@ -31447,10 +31769,11 @@ var deleteTodoArgument = function deleteTodoArgument() {
 
 var executeAddTodoArgument = function executeAddTodoArgument() {
   var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var category = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { id: '' };
-  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+  var description = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var category = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { id: '' };
+  var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
   return function (dispatch) {
-    var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-argument', { title: title, categoryId: category.id });
+    var request = Object(__WEBPACK_IMPORTED_MODULE_0__utils_ApiUtils__["a" /* callApi */])('/add-argument', { title: title, description: description, categoryId: category.id });
     return request.then(function (response) {
       if (response.success) {
         dispatch(addArgumentLocal(response.argument));
@@ -32013,18 +32336,25 @@ var AddTodoArgument = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AddTodoArgument.__proto__ || Object.getPrototypeOf(AddTodoArgument)).call(this));
 
     _this.state = {
-      title: ''
+      title: '',
+      description: ''
     };
-    _this.onInputTextChange = _this.onInputTextChange.bind(_this);
+    _this.onInputTitleTextChange = _this.onInputTitleTextChange.bind(_this);
+    _this.onInputDescriptionTextChange = _this.onInputDescriptionTextChange.bind(_this);
     _this.onButtonAddClick = _this.onButtonAddClick.bind(_this);
     _this.onTodoArgumentCreated = _this.onTodoArgumentCreated.bind(_this);
     return _this;
   }
 
   _createClass(AddTodoArgument, [{
-    key: 'onInputTextChange',
-    value: function onInputTextChange(e) {
+    key: 'onInputTitleTextChange',
+    value: function onInputTitleTextChange(e) {
       this.setState({ title: e.target.value });
+    }
+  }, {
+    key: 'onInputDescriptionTextChange',
+    value: function onInputDescriptionTextChange(e) {
+      this.setState({ description: e.target.value });
     }
   }, {
     key: 'onButtonAddClick',
@@ -32032,12 +32362,14 @@ var AddTodoArgument = function (_React$Component) {
       var _props = this.props,
           options = _props.options,
           dispatch = _props.dispatch;
-      var title = this.state.title;
+      var _state = this.state,
+          title = _state.title,
+          description = _state.description;
 
       if (title === '') {
         return;
       }
-      dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(title, options.selectedCategory, this.onTodoArgumentCreated));
+      dispatch(Object(__WEBPACK_IMPORTED_MODULE_4__actions_todoArgumentsActions__["b" /* executeAddTodoArgument */])(title, description, options.selectedCategory, this.onTodoArgumentCreated));
     }
   }, {
     key: 'onTodoArgumentCreated',
@@ -32071,12 +32403,18 @@ var AddTodoArgument = function (_React$Component) {
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          null,
+          { className: 'content-fields' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            className: 'main-input',
+            type: 'text',
+            placeholder: 'Type the title',
+            onChange: this.onInputTitleTextChange
+          }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
             className: 'main-input',
             type: 'text',
             placeholder: 'Type the description',
-            onChange: this.onInputTextChange
+            onChange: this.onInputDescriptionTextChange
           })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

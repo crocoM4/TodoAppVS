@@ -11,7 +11,6 @@ End Code
     <title>Index</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    @*<link rel="stylesheet" type="text/css" href="~/dist/css/main.css" />*@
 </head>
 <body>
 
