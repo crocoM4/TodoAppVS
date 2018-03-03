@@ -2,6 +2,7 @@
 import TodoArguments from '../components/TodoArguments';
 import {
   deleteTodoArgument,
+  setCompletedTodoArgument,
 } from '../actions/todoArgumentsActions';
 
 import { getFilteredTodoArguments } from '../selectors/todoArgumentsSelectors';
@@ -16,6 +17,9 @@ const mapDispatchToProps = dispatch => (
   {
     onDeleteArgument: (argument) => {
       dispatch(deleteTodoArgument(argument.id));
+    },
+    onCompleteArgument: (argument) => {
+      dispatch(setCompletedTodoArgument(argument.id));
     },
   }
 );

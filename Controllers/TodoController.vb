@@ -115,5 +115,22 @@ Namespace Controllers
             Return Json(response, JsonRequestBehavior.AllowGet)
         End Function
 
+        <HttpPost()>
+        <ValidateJsonAntiForgeryToken>
+        <OutputCache(Location:=OutputCacheLocation.None)>
+        Async Function ArgumentCompleted(<Http.FromBody> ByVal todoArgumentId As String) As Threading.Tasks.Task(Of ActionResult)
+            Dim response = New ArgumentResponse()
+            Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId)
+            parseArgument(TableArgument.Columns.Completed) = True
+            parseArgument(TableArgument.Columns.CompletedAt) = Now
+            Try
+                Await parseArgument.SaveAsync()
+                response.setSuccess(New Argument(parseArgument))
+            Catch ex As Exception
+                response.setError(Resources.Labels.msgErrorSave)
+            End Try
+            Return Json(response, JsonRequestBehavior.AllowGet)
+        End Function
+
     End Class
 End Namespace

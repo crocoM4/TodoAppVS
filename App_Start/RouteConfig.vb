@@ -10,6 +10,12 @@ Public Module RouteConfig
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
 
         routes.MapRoute(
+            name:="ArgumentCompleted",
+            url:="argument-completed",
+            defaults:=New With {.controller = "Todo", .action = "ArgumentCompleted"}
+            )
+
+        routes.MapRoute(
             name:="AddArgument",
             url:="add-argument",
             defaults:=New With {.controller = "Todo", .action = "AddArgument"}

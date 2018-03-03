@@ -5,6 +5,7 @@ import {
   ERROR_FETCH_ARGUMENTS,
   ADD_ARGUMENT_LOCAL,
   REMOVE_ARGUMENT_LOCAL,
+  SET_COMPLETED_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 
 const requestFetchArguments = () => (
@@ -41,6 +42,13 @@ const removeArgumentLocal = todoArgumentIndex => (
   }
 );
 
+const setCompleteArgumentLocal = todoArgument => (
+  {
+    type: SET_COMPLETED_ARGUMENT_LOCAL,
+    todoArgument,
+  }
+);
+
 export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   dispatch(requestFetchArguments());
   const request = callApi('/fetch-arguments-by-category', { categoryId });
@@ -62,7 +70,8 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
     (response) => {
       if (response.success) {
         const { items } = getState().todoArguments;
-        const todoArgumentIndex = items.findIndex(category => category.id === todoArgumentId);
+        const todoArgumentIndex = items.findIndex(todoArgument =>
+          todoArgument.id === todoArgumentId);
         dispatch(removeArgumentLocal(todoArgumentIndex));
       } else {
         // console.log(objectResponse.messageError);
@@ -83,6 +92,20 @@ export const executeAddTodoArgument = (title = '', description = '', category = 
         }
       } else {
         console.log(response.messageError);
+      }
+    },
+    error => ({ error }),
+  );
+};
+
+export const setCompletedTodoArgument = (todoArgumentId = '') => (dispatch) => {
+  const request = callApi('/argument-completed', { todoArgumentId });
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(setCompleteArgumentLocal(response.argument));
+      } else {
+        // console.log(objectResponse.messageError);
       }
     },
     error => ({ error }),

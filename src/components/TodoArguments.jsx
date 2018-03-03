@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import TodoArgument from './TodoArgument';
 
-const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument }) => (
+const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument, onCompleteArgument }) => (
   <div id="content-todo-arguments">
     {
       listFilteredTodoArguments.map(arg => (
@@ -11,6 +11,7 @@ const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument }) => (
           key={arg.id}
           argument={arg}
           onDelete={() => onDeleteArgument(arg)}
+          onComplete={() => onCompleteArgument(arg)}
         />
         ))
     }
@@ -19,6 +20,7 @@ const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument }) => (
 
 TodoArguments.propTypes = {
   onDeleteArgument: PropTypes.func.isRequired,
+  onCompleteArgument: PropTypes.func.isRequired,
   listFilteredTodoArguments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

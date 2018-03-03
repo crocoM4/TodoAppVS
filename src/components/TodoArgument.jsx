@@ -1,19 +1,27 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonDeleteArgument from './ButtonDeleteArgument';
+import ButtonCompleteArgument from './ButtonCompleteArgument';
 
-const TodoArgument = ({ argument, onDelete }) => (
+const TodoArgument = ({ argument, onDelete, onComplete }) => (
   <div className="argument-item">
-    <p className="argument-title">{argument.title}</p>
+    <p
+      className={`argument-title ${(argument.completed) ? 'argument-title-completed' : ''}`}
+    >
+      {argument.title}
+    </p>
     {
-      onDelete !== undefined &&
-      <ButtonDeleteArgument onClick={onDelete} />
+      onComplete !== undefined &&
+      <ButtonCompleteArgument
+        onClick={onComplete}
+        completed={argument.completed}
+      />
     }
   </div>
 );
 
 TodoArgument.propTypes = {
   onDelete: PropTypes.func,
+  onComplete: PropTypes.func,
   argument: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -24,6 +32,7 @@ TodoArgument.propTypes = {
 
 TodoArgument.defaultProps = {
   onDelete: undefined,
+  onComplete: undefined,
 };
 
 export default TodoArgument;

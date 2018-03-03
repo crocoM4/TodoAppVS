@@ -184,6 +184,7 @@
     <Content Include="dist\bundle.js" />
     <Content Include="dist\css\main.css" />
     <Content Include="dist\vendor.js" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -242,6 +243,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
