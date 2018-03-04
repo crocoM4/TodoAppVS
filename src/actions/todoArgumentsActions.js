@@ -5,7 +5,7 @@ import {
   ERROR_FETCH_ARGUMENTS,
   ADD_ARGUMENT_LOCAL,
   REMOVE_ARGUMENT_LOCAL,
-  SET_COMPLETED_ARGUMENT_LOCAL,
+  UPDATE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 
 const requestFetchArguments = () => (
@@ -42,9 +42,9 @@ const removeArgumentLocal = todoArgumentIndex => (
   }
 );
 
-const setCompleteArgumentLocal = todoArgument => (
+const updateArgumentLocal = todoArgument => (
   {
-    type: SET_COMPLETED_ARGUMENT_LOCAL,
+    type: UPDATE_ARGUMENT_LOCAL,
     todoArgument,
   }
 );
@@ -98,12 +98,12 @@ export const executeAddTodoArgument = (title = '', description = '', category = 
   );
 };
 
-export const setCompletedTodoArgument = (todoArgumentId = '') => (dispatch) => {
-  const request = callApi('/argument-completed', { todoArgumentId });
+export const toogleTodoArgumentCompleted = (todoArgumentId = '', completed = false) => (dispatch) => {
+  const request = callApi('/toogle-argument-completed', { todoArgumentId, completed });
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(setCompleteArgumentLocal(response.argument));
+        dispatch(updateArgumentLocal(response.argument));
       } else {
         // console.log(objectResponse.messageError);
       }

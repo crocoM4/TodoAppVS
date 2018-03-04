@@ -118,11 +118,15 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function ArgumentCompleted(<Http.FromBody> ByVal todoArgumentId As String) As Threading.Tasks.Task(Of ActionResult)
+        Async Function ToogleArgumentCompleted(<Http.FromBody> ByVal todoArgumentId As String, <Http.FromBody> ByVal completed As Boolean) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New ArgumentResponse()
-            Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId)
-            parseArgument(TableArgument.Columns.Completed) = True
-            parseArgument(TableArgument.Columns.CompletedAt) = Now
+            Dim parseArgument As ParseObject = Await ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId).FetchIfNeededAsync()
+            parseArgument(TableArgument.Columns.Completed) = Not completed
+            If Not completed Then
+                parseArgument(TableArgument.Columns.CompletedAt) = Now
+            Else
+                parseArgument.Remove(TableArgument.Columns.CompletedAt)
+            End If
             Try
                 Await parseArgument.SaveAsync()
                 response.setSuccess(New Argument(parseArgument))

@@ -10,7 +10,10 @@ Public Class Category
     End Sub
 
     Public Sub New(ByVal parseObject As ParseObject)
-        Me.New(parseObject.ObjectId, parseObject.Get(Of String)(TableCategory.Columns.Name))
+        Me.New(
+            parseObject.ObjectId,
+            If(parseObject.Keys.Contains(TableCategory.Columns.Name), parseObject.Get(Of String)(TableCategory.Columns.Name), "")
+        )
     End Sub
 
     Public Shared Function getList(ByVal listParseObjects As List(Of ParseObject)) As List(Of Category)
