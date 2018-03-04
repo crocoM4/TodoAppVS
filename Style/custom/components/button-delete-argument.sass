@@ -1,17 +1,24 @@
 .button-delete-argument
   background: none
+  background-color: $button-delete-argument-background
   outline: none
   border: none
   cursor: pointer
   align-self: center
   justify-self: end
   margin-right: 40px
+  padding: 0.6em
+  box-sizing: border-box
+  border-radius: 50%
+  transition: background 200ms ease-in
 
   i
-    font-size: 2.2em
-    // color: $argument-item-button-action-secondary
+    font-size: 1.3em
+    color: $button-delete-argument-icon-color
+    transition: color 200ms ease-in
 
 .button-delete-argument:hover
+  background-color: $button-delete-argument-background-hover
 
   i
-    // color: $argument-item-button-action-secondary-hover
+    color: $button-delete-argument-icon-color-hover
