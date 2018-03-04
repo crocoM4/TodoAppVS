@@ -1,22 +1,41 @@
 .argument-item
   position: relative
-  overflow: hidden
   display: block
-  margin: 15px
-  display: grid
-  grid-template-columns: 5fr 1fr
+  overflow: hidden
 
-  .argument-title
-    font-size: 1.6em
-    color: $color-text-secondary
-    font-weight: 300
-    padding: 15px 40px
-    cursor: pointer
-    align-self: center
+  .argument-header
+    position: relative
+    display: flex
+    overflow: hidden
+    margin: 15px
 
-  .argument-title:hover
-    color: $color-text-primary
-  
-  .argument-title-completed
-    text-decoration: line-through
-    color: $color-text-third
+    .argument-title
+      flex-grow: 2
+      font-size: 1.6em
+      color: $color-text-secondary
+      font-weight: 300
+      padding: 15px 40px
+      cursor: pointer
+      align-self: center
+
+    .argument-title:hover
+      color: $color-text-primary
+    
+    .argument-title-completed
+      text-decoration: line-through
+      color: $color-text-third
+
+  .argument-body
+    position: relative
+    display: block
+    overflow: hidden
+    background-color: $background-color-night
+
+    .argument-description
+      font-size: 0.9em
+      color: $color-text-secondary
+      font-weight: 300
+      padding: 40px 55px
+
+      .empty
+        font-style: italic
