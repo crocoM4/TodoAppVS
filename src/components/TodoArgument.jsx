@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
+import Collapse from './anims/Collapse';
+import Fade from './anims/Fade';
 import ButtonCompleteArgument from './ButtonCompleteArgument';
 import ButtonDeleteArgument from './ButtonDeleteArgument';
 
@@ -29,12 +31,11 @@ class TodoArgument extends React.Component {
           >
             {argument.title}
           </p>
-          {
-            collapsed &&
+          <Fade in={collapsed}>
             <ButtonDeleteArgument
               onClick={onDelete}
             />
-          }
+          </Fade>
           {
             onComplete !== undefined &&
             <ButtonCompleteArgument
@@ -43,9 +44,8 @@ class TodoArgument extends React.Component {
             />
           }
         </div>
-        {
-          collapsed &&
-          <div className="argument-body">
+        <Collapse in={collapsed}>
+          <div key={argument.description} className="argument-body">
             <p className="argument-description">
               {
                 (argument.description !== undefined && argument.description !== '')
@@ -53,7 +53,7 @@ class TodoArgument extends React.Component {
               }
             </p>
           </div>
-        }
+        </Collapse>
       </div>
     );
   }
