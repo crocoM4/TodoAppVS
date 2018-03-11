@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group';
 const duration = 100;
 
 const defaultStyle = {
-  transition: 'opacity 400ms ease-in-out',
+  transition: `opacity ${duration}ms ease-in-out`,
   opacity: 0,
   display: 'inherit',
 };

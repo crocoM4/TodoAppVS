@@ -39,7 +39,8 @@ Namespace Controllers
                 Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 query = query.WhereEqualTo(TableArgument.Columns.Category, parseCategory)
             End If
-            query = query.Include(TableArgument.Columns.Category)
+            'query = query.Include(TableArgument.Columns.Category)
+
             Try
                 Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
                 response.setSuccess(Argument.getList(queryResult))

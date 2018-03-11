@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-const duration = 100;
+const duration = 300;
 
 const defaultStyle = {
-  transition: 'height 400ms ease-in-out',
+  transition: `height ${duration}ms ease-in-out`,
   height: 0,
 };
 
