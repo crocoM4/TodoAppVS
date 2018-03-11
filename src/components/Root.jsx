@@ -5,6 +5,7 @@ import MainAddButton from '../components/MainAddButton';
 import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
+import DialogAnim from './anims/DialogAnim';
 
 class Root extends Component {
   constructor(props) {
@@ -30,10 +31,12 @@ class Root extends Component {
           />
         </div>
         <TodoArgumentsContainer />
-        <DialogAdd
-          isOpen={isDialogAddOpen}
-          onClose={() => this.setState({ isDialogAddOpen: false })}
-        />
+        <DialogAnim in={isDialogAddOpen}>
+          <DialogAdd
+            isOpen={isDialogAddOpen}
+            onClose={() => this.setState({ isDialogAddOpen: false })}
+          />
+        </DialogAnim>
       </div>
     );
   }
