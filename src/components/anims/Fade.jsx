@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-const duration = 100;
+const duration = 200;
 
 const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out`,
@@ -15,8 +15,8 @@ const transitionStyles = {
   entered: { opacity: 1 },
 };
 
-const Fade = ({ in: inProp, children }) => (
-  <Transition in={inProp} timeout={duration}>
+const Fade = ({ ...props, children }) => (
+  <Transition {...props} timeout={duration}>
     {state => (
       <div style={{
           ...defaultStyle,
@@ -30,7 +30,6 @@ const Fade = ({ in: inProp, children }) => (
 );
 
 Fade.propTypes = {
-  in: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
