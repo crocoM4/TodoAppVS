@@ -5,6 +5,7 @@ import MainAddButton from '../components/MainAddButton';
 import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
+import Snackbar from './Snackbar';
 import DialogAnim from './anims/DialogAnim';
 
 class Root extends Component {
@@ -12,6 +13,7 @@ class Root extends Component {
     super(props);
     this.state = {
       isDialogAddOpen: false,
+      isSnakbarOpen: true,
     };
   }
 
@@ -21,7 +23,7 @@ class Root extends Component {
   }
 
   render() {
-    const { isDialogAddOpen } = this.state;
+    const { isDialogAddOpen, isSnakbarOpen } = this.state;
     return (
       <div id="main-container">
         <div id="main-top-bar">
@@ -33,10 +35,15 @@ class Root extends Component {
         <TodoArgumentsContainer />
         <DialogAnim in={isDialogAddOpen}>
           <DialogAdd
-            isOpen={isDialogAddOpen}
             onClose={() => this.setState({ isDialogAddOpen: false })}
           />
         </DialogAnim>
+        <Snackbar
+          message="Lorem ipsum"
+          onClose={() => this.setState({ isSnakbarOpen: false })}
+          actionText="Action"
+          actionClick={() => { this.setState({ isSnakbarOpen: false }); }}
+        />
       </div>
     );
   }
