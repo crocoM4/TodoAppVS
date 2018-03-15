@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-const duration = 200;
+const duration = 250;
 
 const defaultStyle = {
   width: '100%',
