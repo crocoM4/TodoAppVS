@@ -22,10 +22,10 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.8.2",
     "postcss-loader": "^2.1.1",
     "sass-loader": "^6.0.7",
-    "style-loader": "^0.20.2"
+    "style-loader": "^0.20.3"
   },
   "dependencies": {
     "autoprefixer": "^7.2.6",
@@ -40,6 +40,6 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10"
+    "webpack-cli": "^2.0.12"
   }
 }
