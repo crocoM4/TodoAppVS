@@ -3,13 +3,14 @@
   display: flex
   bottom: 0
   left: 0
-  width: 100%
+  width: 300px
   min-height: $snackbar-min-height
+  margin: 30px
   align-items: center
   align-content: center
   vertical-align: middle
   background-color: $snackbar-background-color
-  padding: 20px 40px
+  padding: 15px 20px
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
   z-index: $snackbar-z-index
   box-sizing: border-box
@@ -20,23 +21,22 @@
     font-size: $snackbar-message-font-size
     color: $snackbar-message-color
 
-
   .button-action-snackbar
     background: none
     background-color: $button-action-snackbar-background
     font-weight: 700
-    font-size: 0.9em
+    font-size: $button-action-snackbar-font-size
     color: $button-action-snackbar-color
+    padding: 5px 10px
     outline: none
     border: none
     cursor: pointer
     align-self: center
     justify-self: end
+    border-radius: 5px
     box-sizing: border-box
     transition: background 200ms ease-in
 
   .button-action-snackbar:hover
     background-color: $button-action-snackbar-background-hover
     color: $button-action-snackbar-color-hover
-
-      
