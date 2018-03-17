@@ -12,19 +12,33 @@ Action.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-const Snackbar = ({
-  message, onClose, duration, isError, actionText, actionClick,
-}) => (
-  <div
-    className={`snackbar ${(isError) ? '' : ''}`}
-  >
-    <span className="snackbar-message">{message}</span>
-    {
-      (actionText !== '' && actionClick !== undefined) &&
-        <Action onClick={actionClick} text={actionText} />
-    }
-  </div>
-);
+class Snackbar extends React.Component {
+  componentDidMount() {
+    const {
+      onClose, duration,
+    } = this.props;
+
+    setTimeout(() => {
+      onClose();
+    }, duration);
+  }
+  render() {
+    const {
+      message, isError, actionText, actionClick,
+    } = this.props;
+    return (
+      <div
+        className={`snackbar ${(isError) ? '' : ''}`}
+      >
+        <span className="snackbar-message">{message}</span>
+        {
+          (actionText !== '' && actionClick !== undefined) &&
+            <Action onClick={actionClick} text={actionText} />
+        }
+      </div>
+    );
+  }
+}
 
 Snackbar.propTypes = {
   message: PropTypes.string.isRequired,

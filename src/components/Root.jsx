@@ -7,6 +7,7 @@ import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
 import Snackbar from './Snackbar';
 import DialogAnim from './anims/DialogAnim';
+import SnackbarAnim from './anims/SnackbarAnim';
 
 class Root extends Component {
   constructor(props) {
@@ -38,12 +39,14 @@ class Root extends Component {
             onClose={() => this.setState({ isDialogAddOpen: false })}
           />
         </DialogAnim>
-        <Snackbar
-          message="Lorem ipsum"
-          onClose={() => this.setState({ isSnakbarOpen: false })}
-          actionText="Action"
-          actionClick={() => { this.setState({ isSnakbarOpen: false }); }}
-        />
+        <SnackbarAnim in={isSnakbarOpen}>
+          <Snackbar
+            message="Lorem ipsum"
+            onClose={() => this.setState({ isSnakbarOpen: false })}
+            actionText="Action"
+            actionClick={() => { this.setState({ isSnakbarOpen: false }); }}
+          />
+        </SnackbarAnim>
       </div>
     );
   }
