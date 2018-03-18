@@ -28,7 +28,7 @@ class Snackbar extends React.Component {
     } = this.props;
     return (
       <div
-        className={`snackbar ${(isError) ? '' : ''}`}
+        className={`snackbar ${(isError) ? 'error' : ''}`}
       >
         <span className="snackbar-message">{message}</span>
         {
@@ -50,7 +50,7 @@ Snackbar.propTypes = {
 };
 
 Snackbar.defaultProps = {
-  duration: 3000,
+  duration: 5000,
   isError: false,
   actionText: '',
   actionClick: undefined,
