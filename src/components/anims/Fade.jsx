@@ -8,11 +8,12 @@ const defaultStyle = {
   transition: `opacity ${duration}ms ease-in-out`,
   opacity: 0,
   display: 'inherit',
+  visibility: 'hidden',
 };
 
 const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 },
+  entering: { opacity: 0, visibility: 'hidden' },
+  entered: { opacity: 1, visibility: 'visible' },
 };
 
 const Fade = ({ ...props, children }) => (
