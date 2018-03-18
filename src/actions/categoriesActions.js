@@ -9,6 +9,7 @@ import {
   TOOGLE_SELECT_CATEGORY_ALL,
 } from '../constants/actionTypes';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
+import { showMessageError } from './messageActions';
 import categoryAll from '../constants/config';
 
 const requestFetchAllCategories = () => (
@@ -58,7 +59,6 @@ export const toogleSelectCategoryAll = () => (
   }
 );
 
-
 export const fetchAllCategories = () => (dispatch) => {
   dispatch(requestFetchAllCategories());
   const request = callApi('/fetch-all-categories');
@@ -67,10 +67,13 @@ export const fetchAllCategories = () => (dispatch) => {
       if (response.success) {
         dispatch(receiveFetchAllCategories(response.categories));
         dispatch(fetchTodoArgumentsByCategory(categoryAll.id));
+      } else {
+        dispatch(errorFetchAllCategories(response.messageError));
       }
-      dispatch(errorFetchAllCategories(response.messageError));
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };
 
@@ -82,9 +85,13 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
         const { items } = getState().categories;
         const categoryIndex = items.findIndex(category => category.id === categoryId);
         dispatch(removeCategoryLocal(categoryIndex));
+      } else {
+        dispatch(showMessageError(response.messageError));
       }
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };
 
@@ -102,8 +109,12 @@ export const addCategory = (name = '', callback = undefined) => (dispatch) => {
         if (callback !== undefined) {
           callback(response.category);
         }
+      } else {
+        dispatch(showMessageError(response.messageError));
       }
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };

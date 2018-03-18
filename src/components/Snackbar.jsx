@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import SnackbarAnim from './anims/SnackbarAnim';
 
 const Action = ({ onClick, text }) => (
   <button className="button-action-snackbar" onClick={onClick}>
@@ -13,34 +14,39 @@ Action.propTypes = {
 };
 
 class Snackbar extends React.Component {
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {
     const {
       onClose, duration,
     } = this.props;
 
-    setTimeout(() => {
-      onClose();
-    }, duration);
+    if (nextProps.show) {
+      setTimeout(() => {
+        onClose();
+      }, duration);
+    }
   }
   render() {
     const {
-      message, isError, actionText, actionClick,
+      message, isError, actionText, actionClick, show,
     } = this.props;
     return (
-      <div
-        className={`snackbar ${(isError) ? 'error' : ''}`}
-      >
-        <span className="snackbar-message">{message}</span>
-        {
-          (actionText !== '' && actionClick !== undefined) &&
-            <Action onClick={actionClick} text={actionText} />
-        }
-      </div>
+      <SnackbarAnim in={show}>
+        <div
+          className={`snackbar ${(isError) ? 'error' : ''}`}
+        >
+          <span className="snackbar-message">{message}</span>
+          {
+            (actionText !== '' && actionClick !== undefined) &&
+              <Action onClick={actionClick} text={actionText} />
+          }
+        </div>
+      </SnackbarAnim>
     );
   }
 }
 
 Snackbar.propTypes = {
+  show: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   duration: PropTypes.number,

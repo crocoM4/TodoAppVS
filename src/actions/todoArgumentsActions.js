@@ -7,6 +7,7 @@ import {
   REMOVE_ARGUMENT_LOCAL,
   UPDATE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
+import { showMessageError } from './messageActions';
 
 const requestFetchArguments = () => (
   {
@@ -74,7 +75,7 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
           todoArgument.id === todoArgumentId);
         dispatch(removeArgumentLocal(todoArgumentIndex));
       } else {
-        // console.log(objectResponse.messageError);
+        dispatch(showMessageError(response.messageError));
       }
     },
     error => ({ error }),
@@ -91,7 +92,7 @@ export const addTodoArgument = (title = '', description = '', category = { id: '
           callback();
         }
       } else {
-        console.log(response.messageError);
+        dispatch(showMessageError(response.messageError));
       }
     },
     error => ({ error }),
@@ -105,7 +106,7 @@ export const toogleTodoArgumentCompleted = (todoArgumentId = '', completed = fal
       if (response.success) {
         dispatch(updateArgumentLocal(response.argument));
       } else {
-        // console.log(objectResponse.messageError);
+        dispatch(showMessageError(response.messageError));
       }
     },
     error => ({ error }),

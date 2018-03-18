@@ -14,6 +14,7 @@ import {
   DONE,
 } from '../../constants/steps';
 import StepsAnim from '../anims/StepsAnim';
+import DialogAnim from '../anims/DialogAnim';
 
 const getContentToRender = (steps, props) => {
   if (steps.length === 0) {
@@ -106,37 +107,40 @@ class DialogAdd extends React.Component {
 
   render() {
     const { steps, showStep } = this.state;
-    const { onClose } = this.props;
+    const { onClose, open } = this.props;
     const { onNext, onResetAndClose, onAnimationEnd } = this;
     return (
-      <div id="dialog-add" >
-        <div className="dialog-header">
-          <button id="main-close-button" onClick={() => onClose()}>
-            <i className="material-icons">&#xE5CD;</i>
-          </button>
-        </div>
+      <DialogAnim in={open}>
+        <div id="dialog-add" >
+          <div className="dialog-header">
+            <button id="main-close-button" onClick={() => onClose()}>
+              <i className="material-icons">&#xE5CD;</i>
+            </button>
+          </div>
 
-        <div className="dialog-container">
-          <StepsAnim in={showStep} endListener={onAnimationEnd}>
-            {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
-          </StepsAnim>
-        </div>
+          <div className="dialog-container">
+            <StepsAnim in={showStep} endListener={onAnimationEnd}>
+              {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
+            </StepsAnim>
+          </div>
 
-        <div className="dialog-footer">
-          <button
-            id="back-button-dialog"
-            className="text-button"
-            onClick={() => this.onBack()}
-          >
-            NEVER MIND, GO BACK
-          </button>
+          <div className="dialog-footer">
+            <button
+              id="back-button-dialog"
+              className="text-button"
+              onClick={() => this.onBack()}
+            >
+              NEVER MIND, GO BACK
+            </button>
+          </div>
         </div>
-      </div>
+      </DialogAnim>
     );
   }
 }
 
 DialogAdd.propTypes = {
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

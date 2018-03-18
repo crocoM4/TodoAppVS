@@ -6,15 +6,13 @@ import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
 import Snackbar from './Snackbar';
-import DialogAnim from './anims/DialogAnim';
-import SnackbarAnim from './anims/SnackbarAnim';
+
 
 class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isDialogAddOpen: false,
-      isSnakbarOpen: true,
     };
   }
 
@@ -24,7 +22,8 @@ class Root extends Component {
   }
 
   render() {
-    const { isDialogAddOpen, isSnakbarOpen } = this.state;
+    const { isDialogAddOpen } = this.state;
+    const { message, hideMessage } = this.props;
     return (
       <div id="main-container">
         <div id="main-top-bar">
@@ -34,25 +33,28 @@ class Root extends Component {
           />
         </div>
         <TodoArgumentsContainer />
-        <DialogAnim in={isDialogAddOpen}>
-          <DialogAdd
-            onClose={() => this.setState({ isDialogAddOpen: false })}
-          />
-        </DialogAnim>
-        <SnackbarAnim in={isSnakbarOpen}>
-          <Snackbar
-            message="Lorem ipsum"
-            onClose={() => this.setState({ isSnakbarOpen: false })}
-            actionText="Action"
-            actionClick={() => { this.setState({ isSnakbarOpen: false }); }}
-          />
-        </SnackbarAnim>
+        <DialogAdd
+          open={isDialogAddOpen}
+          onClose={() => this.setState({ isDialogAddOpen: false })}
+        />
+        <Snackbar
+          show={message.show}
+          isError={message.isError}
+          message={message.text}
+          onClose={() => hideMessage()}
+        />
       </div>
     );
   }
 }
 
 Root.propTypes = {
+  message: PropTypes.shape({
+    show: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  hideMessage: PropTypes.func.isRequired,
   initFetchAllCategories: PropTypes.func.isRequired,
 };
 

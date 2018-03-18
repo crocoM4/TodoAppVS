@@ -21,6 +21,11 @@ Namespace Controllers
             Dim response = New CategoriesResponse()
             Dim query = New ParseQuery(Of ParseObject)(TableCategory.Name)
             Try
+                'Todo Cancella
+                'Dim user = New ParseUser() With {.Email = "portapozze@libero.it", .Username = "portapozze@libero.it", .Password = "a"}
+                'Await user.SignUpAsync()
+                'Await ParseUser.RequestPasswordResetAsync("portapozze@libero.it")
+
                 Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
                 response.setSuccess(Category.getList(queryResult))
             Catch ex As Exception
