@@ -1,37 +1,60 @@
 .argument-item
   position: relative
-  overflow: hidden
   display: block
-  margin: 15px
-  display: grid
-  grid-template-columns: 5fr 1fr
+  overflow: hidden
 
-  .argument-title
-    font-size: 1.6em
-    color: $color-text-secondary
-    font-weight: 300
-    padding: 15px 40px
-    cursor: pointer
-    align-self: center
+  .argument-header
+    position: relative
+    display: flex
+    overflow: hidden
+    margin: 15px
 
-  .argument-title:hover
-    color: $color-text-primary
+    .argument-title
+      flex-grow: 2
+      font-size: 1.6em
+      color: $color-text-secondary
+      font-weight: 300
+      padding: 15px 40px
+      cursor: pointer
+      align-self: center
+
+    .argument-title:hover
+      color: $color-text-primary
+    
+    .argument-title-completed
+      text-decoration: line-through
+      color: $color-text-third
+    
+    .argument-title-completed:hover
+      color: $color-text-secondary
+
+  .argument-body
+    position: relative
+    display: block
+    overflow: hidden
+    background-color: $background-color-night
+
+    .argument-description
+      font-size: 0.9em
+      color: $color-text-secondary
+      font-weight: 300
+      padding: 40px 55px
+
+      .empty
+        font-style: italic
 
 
-  .button-delete-argument
-    background: none
-    outline: none
-    border: none
-    cursor: pointer
-    align-self: center
-    justify-self: end
-    margin-right: 40px
 
-    i
-      font-size: 2.2em
-      color: $argument-item-button-action-secondary
+.example-enter
+  opacity: 0.01
 
-  .button-delete-argument:hover
+.example-enter.example-enter-active
+  opacity: 1
+  transition: opacity 500ms ease-in
 
-    i
-      color: $argument-item-button-action-secondary-hover
+.example-leave
+  opacity: 1
+
+.example-leave.example-leave-active 
+  opacity: 0.01
+  transition: opacity 300ms ease-in

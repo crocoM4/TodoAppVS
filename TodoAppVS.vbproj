@@ -184,6 +184,7 @@
     <Content Include="dist\bundle.js" />
     <Content Include="dist\css\main.css" />
     <Content Include="dist\vendor.js" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -204,11 +205,9 @@
     </Compile>
     <Compile Include="Models\Argument.vb" />
     <Compile Include="Models\Category.vb" />
-    <Compile Include="Models\response\ArgumentResponse.vb" />
-    <Compile Include="Models\response\ArgumentsResponse.vb" />
+    <Compile Include="Models\response\BaseListResponse.vb" />
+    <Compile Include="Models\response\BaseObjectResponse.vb" />
     <Compile Include="Models\response\BaseResponse.vb" />
-    <Compile Include="Models\response\CategoriesResponse.vb" />
-    <Compile Include="Models\response\CategoryResponse.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -242,6 +241,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -256,7 +258,6 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Todo\Index.vbhtml" />
-    <Content Include="Style\sass\main.sass" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -266,6 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Style\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

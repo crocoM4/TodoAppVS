@@ -6,7 +6,6 @@ import AddCategory from './AddCategory';
 import SelectCategory from './SelectCategory';
 import AddTodoArgument from './AddTodoArgument';
 import Done from './Done';
-
 import {
   SELECT_WANT_TO_ADD,
   ADD_CATEGORY,
@@ -14,6 +13,8 @@ import {
   SELECT_CATEGORY,
   DONE,
 } from '../../constants/steps';
+import StepsAnim from '../anims/StepsAnim';
+import DialogAnim from '../anims/DialogAnim';
 
 const getContentToRender = (steps, props) => {
   if (steps.length === 0) {
@@ -40,11 +41,14 @@ class DialogAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      futureSteps: [],
       steps: [],
+      showStep: true,
     };
     this.onBack = this.onBack.bind(this);
     this.onNext = this.onNext.bind(this);
     this.onResetAndClose = this.onResetAndClose.bind(this);
+    this.onAnimationEnd = this.onAnimationEnd.bind(this);
   }
 
   onBack() {
@@ -57,9 +61,10 @@ class DialogAdd extends React.Component {
       onClose();
     } else {
       this.setState({
-        steps: [
+        futureSteps: [
           ...steps.slice(0, steps.length - 1),
         ],
+        showStep: false,
       });
     }
   }
@@ -67,11 +72,12 @@ class DialogAdd extends React.Component {
   onNext(step = { stepId: '', options: {} }) {
     const { steps } = this.state;
     this.setState({
-      steps: [
+      futureSteps: [
         ...steps, {
           ...step,
         },
       ],
+      showStep: false,
     });
   }
 
@@ -83,27 +89,28 @@ class DialogAdd extends React.Component {
     }, 500);
   }
 
+  onAnimationEnd(node, done) {
+    node.addEventListener('transitionend', () => {
+      done();
+      const { futureSteps, showStep } = this.state;
+      if (showStep) {
+        return;
+      }
+      this.setState({
+        steps: [
+          ...futureSteps,
+        ],
+        showStep: true,
+      });
+    }, false);
+  }
+
   render() {
-    const { steps } = this.state;
-    const { isOpen, onClose } = this.props;
-    const { onNext, onResetAndClose } = this;
-    let cssValue = {
-      height: '0px',
-      opacity: '0',
-      visibility: 'hidden',
-    };
-
-    if (isOpen) {
-      cssValue = {
-        display: 'block',
-        height: '100vh',
-        opacity: '1',
-        visibility: 'visible',
-      };
-    }
-
+    const { steps, showStep } = this.state;
+    const { onClose, open } = this.props;
+    const { onNext, onResetAndClose, onAnimationEnd } = this;
     return (
-      <div id="backdrop-dialog" style={cssValue}>
+      <DialogAnim in={open}>
         <div id="dialog-add" >
           <div className="dialog-header">
             <button id="main-close-button" onClick={() => onClose()}>
@@ -112,7 +119,9 @@ class DialogAdd extends React.Component {
           </div>
 
           <div className="dialog-container">
-            {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
+            <StepsAnim in={showStep} endListener={onAnimationEnd}>
+              {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
+            </StepsAnim>
           </div>
 
           <div className="dialog-footer">
@@ -125,13 +134,13 @@ class DialogAdd extends React.Component {
             </button>
           </div>
         </div>
-      </div>
+      </DialogAnim>
     );
   }
 }
 
 DialogAdd.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

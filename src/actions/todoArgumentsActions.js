@@ -5,7 +5,9 @@ import {
   ERROR_FETCH_ARGUMENTS,
   ADD_ARGUMENT_LOCAL,
   REMOVE_ARGUMENT_LOCAL,
+  UPDATE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
+import { showMessageError } from './messageActions';
 
 const requestFetchArguments = () => (
   {
@@ -41,13 +43,20 @@ const removeArgumentLocal = todoArgumentIndex => (
   }
 );
 
+const updateArgumentLocal = todoArgument => (
+  {
+    type: UPDATE_ARGUMENT_LOCAL,
+    todoArgument,
+  }
+);
+
 export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   dispatch(requestFetchArguments());
   const request = callApi('/fetch-arguments-by-category', { categoryId });
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(receiveFetchArguments(response.arguments));
+        dispatch(receiveFetchArguments(response.list));
       } else {
         dispatch(errorFetchArguments(response.messageError));
       }
@@ -62,27 +71,42 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
     (response) => {
       if (response.success) {
         const { items } = getState().todoArguments;
-        const todoArgumentIndex = items.findIndex(category => category.id === todoArgumentId);
+        const todoArgumentIndex = items.findIndex(todoArgument =>
+          todoArgument.id === todoArgumentId);
         dispatch(removeArgumentLocal(todoArgumentIndex));
       } else {
-        // console.log(objectResponse.messageError);
+        dispatch(showMessageError(response.messageError));
       }
     },
     error => ({ error }),
   );
 };
 
-export const executeAddTodoArgument = (title = '', category = { id: '' }, callback = undefined) => (dispatch) => {
-  const request = callApi('/add-argument', { title, categoryId: category.id });
+export const addTodoArgument = (title = '', description = '', category = { id: '' }, callback = undefined) => (dispatch) => {
+  const request = callApi('/add-argument', { title, description, categoryId: category.id });
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addArgumentLocal(response.argument));
+        dispatch(addArgumentLocal(response.obj));
         if (callback !== undefined) {
           callback();
         }
       } else {
-        console.log(response.messageError);
+        dispatch(showMessageError(response.messageError));
+      }
+    },
+    error => ({ error }),
+  );
+};
+
+export const toogleTodoArgumentCompleted = (todoArgumentId = '', completed = false) => (dispatch) => {
+  const request = callApi('/toogle-argument-completed', { todoArgumentId, completed });
+  return request.then(
+    (response) => {
+      if (response.success) {
+        dispatch(updateArgumentLocal(response.obj));
+      } else {
+        dispatch(showMessageError(response.messageError));
       }
     },
     error => ({ error }),

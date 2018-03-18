@@ -3,30 +3,38 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { DONE } from '../../constants/steps';
-import { executeAddTodoArgument } from '../../actions/todoArgumentsActions';
+import { addTodoArgument } from '../../actions/todoArgumentsActions';
 
 class AddTodoArgument extends React.Component {
   constructor() {
     super();
     this.state = {
       title: '',
+      description: '',
     };
-    this.onInputTextChange = this.onInputTextChange.bind(this);
+    this.onInputTitleTextChange = this.onInputTitleTextChange.bind(this);
+    this.onInputDescriptionTextChange = this.onInputDescriptionTextChange.bind(this);
     this.onButtonAddClick = this.onButtonAddClick.bind(this);
     this.onTodoArgumentCreated = this.onTodoArgumentCreated.bind(this);
   }
 
-  onInputTextChange(e) {
+  onInputTitleTextChange(e) {
     this.setState({ title: e.target.value });
+  }
+  onInputDescriptionTextChange(e) {
+    this.setState({ description: e.target.value });
   }
 
   onButtonAddClick() {
     const { options, dispatch } = this.props;
-    const { title } = this.state;
+    const { title, description } = this.state;
     if (title === '') {
       return;
     }
-    dispatch(executeAddTodoArgument(title, options.selectedCategory, this.onTodoArgumentCreated));
+    dispatch(addTodoArgument(
+      title, description,
+      options.selectedCategory, this.onTodoArgumentCreated,
+    ));
   }
 
   onTodoArgumentCreated() {
@@ -45,12 +53,18 @@ class AddTodoArgument extends React.Component {
             {` ${selectedCategory.name}`}
           </span>
         </h3>
-        <div>
+        <div className="content-fields">
+          <input
+            className="main-input"
+            type="text"
+            placeholder="Type the title"
+            onChange={this.onInputTitleTextChange}
+          />
           <input
             className="main-input"
             type="text"
             placeholder="Type the description"
-            onChange={this.onInputTextChange}
+            onChange={this.onInputDescriptionTextChange}
           />
         </div>
         <div>

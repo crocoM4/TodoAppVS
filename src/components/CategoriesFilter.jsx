@@ -1,21 +1,26 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-
+import { TransitionGroup } from 'react-transition-group';
 import Category from './Category';
+import Fade from './anims/Fade';
 
 const CategoriesFilter = ({ categoryList, onDeleteCategory, onCilckCategory }) => (
   <div id="content-categories-filter">
-    {
-      categoryList.map(category => (
-        <Category
-          key={category.id}
-          category={category}
-          selected={category.selected}
-          onDelete={onDeleteCategory}
-          onClick={onCilckCategory}
-        />
-      ))
-    }
+    <TransitionGroup className="categories-filter">
+      {
+        categoryList.map(category => (
+          <Fade key={category.id}>
+            <Category
+              key={category.id}
+              category={category}
+              selected={category.selected}
+              onDelete={onDeleteCategory}
+              onClick={onCilckCategory}
+            />
+          </Fade>
+        ))
+      }
+    </TransitionGroup>
   </div>
 );
 

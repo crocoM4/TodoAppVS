@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   context: path.resolve('src'),
   entry: {
     main: './index.jsx',
@@ -25,7 +26,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         loaders: ['babel-loader'],

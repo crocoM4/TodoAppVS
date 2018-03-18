@@ -9,6 +9,7 @@ import {
   TOOGLE_SELECT_CATEGORY_ALL,
 } from '../constants/actionTypes';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
+import { showMessageError } from './messageActions';
 import categoryAll from '../constants/config';
 
 const requestFetchAllCategories = () => (
@@ -58,19 +59,21 @@ export const toogleSelectCategoryAll = () => (
   }
 );
 
-
 export const fetchAllCategories = () => (dispatch) => {
   dispatch(requestFetchAllCategories());
   const request = callApi('/fetch-all-categories');
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(receiveFetchAllCategories(response.categories));
+        dispatch(receiveFetchAllCategories(response.list));
         dispatch(fetchTodoArgumentsByCategory(categoryAll.id));
+      } else {
+        dispatch(errorFetchAllCategories(response.messageError));
       }
-      dispatch(errorFetchAllCategories(response.messageError));
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };
 
@@ -82,9 +85,13 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
         const { items } = getState().categories;
         const categoryIndex = items.findIndex(category => category.id === categoryId);
         dispatch(removeCategoryLocal(categoryIndex));
+      } else {
+        dispatch(showMessageError(response.messageError));
       }
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };
 
@@ -93,17 +100,21 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
  * @param {String} name category name to add
  * @param {Function} callback function that need to handle the category created
  */
-export const executeAddCategory = (name = '', callback = undefined) => (dispatch) => {
+export const addCategory = (name = '', callback = undefined) => (dispatch) => {
   const request = callApi('/add-category', { name });
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addCategoryLocal(response.category));
+        dispatch(addCategoryLocal(response.obj));
         if (callback !== undefined) {
-          callback(response.category);
+          callback(response.obj);
         }
+      } else {
+        dispatch(showMessageError(response.messageError));
       }
     },
-    error => ({ error }),
+    error => (
+      dispatch(showMessageError(error))
+    ),
   );
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { ADD_ARGUMENT } from '../../constants/steps';
-import { executeAddCategory } from '../../actions/categoriesActions';
+import { addCategory } from '../../actions/categoriesActions';
 
 class AddCategory extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class AddCategory extends React.Component {
     if (name === '') {
       return;
     }
-    dispatch(executeAddCategory(name, this.onCategoryCreated));
+    dispatch(addCategory(name, this.onCategoryCreated));
   }
 
   onCategoryCreated(selectedCategory) {

@@ -41,6 +41,16 @@ const todoArguments = (state = initialState, action) => {
           ...state.items.slice(action.todoArgumentIndex + 1),
         ],
       };
+    case actionTypes.UPDATE_ARGUMENT_LOCAL:
+      return {
+        ...state,
+        items: [
+          ...state.items.map(argument => (
+            (argument.id === action.todoArgument.id)
+              ? { ...action.todoArgument } : argument
+          )),
+        ],
+      };
     default:
       return state;
   }
