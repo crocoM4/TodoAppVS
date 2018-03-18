@@ -93,7 +93,7 @@ export const deleteCategory = (categoryId = '') => (dispatch, getState) => {
  * @param {String} name category name to add
  * @param {Function} callback function that need to handle the category created
  */
-export const executeAddCategory = (name = '', callback = undefined) => (dispatch) => {
+export const addCategory = (name = '', callback = undefined) => (dispatch) => {
   const request = callApi('/add-category', { name });
   return request.then(
     (response) => {
