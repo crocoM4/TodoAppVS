@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { DONE } from '../../constants/steps';
-import { executeAddTodoArgument } from '../../actions/todoArgumentsActions';
+import { addTodoArgument } from '../../actions/todoArgumentsActions';
 
 class AddTodoArgument extends React.Component {
   constructor() {
@@ -31,7 +31,7 @@ class AddTodoArgument extends React.Component {
     if (title === '') {
       return;
     }
-    dispatch(executeAddTodoArgument(
+    dispatch(addTodoArgument(
       title, description,
       options.selectedCategory, this.onTodoArgumentCreated,
     ));
