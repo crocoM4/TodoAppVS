@@ -65,7 +65,7 @@ export const fetchAllCategories = () => (dispatch) => {
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(receiveFetchAllCategories(response.categories));
+        dispatch(receiveFetchAllCategories(response.list));
         dispatch(fetchTodoArgumentsByCategory(categoryAll.id));
       } else {
         dispatch(errorFetchAllCategories(response.messageError));
@@ -105,9 +105,9 @@ export const addCategory = (name = '', callback = undefined) => (dispatch) => {
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addCategoryLocal(response.category));
+        dispatch(addCategoryLocal(response.obj));
         if (callback !== undefined) {
-          callback(response.category);
+          callback(response.obj);
         }
       } else {
         dispatch(showMessageError(response.messageError));
