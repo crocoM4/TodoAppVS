@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import labels from '../../constants/labels';
 import { DONE } from '../../constants/steps';
 import { addTodoArgument } from '../../actions/todoArgumentsActions';
+import { showMessageInfo } from '../../actions/messageActions';
 
 class AddTodoArgument extends React.Component {
   constructor() {
@@ -29,6 +31,7 @@ class AddTodoArgument extends React.Component {
     const { options, dispatch } = this.props;
     const { title, description } = this.state;
     if (title === '') {
+      dispatch(showMessageInfo(labels.msgTitleRequired));
       return;
     }
     dispatch(addTodoArgument(

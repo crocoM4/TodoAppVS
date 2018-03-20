@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import labels from '../../constants/labels';
 import { ADD_ARGUMENT } from '../../constants/steps';
 import { addCategory } from '../../actions/categoriesActions';
+import { showMessageInfo } from '../../actions/messageActions';
 
 class AddCategory extends React.Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class AddCategory extends React.Component {
     const { name } = this.state;
     const { dispatch } = this.props;
     if (name === '') {
+      dispatch(showMessageInfo(labels.msgNameRequired));
       return;
     }
     dispatch(addCategory(name, this.onCategoryCreated));

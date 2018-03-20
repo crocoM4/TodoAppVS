@@ -107,7 +107,7 @@ export const addCategory = (name = '', callback = undefined) => (dispatch) => {
       if (response.success) {
         dispatch(addCategoryLocal(response.data));
         if (callback !== undefined) {
-          callback(response.obj);
+          callback(response.data);
         }
       } else {
         dispatch(showMessageError(response.messageError));

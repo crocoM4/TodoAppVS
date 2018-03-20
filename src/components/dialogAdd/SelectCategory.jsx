@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import labels from '../../constants/labels';
 import Category from '../Category';
 import { ADD_ARGUMENT } from '../../constants/steps';
+import { showMessageInfo } from '../../actions/messageActions';
 
 
 class SelectCategory extends React.Component {
@@ -22,10 +24,12 @@ class SelectCategory extends React.Component {
 
   onButtonNextClick() {
     const { selectedCategory } = this.state;
-    const { onNext } = this.props;
-    if (selectedCategory !== undefined) {
-      onNext({ stepId: ADD_ARGUMENT, options: { selectedCategory } });
+    const { onNext, dispatch } = this.props;
+    if (selectedCategory === undefined) {
+      dispatch(showMessageInfo(labels.msgSelectCategory));
+      return;
     }
+    onNext({ stepId: ADD_ARGUMENT, options: { selectedCategory } });
   }
 
   render() {
@@ -62,6 +66,7 @@ class SelectCategory extends React.Component {
 }
 
 SelectCategory.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   categoriesList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
