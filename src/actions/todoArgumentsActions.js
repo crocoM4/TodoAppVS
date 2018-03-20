@@ -56,7 +56,7 @@ export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(receiveFetchArguments(response.list));
+        dispatch(receiveFetchArguments(response.data));
       } else {
         dispatch(errorFetchArguments(response.messageError));
       }
@@ -87,7 +87,7 @@ export const addTodoArgument = (title = '', description = '', category = { id: '
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addArgumentLocal(response.obj));
+        dispatch(addArgumentLocal(response.data));
         if (callback !== undefined) {
           callback();
         }
@@ -104,7 +104,7 @@ export const toogleTodoArgumentCompleted = (todoArgumentId = '', completed = fal
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(updateArgumentLocal(response.obj));
+        dispatch(updateArgumentLocal(response.data));
       } else {
         dispatch(showMessageError(response.messageError));
       }
