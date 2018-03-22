@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -19,11 +20,27 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+    minimizer: [
+      new UglifyJSPlugin({
+        parallel: true,
+      }),
+    ],
   },
   module: {
     rules: [
@@ -53,12 +70,5 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.IgnorePlugin(/\.svg$/),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
-    new webpack.optimize.UglifyJsPlugin({
-      parallel: {
-        cache: true,
-        workers: 2,
-      },
-    }),
   ],
 };
