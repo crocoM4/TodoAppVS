@@ -7,6 +7,7 @@ const getAntiForgeryToken = () => {
 
 export const callApi = (url, options = {}) => (
   fetch(url, {
+    credentials: 'include',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
