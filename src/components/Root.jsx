@@ -16,7 +16,7 @@ class Root extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { initFetchAllCategories } = this.props;
     initFetchAllCategories();
   }
