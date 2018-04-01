@@ -14,17 +14,18 @@ Action.propTypes = {
 };
 
 class Snackbar extends React.Component {
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     const {
-      onClose, duration,
+      onClose, duration, show,
     } = this.props;
 
-    if (nextProps.show) {
+    if (show) {
       setTimeout(() => {
         onClose();
       }, duration);
     }
   }
+
   render() {
     const {
       message, isError, actionText, actionClick, show,
