@@ -24,15 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-ic-backward:before {
+.icon-backward:before {
   content: "\e902";
 }
-.icon-ic-forward:before {
+.icon-forward:before {
   content: "\e903";
 }
-.icon-ic-delete:before {
+.icon-delete:before {
   content: "\e900";
 }
-.icon-ic-check:before {
+.icon-check:before {
   content: "\e901";
 }
