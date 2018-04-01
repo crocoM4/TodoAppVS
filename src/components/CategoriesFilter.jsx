@@ -1,11 +1,16 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
+import ButtonArrow from './ButtonArrow';
 import Category from './Category';
 import Fade from './anims/Fade';
 
 const CategoriesFilter = ({ categoryList, onDeleteCategory, onCilckCategory }) => (
   <div id="content-categories-filter">
+    <ButtonArrow
+      onClick={() => {}}
+      direction="left"
+    />
     <TransitionGroup className="categories-filter">
       {
         categoryList.map(category => (
@@ -21,6 +26,10 @@ const CategoriesFilter = ({ categoryList, onDeleteCategory, onCilckCategory }) =
         ))
       }
     </TransitionGroup>
+    <ButtonArrow
+      onClick={() => {}}
+      direction="right"
+    />
   </div>
 );
 
