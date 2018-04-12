@@ -1,11 +1,14 @@
 .category-chip
   padding: 15px
   margin: 0 1.25em
-  background-color: trasparent
+  background-color: rgba(0,0,0,0)
   border-radius: 50px
   border: $category-chip-border
   cursor: pointer
   transition: all 150ms ease-in-out
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
 
   .category-text
     color: $category-chip-text

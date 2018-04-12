@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ButtonScroll = ({ onClick, direction }) => (
-  <button className="button-scroll" onClick={onClick}>
+  <button className={`button-scroll ${direction}`} onClick={onClick}>
     <i className={(direction === 'left') ? 'icon-backward' : 'icon-forward'} />
   </button>
 );

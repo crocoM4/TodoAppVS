@@ -1,8 +1,8 @@
 .button-scroll
+  position: absolute
   background: none
   height: 100%
   width: 28px
-  background-color: $button-scroll-background
   outline: none
   border: none
   cursor: pointer
@@ -18,8 +18,15 @@
     color: $button-scroll-icon-color
     transition: color 200ms ease-in
 
-.button-scroll:hover
-  background-color: $button-scroll-background-hover
-
   i
     color: $button-scroll-icon-color-hover
+
+.button-scroll.left
+  left: 0
+  background: $button-scroll-left-background
+  border-radius: $container-border-radius 0 0 $container-border-radius
+
+.button-scroll.right
+  right: 0
+  background: $button-scroll-right-background
+  border-radius: 0 $container-border-radius $container-border-radius 0
