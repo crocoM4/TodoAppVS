@@ -38,7 +38,7 @@ class Root extends Component {
           onClose={() => this.setState({ isDialogAddOpen: false })}
         />
         <Snackbar
-          show={message.show}
+          show
           isError={message.isError}
           message={message.text}
           onClose={() => hideMessage()}

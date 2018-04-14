@@ -20,7 +20,7 @@ const transitionStyles = {
   },
 };
 
-const SnackbarAnim = ({ in: inProp, children }) => (
+const SnackbarAnim = ({ in: inProp, children, customClass }) => (
   <Transition in={inProp} timeout={duration}>
     {state => (
       <div
@@ -29,6 +29,7 @@ const SnackbarAnim = ({ in: inProp, children }) => (
           ...defaultStyle,
           ...transitionStyles[state],
         }}
+        className={customClass}
       >
         {children}
       </div>
@@ -39,6 +40,11 @@ const SnackbarAnim = ({ in: inProp, children }) => (
 SnackbarAnim.propTypes = {
   in: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
+  customClass: PropTypes.string,
+};
+
+SnackbarAnim.defaultProps = {
+  customClass: '',
 };
 
 export default SnackbarAnim;
