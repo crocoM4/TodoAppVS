@@ -17,6 +17,9 @@ module.exports = {
       'redux',
       'redux-thunk',
       'reselect',
+      'react-router-dom',
+      'react-transition-group',
+      'scroll',
     ],
   },
   output: {
