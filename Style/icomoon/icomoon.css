@@ -36,9 +36,9 @@
 .icon-forward:before {
   content: "\e903";
 }
-.icon-ic-chart:before {
+.icon-chart:before {
   content: "\e904";
 }
-.icon-ic-list-todo:before {
+.icon-list-todo:before {
   content: "\e905";
 }

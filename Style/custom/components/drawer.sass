@@ -1,0 +1,41 @@
+#drawer-container
+  position: relative
+  display: flex
+  flex-direction: column
+  width: $drawer-width
+  background-color: $drawer-background-color
+  margin: 0 $container-margin 0 0
+  -webkit-border-radius: $container-border-radius
+  border-radius: $container-border-radius
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+
+  .item
+    position: relative
+    width: $drawer-width
+    height: $drawer-item-height
+    color: $drawer-item-icon-color
+    text-decoration: none
+    background: none
+    outline: none
+    border: none
+    cursor: pointer
+    align-self: center
+    justify-self: end
+    box-sizing: border-box
+    transition: background 200ms ease-in
+  
+  .item:hover
+    color: $drawer-item-icon-color-hover
+  
+  .item.selected
+    color: $drawer-item-icon-color-selected
+    background-color: $drawer-item-select-background
+
+  .item:first-child
+    -webkit-border-radius: $container-border-radius $container-border-radius 0 0
+    border-radius: $container-border-radius $container-border-radius 0 0
+
+  .item:last-child
+    -webkit-border-radius: 0 0 $container-border-radius $container-border-radius
+    border-radius: 0 0 $container-border-radius $container-border-radius
