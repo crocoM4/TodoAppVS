@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Drawer from '../components/Drawer';
 import TodosContainer from '../containers/TodosContainer';
@@ -10,6 +10,11 @@ const Root = () => (
   <Router>
     <div id="main-container">
       <div id="flex-container">
+        <Route
+          exact
+          path="/"
+          render={() => <Redirect to={paths.TODOS} />}
+        />
         <Drawer />
         <Switch>
           <Route
