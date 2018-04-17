@@ -12,6 +12,7 @@ const todoArguments = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
+        items: [],
       };
     case actionTypes.RECEIVE_FETCH_ARGUMENTS:
       return {
