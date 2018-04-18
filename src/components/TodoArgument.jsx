@@ -11,11 +11,24 @@ class TodoArgument extends React.Component {
     this.state = {
       collapsed: false,
     };
+    this.renderDate = this.renderDate.bind(this);
   }
 
   onTitleClick() {
     const { collapsed } = this.state;
     this.setState({ collapsed: !collapsed });
+  }
+
+  renderDate() {
+    const { argument } = this.props;
+    if (argument.completed) {
+      return (
+        <p className="complete-date">{(argument.completedAt) ? argument.completedAt.toString() : ''}</p>
+      );
+    }
+    return (
+      <p className="complete-within-date">To Complete</p>
+    );
   }
 
   render() {
@@ -44,6 +57,9 @@ class TodoArgument extends React.Component {
             />
           }
         </div>
+        <div className="argument-date">
+          {this.renderDate()}
+        </div>
         <Collapse in={collapsed}>
           <div key={argument.description} className="argument-body">
             <p className="argument-description">
@@ -67,6 +83,7 @@ TodoArgument.propTypes = {
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     category: PropTypes.shape({}).isRequired,
+    completedAt: PropTypes.shape({}),
   }).isRequired,
 };
 
