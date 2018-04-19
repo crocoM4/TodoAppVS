@@ -4,6 +4,7 @@ import Collapse from './anims/Collapse';
 import Fade from './anims/Fade';
 import ButtonCompleteArgument from './ButtonCompleteArgument';
 import ButtonDeleteArgument from './ButtonDeleteArgument';
+import { toSimpleDateFormat } from '../utils/Common';
 
 class TodoArgument extends React.Component {
   constructor(props) {
@@ -23,11 +24,11 @@ class TodoArgument extends React.Component {
     const { argument } = this.props;
     if (argument.completed) {
       return (
-        <p className="complete-date">{(argument.completedAt) ? argument.completedAt.toString() : ''}</p>
+        <p className="complete-date">{`completed ${(argument.completedAt) ? toSimpleDateFormat(argument.completedAt) : ''}`}</p>
       );
     }
     return (
-      <p className="complete-within-date">To Complete</p>
+      <p className="complete-within-date">{`to complete within ${(argument.todoWithin) ? toSimpleDateFormat(argument.todoWithin) : ''}`}</p>
     );
   }
 
