@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import labels from '../../constants/labels';
-import { DONE } from '../../constants/steps';
-import { addTodoArgument } from '../../actions/todoArgumentsActions';
+import { SELECT_COMPLETE_DATE } from '../../constants/steps';
 import { showMessageInfo } from '../../actions/messageActions';
 
 class AddTodoArgument extends React.Component {
@@ -14,35 +13,25 @@ class AddTodoArgument extends React.Component {
       title: '',
       description: '',
     };
-    this.onInputTitleTextChange = this.onInputTitleTextChange.bind(this);
-    this.onInputDescriptionTextChange = this.onInputDescriptionTextChange.bind(this);
-    this.onButtonAddClick = this.onButtonAddClick.bind(this);
-    this.onTodoArgumentCreated = this.onTodoArgumentCreated.bind(this);
+    this.onInputTextChange = this.onInputTextChange.bind(this);
+    this.onButtonScheduleClick = this.onButtonScheduleClick.bind(this);
   }
 
-  onInputTitleTextChange(e) {
-    this.setState({ title: e.target.value });
-  }
-  onInputDescriptionTextChange(e) {
-    this.setState({ description: e.target.value });
+  onInputTextChange(name) {
+    return (e) => {
+      this.setState({ [name]: e.target.value });
+    };
   }
 
-  onButtonAddClick() {
-    const { options, dispatch } = this.props;
+  onButtonScheduleClick() {
+    const { options, dispatch, onNext } = this.props;
     const { title, description } = this.state;
+    const category = options.selectedCategory;
     if (title === '') {
       dispatch(showMessageInfo(labels.msgTitleRequired));
       return;
     }
-    dispatch(addTodoArgument(
-      title, description,
-      options.selectedCategory, this.onTodoArgumentCreated,
-    ));
-  }
-
-  onTodoArgumentCreated() {
-    const { onNext } = this.props;
-    onNext({ stepId: DONE, options: { } });
+    onNext({ stepId: SELECT_COMPLETE_DATE, options: { title, description, category } });
   }
 
   render() {
@@ -61,21 +50,21 @@ class AddTodoArgument extends React.Component {
             className="main-input"
             type="text"
             placeholder="Type the title"
-            onChange={this.onInputTitleTextChange}
+            onChange={this.onInputTextChange('title')}
           />
           <input
             className="main-input"
             type="text"
             placeholder="Type the description"
-            onChange={this.onInputDescriptionTextChange}
+            onChange={this.onInputTextChange('description')}
           />
         </div>
         <div>
           <button
             className="main-button"
-            onClick={this.onButtonAddClick}
+            onClick={this.onButtonScheduleClick}
           >
-            ADD
+            SCHEDULE
           </button>
         </div>
       </div>

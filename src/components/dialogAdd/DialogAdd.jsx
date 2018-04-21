@@ -5,12 +5,14 @@ import SelectActionAdd from './SelectActionAdd';
 import AddCategory from './AddCategory';
 import SelectCategory from './SelectCategory';
 import AddTodoArgument from './AddTodoArgument';
+import SelectCompleteDate from './SelectCompleteDate';
 import Done from './Done';
 import {
   SELECT_WANT_TO_ADD,
   ADD_CATEGORY,
   ADD_ARGUMENT,
   SELECT_CATEGORY,
+  SELECT_COMPLETE_DATE,
   DONE,
 } from '../../constants/steps';
 import StepsAnim from '../anims/StepsAnim';
@@ -30,6 +32,8 @@ const getContentToRender = (steps, props) => {
       return <AddTodoArgument {...props} options={lastStep.options} />;
     case SELECT_CATEGORY:
       return <SelectCategory {...props} />;
+    case SELECT_COMPLETE_DATE:
+      return <SelectCompleteDate {...props} options={lastStep.options} />;
     case DONE:
       return <Done {...props} />;
     default:
