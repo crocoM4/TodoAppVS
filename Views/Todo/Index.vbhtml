@@ -20,7 +20,7 @@ End Code
     </div>
 
     @*<script src="@Url.Content("~/dist/vendor.js")"></script>*@
-    <script src="@Url.Content("~/dist/bundle.js")"></script>
+    <script src="@Url.Content("~/dist/main.js")"></script>
 
 </body>
 </html>

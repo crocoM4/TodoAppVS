@@ -8,6 +8,7 @@ import {
   UPDATE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
 import { showMessageError } from './messageActions';
+import { toJsDate } from '../utils/Common';
 
 const requestFetchArguments = () => (
   {
@@ -56,7 +57,13 @@ export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(receiveFetchArguments(response.list));
+        const todos = response.data.map(todo =>
+          ({
+            ...todo,
+            completedAt: (todo.completedAt) ? toJsDate(todo.completedAt) : undefined,
+            todoWithin: (todo.todoWithin) ? toJsDate(todo.todoWithin) : undefined,
+          }));
+        dispatch(receiveFetchArguments(todos));
       } else {
         dispatch(errorFetchArguments(response.messageError));
       }
@@ -82,12 +89,27 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
   );
 };
 
-export const addTodoArgument = (title = '', description = '', category = { id: '' }, callback = undefined) => (dispatch) => {
-  const request = callApi('/add-argument', { title, description, categoryId: category.id });
+export const addTodoArgument = (title = '', description = '', category = { id: '' }, todoWithin, callback = undefined) => (dispatch) => {
+  const request = callApi(
+    '/add-argument',
+    {
+      title,
+      description,
+      categoryId: category.id,
+      todoWithin,
+    },
+  );
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(addArgumentLocal(response.obj));
+        const todo = {
+          ...response.data,
+          completedAt: (response.data.completedAt)
+            ? toJsDate(response.data.completedAt) : undefined,
+          todoWithin: (response.data.todoWithin)
+            ? toJsDate(response.data.todoWithin) : undefined,
+        };
+        dispatch(addArgumentLocal(todo));
         if (callback !== undefined) {
           callback();
         }
@@ -104,7 +126,12 @@ export const toogleTodoArgumentCompleted = (todoArgumentId = '', completed = fal
   return request.then(
     (response) => {
       if (response.success) {
-        dispatch(updateArgumentLocal(response.obj));
+        const todo = {
+          ...response.data,
+          completedAt: (response.data.completedAt)
+            ? toJsDate(response.data.completedAt) : undefined,
+        };
+        dispatch(updateArgumentLocal(todo));
       } else {
         dispatch(showMessageError(response.messageError));
       }

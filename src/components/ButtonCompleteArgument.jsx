@@ -6,7 +6,7 @@ const ButtonCompleteArgument = ({ onClick, completed }) => (
     className={`button-complete-argument ${(completed) ? 'button-completed-argument' : ''}`}
     onClick={onClick}
   >
-    <i className="icon-ic-check" />
+    <i className="icon-check" />
   </button>
 );
 

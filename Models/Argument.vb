@@ -34,8 +34,8 @@ Public Class Argument
             parseObject.Get(Of String)(TableArgument.Columns.Description),
             parseObject.Get(Of Boolean)(TableArgument.Columns.Completed),
             New Category(parseObject.Get(Of ParseObject)(TableArgument.Columns.Category)),
-            If(parseObject.Keys.Contains(TableArgument.Columns.TodoWithin), parseObject.Get(Of Date)(TableArgument.Columns.TodoWithin), Nothing),
-            If(parseObject.Keys.Contains(TableArgument.Columns.CompletedAt), parseObject.Get(Of Date)(TableArgument.Columns.CompletedAt), Nothing)
+            If(parseObject.Keys.Contains(TableArgument.Columns.TodoWithin), parseObject.Get(Of Date)(TableArgument.Columns.TodoWithin), New Date?),
+            If(parseObject.Keys.Contains(TableArgument.Columns.CompletedAt), parseObject.Get(Of Date)(TableArgument.Columns.CompletedAt), New Date?)
             )
     End Sub
 

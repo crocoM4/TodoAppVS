@@ -2,15 +2,16 @@
   position: relative
   display: flex
   flex-direction: row
-  padding: 2.5em 0
+  padding: 0 0 $container-margin 0
 
 #content-categories-filter
+  position: relative
   flex-direction: row
-  width: 100%
+  width: 50%
   display: flex
+  flex-grow: 2
   background-color: $background-color-dark
   box-sizing: border-box
-  padding: 1.5em 1.25em
   -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
   -webkit-border-radius: $container-border-radius
@@ -18,3 +19,6 @@
 
   .categories-filter
     display: inherit
+    overflow: hidden
+    flex-grow: 1
+    padding: 1.5rem 0

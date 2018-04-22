@@ -14,23 +14,25 @@ Action.propTypes = {
 };
 
 class Snackbar extends React.Component {
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     const {
-      onClose, duration,
+      onClose, duration, show,
     } = this.props;
 
-    if (nextProps.show) {
+    if (show) {
       setTimeout(() => {
         onClose();
       }, duration);
     }
   }
+
   render() {
     const {
       message, isError, actionText, actionClick, show,
+      verticalPostion, horizontalPosition,
     } = this.props;
     return (
-      <SnackbarAnim in={show}>
+      <SnackbarAnim in={show} customClass={`${verticalPostion} ${(horizontalPosition)}`}>
         <div
           className={`snackbar ${(isError) ? 'error' : ''}`}
         >
@@ -53,6 +55,8 @@ Snackbar.propTypes = {
   isError: PropTypes.bool,
   actionText: PropTypes.string,
   actionClick: PropTypes.func,
+  verticalPostion: PropTypes.oneOf(['top', 'bottom']),
+  horizontalPosition: PropTypes.oneOf(['left', 'right']),
 };
 
 Snackbar.defaultProps = {
@@ -60,6 +64,8 @@ Snackbar.defaultProps = {
   isError: false,
   actionText: '',
   actionClick: undefined,
+  verticalPostion: 'bottom',
+  horizontalPosition: 'right',
 };
 
 export default Snackbar;

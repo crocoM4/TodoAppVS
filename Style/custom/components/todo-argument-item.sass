@@ -7,14 +7,15 @@
     position: relative
     display: flex
     overflow: hidden
-    margin: 15px
+    box-sizing: border-box
+    padding: 30px 40px 15px 40px
 
     .argument-title
       flex-grow: 2
       font-size: 1.6em
       color: $color-text-secondary
       font-weight: 300
-      padding: 15px 40px
+      padding: 0
       cursor: pointer
       align-self: center
 
@@ -27,6 +28,22 @@
     
     .argument-title-completed:hover
       color: $color-text-secondary
+    
+  .argument-date
+    position: relative
+    padding: 0 40px 30px 40px
+
+    .complete-date
+      font-size: 0.7rem
+      font-weight: 400
+      color: $color-text-third
+      padding: 0 
+    
+    .complete-within-date
+      font-size: 0.7rem
+      font-weight: 400
+      color: $color-text-secondary
+      padding: 0
 
   .argument-body
     position: relative
@@ -39,22 +56,7 @@
       color: $color-text-secondary
       font-weight: 300
       padding: 40px 55px
+      line-height: 1.5rem
 
       .empty
         font-style: italic
-
-
-
-.example-enter
-  opacity: 0.01
-
-.example-enter.example-enter-active
-  opacity: 1
-  transition: opacity 500ms ease-in
-
-.example-leave
-  opacity: 1
-
-.example-leave.example-leave-active 
-  opacity: 0.01
-  transition: opacity 300ms ease-in

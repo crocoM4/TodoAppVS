@@ -7,7 +7,7 @@ module.exports = {
   watch: true,
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
-    filename: 'bundle.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'inline-source-map',
@@ -22,7 +22,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.sass$/,
+        test: /\.(sass|css)$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },

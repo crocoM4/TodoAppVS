@@ -1,0 +1,32 @@
+.button-scroll
+  position: absolute
+  background: none
+  height: 100%
+  width: 28px
+  outline: none
+  border: none
+  cursor: pointer
+  align-self: center
+  justify-self: end
+  padding: 0
+  box-sizing: border-box
+  transition: background 200ms ease-in
+
+  i
+    margin: auto
+    font-size: 0.9em
+    color: $button-scroll-icon-color
+    transition: color 200ms ease-in
+
+.button-scroll:hover i
+    color: $button-scroll-icon-color-hover
+
+.button-scroll.left
+  left: 0
+  background: $button-scroll-left-background
+  border-radius: $container-border-radius 0 0 $container-border-radius
+
+.button-scroll.right
+  right: 0
+  background: $button-scroll-right-background
+  border-radius: 0 $container-border-radius $container-border-radius 0

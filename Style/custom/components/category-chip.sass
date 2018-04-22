@@ -1,11 +1,14 @@
 .category-chip
   padding: 15px
   margin: 0 1.25em
-  background-color: trasparent
+  background-color: rgba(0,0,0,0)
   border-radius: 50px
   border: $category-chip-border
   cursor: pointer
   transition: all 150ms ease-in-out
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
 
   .category-text
     color: $category-chip-text
@@ -14,26 +17,20 @@
     text-transform: uppercase
     margin: 0 1em 0 1em
 
-  .button-delete-category
-    background: none
-    outline: none
-    border: none
-    height: 17px
-    cursor: pointer
-
-    i
-      font-size: 1.3em
-      color: $icon-button-color
-
 .category-chip:hover
   border: $category-chip-border-hover
+
+  .category-text
+    color: $category-chip-text-hover
 
 .category-chip.category-selected
   background-color: $color-accent
 
+  .category-text
+    color: $category-chip-selected-text
 
-.category-chip.categoria-selezionata, .category-chip:hover
+.category-chip.category-selected, .category-chip:hover
 
   .category-text
-    color: $category-chip-text
+    color: $category-chip-selected-text-hover
     
