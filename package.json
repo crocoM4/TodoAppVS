@@ -1,6 +1,6 @@
 {
   "name": "todoapp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "todo app in .net con utilizzo di reactjs",
   "main": "src/index.js",
