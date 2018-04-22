@@ -42,3 +42,6 @@
 .icon-list-todo:before {
   content: "\e905";
 }
+.icon-calendar:before {
+  content: "\e906";
+}

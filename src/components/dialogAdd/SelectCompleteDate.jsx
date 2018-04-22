@@ -56,7 +56,7 @@ class SelectCompleteDate extends React.Component {
             minDate={new Date()}
             locale="en-US"
             clearIcon={<i className="icon-delete" />}
-            calendarIcon={<i className="icon-check" />}
+            calendarIcon={<i className="icon-calendar" />}
           />
         </div>
         <div>
