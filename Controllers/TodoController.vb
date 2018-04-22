@@ -99,12 +99,13 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function AddArgument(<Http.FromBody> ByVal title As String, <Http.FromBody> ByVal description As String, <Http.FromBody> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
+        Async Function AddArgument(<Http.FromBody> ByVal title As String, <Http.FromBody> ByVal description As String, <Http.FromBody> ByVal categoryId As String, <Http.FromBody> ByVal todoWithin As Date) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseDataResponse(Of Argument)
             Dim parseArgument As ParseObject = New ParseObject(TableArgument.Name)
             parseArgument(TableArgument.Columns.Title) = title
             parseArgument(TableArgument.Columns.Description) = description
             parseArgument(TableArgument.Columns.Completed) = False
+            parseArgument(TableArgument.Columns.TodoWithin) = todoWithin
             Dim category = Await ParseObject.CreateWithoutData(TableCategory.Name, categoryId).FetchIfNeededAsync()
             parseArgument(TableArgument.Columns.Category) = category
             Try

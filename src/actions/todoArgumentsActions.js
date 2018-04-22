@@ -58,7 +58,11 @@ export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
     (response) => {
       if (response.success) {
         const todos = response.data.map(todo =>
-          ({ ...todo, completedAt: (todo.completedAt) ? toJsDate(todo.completedAt) : undefined }));
+          ({
+            ...todo,
+            completedAt: (todo.completedAt) ? toJsDate(todo.completedAt) : undefined,
+            todoWithin: (todo.todoWithin) ? toJsDate(todo.todoWithin) : undefined,
+          }));
         dispatch(receiveFetchArguments(todos));
       } else {
         dispatch(errorFetchArguments(response.messageError));
@@ -85,8 +89,16 @@ export const deleteTodoArgument = (todoArgumentId = '') => (dispatch, getState) 
   );
 };
 
-export const addTodoArgument = (title = '', description = '', category = { id: '' }, callback = undefined) => (dispatch) => {
-  const request = callApi('/add-argument', { title, description, categoryId: category.id });
+export const addTodoArgument = (title = '', description = '', category = { id: '' }, todoWithin, callback = undefined) => (dispatch) => {
+  const request = callApi(
+    '/add-argument',
+    {
+      title,
+      description,
+      categoryId: category.id,
+      todoWithin,
+    },
+  );
   return request.then(
     (response) => {
       if (response.success) {
@@ -94,6 +106,8 @@ export const addTodoArgument = (title = '', description = '', category = { id: '
           ...response.data,
           completedAt: (response.data.completedAt)
             ? toJsDate(response.data.completedAt) : undefined,
+          todoWithin: (response.data.todoWithin)
+            ? toJsDate(response.data.todoWithin) : undefined,
         };
         dispatch(addArgumentLocal(todo));
         if (callback !== undefined) {
