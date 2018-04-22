@@ -54,6 +54,7 @@ class SelectCompleteDate extends React.Component {
             onChange={this.onInputDateChange}
             value={todoWithin}
             minDate={new Date()}
+            locale="en-US"
             clearIcon={<i className="icon-delete" />}
             calendarIcon={<i className="icon-check" />}
           />

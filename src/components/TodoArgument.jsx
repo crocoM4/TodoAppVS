@@ -28,7 +28,7 @@ class TodoArgument extends React.Component {
       );
     }
     return (
-      <p className="complete-within-date">{`to complete within ${(argument.todoWithin) ? toSimpleDateFormat(argument.todoWithin) : ''}`}</p>
+      <p className="complete-within-date">{`to complete within ${(argument.todoWithin) ? toSimpleDateFormat(argument.todoWithin) : 'not set'}`}</p>
     );
   }
 
