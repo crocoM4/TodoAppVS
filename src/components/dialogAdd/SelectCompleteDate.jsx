@@ -27,7 +27,7 @@ class SelectCompleteDate extends React.Component {
     const { todoWithin } = this.state;
     const { dispatch, options } = this.props;
     const { title, description, category } = options;
-    if (todoWithin === '') {
+    if (!todoWithin || todoWithin === '') {
       dispatch(showMessageInfo(labels.msgSelectDate));
       return;
     }
