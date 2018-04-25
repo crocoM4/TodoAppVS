@@ -2,6 +2,8 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -43,6 +45,7 @@ module.exports = {
       new UglifyJSPlugin({
         parallel: true,
       }),
+      new OptimizeCSSAssetsPlugin({}),
     ],
   },
   module: {
@@ -55,7 +58,7 @@ module.exports = {
       {
         test: /\.(sass|css)$/,
         use: [
-          { loader: 'style-loader' },
+          MiniCssExtractPlugin.loader,
           { loader: 'css-loader' },
           {
             loader: 'postcss-loader',
@@ -73,5 +76,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.IgnorePlugin(/\.svg$/),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
   ],
 };
