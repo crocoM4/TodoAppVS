@@ -16,7 +16,7 @@ const transitionStyles = {
   entered: { opacity: 1 },
 };
 
-const StepsAnim = ({ in: inProp, endListener, children }) => (
+const ReplaceAnim = ({ in: inProp, endListener, children }) => (
   <Transition
     in={inProp}
     timeout={duration}
@@ -34,10 +34,10 @@ const StepsAnim = ({ in: inProp, endListener, children }) => (
   </Transition>
 );
 
-StepsAnim.propTypes = {
+ReplaceAnim.propTypes = {
   in: PropTypes.bool.isRequired,
   endListener: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default StepsAnim;
+export default ReplaceAnim;
