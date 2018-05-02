@@ -1,15 +1,16 @@
 import { createSelector } from 'reselect';
-import { getSelectedCategories } from './categoriesSelectors';
+import { getSelectedFilterCategories } from './todoFiltersSelectors';
+import categoryAll from '../constants/config';
 
 export const getTodoArguments = state => state.todoArguments;
 export const getTodoArgumentsList = state => state.todoArguments.items;
 
 export const getFilteredTodoArguments = createSelector(
-  getSelectedCategories,
+  getSelectedFilterCategories,
   getTodoArgumentsList,
   (listSelectedCategories, listTodoArguments) => (
     listTodoArguments.filter(todo =>
-      listSelectedCategories.findIndex(cat => cat.id === todo.category.id
-        || cat.id === '0') !== -1)
+      listSelectedCategories.findIndex(category => category.id === todo.category.id
+        || category.id === categoryAll.id) !== -1)
   ),
 );
