@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="msgCategoryIdRequired" xml:space="preserve">
+    <value>No category selected</value>
+  </data>
+  <data name="msgCategoryNameRequired" xml:space="preserve">
+    <value>Insert category name</value>
+  </data>
   <data name="msgErrorDelete" xml:space="preserve">
     <value>Error while deleting object</value>
   </data>
@@ -125,5 +131,14 @@
   </data>
   <data name="msgErrorSave" xml:space="preserve">
     <value>Error while saving object</value>
+  </data>
+  <data name="msgTodoArgumentIdRequired" xml:space="preserve">
+    <value>No todo arugment selected</value>
+  </data>
+  <data name="msgTodoArgumentTitleRequired" xml:space="preserve">
+    <value>Insert todo argument title</value>
+  </data>
+  <data name="msgTodoWithinDateRequired" xml:space="preserve">
+    <value>Insert todo argument complete date</value>
   </data>
 </root>

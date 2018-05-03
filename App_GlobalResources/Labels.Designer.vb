@@ -65,6 +65,24 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Cerca una stringa localizzata simile a No category selected.
+        '''</summary>
+        Friend Shared ReadOnly Property msgCategoryIdRequired() As String
+            Get
+                Return ResourceManager.GetString("msgCategoryIdRequired", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una stringa localizzata simile a Insert category name.
+        '''</summary>
+        Friend Shared ReadOnly Property msgCategoryNameRequired() As String
+            Get
+                Return ResourceManager.GetString("msgCategoryNameRequired", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una stringa localizzata simile a Error while deleting object.
         '''</summary>
         Friend Shared ReadOnly Property msgErrorDelete() As String
@@ -88,6 +106,33 @@ Namespace Resources
         Friend Shared ReadOnly Property msgErrorSave() As String
             Get
                 Return ResourceManager.GetString("msgErrorSave", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una stringa localizzata simile a No todo arugment selected.
+        '''</summary>
+        Friend Shared ReadOnly Property msgTodoArgumentIdRequired() As String
+            Get
+                Return ResourceManager.GetString("msgTodoArgumentIdRequired", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una stringa localizzata simile a Insert todo argument title.
+        '''</summary>
+        Friend Shared ReadOnly Property msgTodoArgumentTitleRequired() As String
+            Get
+                Return ResourceManager.GetString("msgTodoArgumentTitleRequired", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Cerca una stringa localizzata simile a Insert todo argument complete date.
+        '''</summary>
+        Friend Shared ReadOnly Property msgTodoWithinDateRequired() As String
+            Get
+                Return ResourceManager.GetString("msgTodoWithinDateRequired", resourceCulture)
             End Get
         End Property
     End Class

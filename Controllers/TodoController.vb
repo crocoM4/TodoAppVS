@@ -56,6 +56,10 @@ Namespace Controllers
         Async Function DeleteCategory(<Http.FromBody> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseResponse()
             Try
+                If categoryId Is Nothing OrElse categoryId.Equals("0") Then
+                    response.setError(Resources.Labels.msgCategoryIdRequired)
+                    Return Json(response, JsonRequestBehavior.AllowGet)
+                End If
                 Dim parseCategory As ParseObject = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 Await parseCategory.DeleteAsync()
                 response.setSuccess()
@@ -71,6 +75,10 @@ Namespace Controllers
         Async Function DeleteArgument(<Http.FromBody> ByVal todoArgumentId As String) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseResponse()
             Try
+                If todoArgumentId Is Nothing Then
+                    response.setError(Resources.Labels.msgTodoArgumentIdRequired)
+                    Return Json(response, JsonRequestBehavior.AllowGet)
+                End If
                 Dim parseArgument As ParseObject = ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId)
                 Await parseArgument.DeleteAsync()
                 response.setSuccess()
@@ -88,6 +96,10 @@ Namespace Controllers
             Dim parseCategory As ParseObject = New ParseObject(TableCategory.Name)
             parseCategory(TableCategory.Columns.Name) = name
             Try
+                If name Is Nothing OrElse name.Equals("") Then
+                    response.setError(Resources.Labels.msgCategoryNameRequired)
+                    Return Json(response, JsonRequestBehavior.AllowGet)
+                End If
                 Await parseCategory.SaveAsync()
                 response.setSuccess(New Category(parseCategory))
             Catch ex As Exception
@@ -101,6 +113,21 @@ Namespace Controllers
         <OutputCache(Location:=OutputCacheLocation.None)>
         Async Function AddArgument(<Http.FromBody> ByVal title As String, <Http.FromBody> ByVal description As String, <Http.FromBody> ByVal categoryId As String, <Http.FromBody> ByVal todoWithin As Date) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseDataResponse(Of Argument)
+            If title Is Nothing OrElse title.Equals("") Then
+                response.setError(Resources.Labels.msgTodoArgumentTitleRequired)
+                Return Json(response, JsonRequestBehavior.AllowGet)
+            End If
+            If description Is Nothing Then
+                description = ""
+            End If
+            If categoryId Is Nothing OrElse categoryId.Equals("0") Then
+                response.setError(Resources.Labels.msgCategoryIdRequired)
+                Return Json(response, JsonRequestBehavior.AllowGet)
+            End If
+            If todoWithin.Equals(New Date?) Then
+                response.setError(Resources.Labels.msgTodoWithinDateRequired)
+                Return Json(response, JsonRequestBehavior.AllowGet)
+            End If
             Dim parseArgument As ParseObject = New ParseObject(TableArgument.Name)
             parseArgument(TableArgument.Columns.Title) = title
             parseArgument(TableArgument.Columns.Description) = description
@@ -122,6 +149,13 @@ Namespace Controllers
         <OutputCache(Location:=OutputCacheLocation.None)>
         Async Function ToogleArgumentCompleted(<Http.FromBody> ByVal todoArgumentId As String, <Http.FromBody> ByVal completed As Boolean) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseDataResponse(Of Argument)
+            If todoArgumentId Is Nothing OrElse todoArgumentId.Equals("0") Then
+                response.setError(Resources.Labels.msgTodoArgumentIdRequired)
+                Return Json(response, JsonRequestBehavior.AllowGet)
+            End If
+            If completed.Equals(New Boolean?) Then
+                completed = False
+            End If
             Dim parseArgument As ParseObject = Await ParseObject.CreateWithoutData(TableArgument.Name, todoArgumentId).FetchIfNeededAsync()
             parseArgument(TableArgument.Columns.Completed) = Not completed
             If Not completed Then

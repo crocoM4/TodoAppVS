@@ -1,0 +1,36 @@
+.visibility-filter-wrapper
+  width: 97px
+  min-width: 97px
+  margin-left: 2.5em
+  background-color: $visibility-button-switch-background
+  display: inline-flex
+  flex-direction: row
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2)
+  border-radius: $container-border-radius
+
+  .visibility-button-switch:first-child
+    border-radius: $container-border-radius 0 0 $container-border-radius
+
+  .visibility-button-switch:last-child
+    border-radius: 0 $container-border-radius $container-border-radius 0
+
+  .visibility-button-switch
+    width: 50%
+    cursor: pointer
+    transition: all 150ms ease-in-out
+
+    i
+      color: $icon-button-color
+      font-size: 1.0rem
+      transition: all 150ms ease-in-out
+  
+  .visibility-button-switch:hover
+
+    i
+      color: $visibility-button-switch-icon-color-hover
+
+  .visibility-button-switch.selected
+    background-color: $visibility-button-switch-selected-background
+
+    i
+      color: $visibility-button-switch-icon-color-selected

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import labels from '../../constants/labels';
 import { ADD_ARGUMENT } from '../../constants/steps';
-import { addCategory } from '../../actions/categoriesActions';
+import { addCategory } from '../../actions/todoFiltersActions';
 import { showMessageInfo } from '../../actions/messageActions';
 
 class AddCategory extends React.Component {

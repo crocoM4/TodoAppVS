@@ -4,14 +4,14 @@ import {
   toogleSelectCategory,
   toogleSelectCategoryAll,
   deleteCategory,
-} from '../actions/categoriesActions';
+} from '../actions/todoFiltersActions';
 import categoryAll from '../constants/config';
 
-import { getCategoriesList } from '../selectors/categoriesSelectors';
+import { getCategoriesFilterList } from '../selectors/todoFiltersSelectors';
 
 const mapStateToProps = state => (
   {
-    categoryList: getCategoriesList(state),
+    categoryList: getCategoriesFilterList(state),
   }
 );
 

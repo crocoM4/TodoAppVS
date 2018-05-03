@@ -1,0 +1,63 @@
+.steps-container
+  position: relative
+  margin-bottom: 20px
+
+  .steps-wrapper
+    width: 60%
+    margin: 0 auto
+    position: relative
+    display: flex
+    flex-direction: row
+    align-items: center
+    align-content: space-evenly
+
+    .step-container:first-child
+      flex-grow: 1
+
+    .step-container
+      display: flex
+      flex-direction: row
+      flex-grow: 2
+      align-items: center
+
+      .step
+        display: flex
+        flex-direction: column
+        align-items: center
+        align-content: center
+        flex-grow: 1
+        
+        .indicator
+          height: 10px
+          width: 10px
+          border-radius: 50%
+          background-color: $step-indicator-background-color
+          transition: $step-transition
+
+        .content-description
+
+          p
+            font-size: 0.65rem
+            color: $step-description-color
+            font-weight: 700
+            margin-top: 5px
+            transition: $step-transition
+
+      .step.completed
+
+        .indicator
+          background-color: $step-indicator-completed-background-color
+
+        .content-description
+
+          p
+            color: $step-description-completed-color
+
+      .line
+        height: 1px
+        width: 40%
+        background-color: $step-indicator-background-color
+        transition: $step-transition
+
+      .line.completed
+        background-color: $step-indicator-completed-background-color

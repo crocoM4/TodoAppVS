@@ -14,9 +14,11 @@ import {
   SELECT_CATEGORY,
   SELECT_COMPLETE_DATE,
   DONE,
+  stepList,
 } from '../../constants/steps';
-import StepsAnim from '../anims/StepsAnim';
+import ReplaceAnim from '../anims/ReplaceAnim';
 import DialogAnim from '../anims/DialogAnim';
+import Steps from './Steps';
 
 const getContentToRender = (steps, props) => {
   if (steps.length === 0) {
@@ -41,13 +43,22 @@ const getContentToRender = (steps, props) => {
   }
 };
 
+const initalState = {
+  nextSteps: [],
+  steps: [
+    {
+      stepId: SELECT_WANT_TO_ADD,
+      options: {},
+    },
+  ],
+  showStep: true,
+};
+
 class DialogAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      futureSteps: [],
-      steps: [],
-      showStep: true,
+      ...initalState,
     };
     this.onBack = this.onBack.bind(this);
     this.onNext = this.onNext.bind(this);
@@ -59,13 +70,13 @@ class DialogAdd extends React.Component {
     const { steps } = this.state;
     const { onClose } = this.props;
     const stepCount = steps.length;
-    if (stepCount === 0) {
+    if (stepCount === 1) {
       // Returned to the first steps, close the dialog
-      this.setState({ steps: [] });
+      this.setState({ ...initalState });
       onClose();
     } else {
       this.setState({
-        futureSteps: [
+        nextSteps: [
           ...steps.slice(0, steps.length - 1),
         ],
         showStep: false,
@@ -76,9 +87,10 @@ class DialogAdd extends React.Component {
   onNext(step = { stepId: '', options: {} }) {
     const { steps } = this.state;
     this.setState({
-      futureSteps: [
+      nextSteps: [
         ...steps, {
           ...step,
+          complete: true,
         },
       ],
       showStep: false,
@@ -89,20 +101,20 @@ class DialogAdd extends React.Component {
     const { onClose } = this.props;
     onClose();
     setTimeout(() => {
-      this.setState({ steps: [] });
+      this.setState({ ...initalState });
     }, 500);
   }
 
   onAnimationEnd(node, done) {
     node.addEventListener('transitionend', () => {
       done();
-      const { futureSteps, showStep } = this.state;
+      const { nextSteps, showStep } = this.state;
       if (showStep) {
         return;
       }
       this.setState({
         steps: [
-          ...futureSteps,
+          ...nextSteps,
         ],
         showStep: true,
       });
@@ -121,13 +133,17 @@ class DialogAdd extends React.Component {
               <i className="material-icons">&#xE5CD;</i>
             </button>
           </div>
-
-          <div className="dialog-container">
-            <StepsAnim in={showStep} endListener={onAnimationEnd}>
-              {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
-            </StepsAnim>
+          <div className="steps-container">
+            <Steps
+              list={stepList}
+              stepHistory={steps}
+            />
           </div>
-
+          <div className="dialog-container">
+            <ReplaceAnim in={showStep} endListener={onAnimationEnd}>
+              {getContentToRender(steps, { onNext, onClose: onResetAndClose })}
+            </ReplaceAnim>
+          </div>
           <div className="dialog-footer">
             <button
               id="back-button-dialog"

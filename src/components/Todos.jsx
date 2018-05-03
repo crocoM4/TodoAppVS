@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import MainAddButton from '../components/MainAddButton';
 import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
+import VisibilityFilterContainer from '../containers/VisibilityFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
 import Snackbar from './Snackbar';
@@ -28,6 +29,7 @@ class Todos extends Component {
       <div className="content-app">
         <div id="main-top-bar">
           <CategoriesFilterContainer />
+          <VisibilityFilterContainer />
           <MainAddButton
             onClick={() => this.setState({ isDialogAddOpen: true })}
           />
