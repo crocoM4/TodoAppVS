@@ -7,11 +7,11 @@ import {
 } from '../actions/todoFiltersActions';
 import categoryAll from '../constants/config';
 
-import { getFilterCategoriesList } from '../selectors/todoFiltersSelectors';
+import { getCategoriesFilterList } from '../selectors/todoFiltersSelectors';
 
 const mapStateToProps = state => (
   {
-    categoryList: getFilterCategoriesList(state),
+    categoryList: getCategoriesFilterList(state),
   }
 );
 

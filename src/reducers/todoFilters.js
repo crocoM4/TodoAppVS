@@ -1,6 +1,13 @@
 ﻿import * as actionTypes from '../constants/actionTypes';
 import categoryAll, { ONLY_TO_COMPLETE } from '../constants/config';
 
+const setVisibility = (current, next) => {
+  if (current !== next) {
+    return next;
+  }
+  return current;
+};
+
 const initialState = {
   isFetching: false,
   categories: [
@@ -98,6 +105,11 @@ const todoFilters = (state = initialState, action) => {
             selected: false,
           };
         }),
+      };
+    case actionTypes.SWITCH_VISIBILITY_FILTER:
+      return {
+        ...state,
+        visibility: setVisibility(state.visibility, action.visibility),
       };
     default:
       return state;

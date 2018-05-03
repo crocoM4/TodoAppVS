@@ -7,6 +7,7 @@ import {
   REMOVE_CATEGORY_LOCAL,
   TOOGLE_SELECT_CATEGORY,
   TOOGLE_SELECT_CATEGORY_ALL,
+  SWITCH_VISIBILITY_FILTER,
 } from '../constants/actionTypes';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
 import { showMessageError } from './messageActions';
@@ -56,6 +57,13 @@ export const toogleSelectCategory = selectedCategory => (
 export const toogleSelectCategoryAll = () => (
   {
     type: TOOGLE_SELECT_CATEGORY_ALL,
+  }
+);
+
+export const switchVisibilityFilter = visibility => (
+  {
+    type: SWITCH_VISIBILITY_FILTER,
+    visibility,
   }
 );
 
