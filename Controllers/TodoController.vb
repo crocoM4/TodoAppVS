@@ -17,9 +17,18 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function FetchAllCategories() As Threading.Tasks.Task(Of ActionResult)
+        Async Function FetchAllCategories(
+                                        <Http.FromBody()> ByVal limit As Integer,
+                                        <Http.FromBody()> ByVal skip As Integer
+                                        ) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseDataResponse(Of List(Of Category))
             Dim query = New ParseQuery(Of ParseObject)(TableCategory.Name)
+            If limit > 0 Then
+                query = query.Limit(limit)
+            End If
+            If skip >= 0 Then
+                query = query.Skip(limit)
+            End If
             Try
                 Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
                 response.setSuccess(Category.getList(queryResult))
@@ -32,15 +41,25 @@ Namespace Controllers
         <HttpPost()>
         <ValidateJsonAntiForgeryToken>
         <OutputCache(Location:=OutputCacheLocation.None)>
-        Async Function FetchArgumentsByCategory(<Http.FromBody()> ByVal categoryId As String) As Threading.Tasks.Task(Of ActionResult)
+        Async Function FetchArgumentsByCategory(
+                                               <Http.FromBody()> ByVal categoryId As String,
+                                               <Http.FromBody()> ByVal completed As Boolean,
+                                               <Http.FromBody()> ByVal limit As Integer,
+                                               <Http.FromBody()> ByVal skip As Integer
+                                               ) As Threading.Tasks.Task(Of ActionResult)
             Dim response = New BaseDataResponse(Of List(Of Argument))
             Dim query = New ParseQuery(Of ParseObject)(TableArgument.Name)
             If categoryId IsNot Nothing And Not categoryId.Equals("0") Then
                 Dim parseCategory = ParseObject.CreateWithoutData(TableCategory.Name, categoryId)
                 query = query.WhereEqualTo(TableArgument.Columns.Category, parseCategory)
             End If
-            'query = query.Include(TableArgument.Columns.Category)
-
+            query = query.WhereEqualTo(TableArgument.Columns.Completed, completed)
+            If limit > 0 Then
+                query = query.Limit(limit)
+            End If
+            If skip >= 0 Then
+                query = query.Skip(limit)
+            End If
             Try
                 Dim queryResult = New List(Of ParseObject)(Await query.FindAsync())
                 response.setSuccess(Argument.getList(queryResult))
