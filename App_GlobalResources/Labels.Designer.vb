@@ -110,6 +110,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Cerca una stringa localizzata simile a Select a category.
+        '''</summary>
+        Friend Shared ReadOnly Property msgSelectCategory() As String
+            Get
+                Return ResourceManager.GetString("msgSelectCategory", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Cerca una stringa localizzata simile a No todo arugment selected.
         '''</summary>
         Friend Shared ReadOnly Property msgTodoArgumentIdRequired() As String

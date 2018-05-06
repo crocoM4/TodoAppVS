@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import VisibilityFilters from '../components/VisibilityFilters';
-import { switchVisibilityFilter } from '../actions/todoFiltersActions';
+import { changeVisibility } from '../actions/todoFiltersActions';
 
 import { getVisibilityFilter } from '../selectors/todoFiltersSelectors';
 
@@ -13,7 +13,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     onVisibilitySwitchClick: visibility => () => (
-      dispatch(switchVisibilityFilter(visibility))
+      dispatch(changeVisibility(visibility))
     ),
   }
 );

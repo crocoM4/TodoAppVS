@@ -4,11 +4,11 @@ import { TransitionGroup } from 'react-transition-group';
 import Resize from './anims/Resize';
 import TodoArgument from './TodoArgument';
 
-const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument, onCompleteArgument }) => (
+const TodoArguments = ({ listTodoArguments, onDeleteArgument, onCompleteArgument }) => (
   <div id="content-todo-arguments">
     <TransitionGroup>
       {
-        listFilteredTodoArguments.map(arg => (
+        listTodoArguments.map(arg => (
           <Resize key={arg.id}>
             <TodoArgument
               key={arg.id}
@@ -26,7 +26,7 @@ const TodoArguments = ({ listFilteredTodoArguments, onDeleteArgument, onComplete
 TodoArguments.propTypes = {
   onDeleteArgument: PropTypes.func.isRequired,
   onCompleteArgument: PropTypes.func.isRequired,
-  listFilteredTodoArguments: PropTypes.arrayOf(PropTypes.shape({
+  listTodoArguments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,

@@ -5,11 +5,11 @@ import {
   toogleTodoArgumentCompleted,
 } from '../actions/todoArgumentsActions';
 
-import { getFilteredTodoArguments } from '../selectors/todoArgumentsSelectors';
+import { getTodoArgumentsList } from '../selectors/todoArgumentsSelectors';
 
 const mapStateToProps = state => (
   {
-    listFilteredTodoArguments: getFilteredTodoArguments(state),
+    listTodoArguments: getTodoArgumentsList(state),
   }
 );
 
