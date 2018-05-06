@@ -11,9 +11,11 @@ import { queryItemsLimit } from '../constants/config';
 import { showMessageError } from './messageActions';
 import { toJsDate } from '../utils/Common';
 
-const requestFetchArguments = () => (
+const requestFetchArguments = (limit, skip) => (
   {
     type: REQUEST_FETCH_ARGUMENTS,
+    limit,
+    skip,
   }
 );
 
@@ -58,7 +60,7 @@ export const fetchTodoArgumentsByCategory = (
   limit = queryItemsLimit,
   skip = 0,
 ) => (dispatch) => {
-  dispatch(requestFetchArguments());
+  dispatch(requestFetchArguments(limit, skip));
   const request = callApi('/fetch-arguments-by-category', {
     categoriesId, completed, limit, skip,
   });

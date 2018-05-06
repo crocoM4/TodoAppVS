@@ -1,8 +1,12 @@
 ﻿import * as actionTypes from '../constants/actionTypes';
+import { queryItemsLimit } from '../constants/config';
 
 const initialState = {
   isFetching: false,
   items: [],
+  limit: queryItemsLimit,
+  skip: 0,
+  moreToLoad: true,
   error: '',
 };
 
@@ -12,13 +16,19 @@ const todoArguments = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        items: [],
+        limit: action.limit,
+        skip: action.skip,
+        items: (action.skip === 0) ? [] : state.items,
+        moreToLoad: (action.skip === 0) || state.moreToLoad,
       };
     case actionTypes.RECEIVE_FETCH_ARGUMENTS:
       return {
         ...state,
         isFetching: false,
-        items: action.todoArguments,
+        items: (state.skip === 0)
+          ? action.todoArguments
+          : [...state.items, ...action.todoArguments],
+        moreToLoad: (action.todoArguments.length === state.limit),
       };
     case actionTypes.ERROR_FETCH_ARGUMENTS:
       return {

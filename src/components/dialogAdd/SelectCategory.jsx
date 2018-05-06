@@ -76,7 +76,7 @@ SelectCategory.propTypes = {
 
 const mapStateToProp = state => (
   {
-    categoriesList: state.categories.items,
+    categoriesList: state.todoFilters.categories,
   }
 );
 
