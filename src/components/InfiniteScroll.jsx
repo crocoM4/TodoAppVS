@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 
 const waitTime = 500;
 
@@ -11,11 +11,11 @@ class InfiniteScroll extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', debounce(this.onScroll, waitTime), false);
+    window.addEventListener('scroll', throttle(this.onScroll, waitTime), false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', debounce(this.onScroll, waitTime), false);
+    window.removeEventListener('scroll', throttle(this.onScroll, waitTime), false);
   }
 
   onScroll() {
