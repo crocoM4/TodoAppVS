@@ -18,7 +18,6 @@ const todoArguments = (state = initialState, action) => {
         isFetching: true,
         limit: action.limit,
         skip: action.skip,
-        items: (action.skip === 0) ? [] : state.items,
         moreToLoad: (action.skip === 0) || state.moreToLoad,
       };
     case actionTypes.RECEIVE_FETCH_ARGUMENTS:
