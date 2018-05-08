@@ -47,7 +47,7 @@
     "sass-loader": "^7.0.1",
     "scroll": "^2.0.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.8.0",
+    "webpack": "^4.8.1",
     "webpack-cli": "^2.1.3"
   }
 }
