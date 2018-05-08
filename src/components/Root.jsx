@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
+import Loader from '../components/Loader';
 import Drawer from '../components/Drawer';
 import TodosContainer from '../containers/TodosContainer';
 import ChartsContainer from '../containers/ChartsContainer';
@@ -9,6 +10,7 @@ import * as paths from '../constants/paths';
 const Root = () => (
   <Router>
     <div id="main-container">
+      <Loader />
       <div id="flex-container">
         <Route
           exact
