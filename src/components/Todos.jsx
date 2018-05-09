@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import LoaderLinear from '../components/LoaderLinear';
 import MainAddButton from '../components/MainAddButton';
 import CategoriesFilterContainer from '../containers/CategoriesFilterContainer';
 import VisibilityFilterContainer from '../containers/VisibilityFilterContainer';
 import TodoArgumentsContainer from '../containers/TodoArgumentsContainer';
 import DialogAdd from './dialogAdd/DialogAdd';
 import Snackbar from './Snackbar';
-
 
 class Todos extends Component {
   constructor(props) {
@@ -24,9 +24,10 @@ class Todos extends Component {
 
   render() {
     const { isDialogAddOpen } = this.state;
-    const { message, hideMessage } = this.props;
+    const { message, hideMessage, showLoading } = this.props;
     return (
       <div className="content-app">
+        <LoaderLinear show={showLoading} />
         <div id="main-top-bar">
           <CategoriesFilterContainer />
           <VisibilityFilterContainer />
@@ -58,6 +59,7 @@ Todos.propTypes = {
   }).isRequired,
   hideMessage: PropTypes.func.isRequired,
   initFetchAllCategories: PropTypes.func.isRequired,
+  showLoading: PropTypes.bool.isRequired,
 };
 
 export default Todos;

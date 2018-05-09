@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { ONLY_COMPLETED } from '../constants/config';
 
+export const isFetchingCategoriesFilter = state => state.todoFilters.isFetching;
 export const getTodoFilters = state => state.todoFilters;
 export const getCategoriesFilterList = state => state.todoFilters.categories;
 export const getVisibilityFilter = state => state.todoFilters.visibility;
