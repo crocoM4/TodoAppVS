@@ -9,9 +9,15 @@ import {
   TOOGLE_SELECT_CATEGORY_ALL,
   SWITCH_VISIBILITY_FILTER,
 } from '../constants/actionTypes';
+import { queryItemsLimit } from '../constants/config';
 import { fetchTodoArgumentsByCategory } from './todoArgumentsActions';
 import { showMessageError } from './messageActions';
-import categoryAll from '../constants/config';
+import { getSelectedCategoriesId, visibilityOnlyCompleted } from '../selectors/todoFiltersSelectors';
+
+const fetchArguments = state => fetchTodoArgumentsByCategory(
+  getSelectedCategoriesId(state),
+  visibilityOnlyCompleted(state),
+);
 
 const requestFetchAllCategories = () => (
   {
@@ -47,34 +53,34 @@ const removeCategoryLocal = categoryIndex => (
   }
 );
 
-export const toogleSelectCategory = selectedCategory => (
+const toogleSelectCategory = selectedCategory => (
   {
     type: TOOGLE_SELECT_CATEGORY,
     selectedCategory,
   }
 );
 
-export const toogleSelectCategoryAll = () => (
+const toogleSelectCategoryAll = () => (
   {
     type: TOOGLE_SELECT_CATEGORY_ALL,
   }
 );
 
-export const switchVisibilityFilter = visibility => (
+const switchVisibilityFilter = visibility => (
   {
     type: SWITCH_VISIBILITY_FILTER,
     visibility,
   }
 );
 
-export const fetchAllCategories = () => (dispatch) => {
+export const fetchAllCategories = (limit = queryItemsLimit, skip = 0) => (dispatch, getState) => {
   dispatch(requestFetchAllCategories());
-  const request = callApi('/fetch-all-categories');
+  const request = callApi('/fetch-all-categories', { limit, skip });
   return request.then(
     (response) => {
       if (response.success) {
         dispatch(receiveFetchAllCategories(response.data));
-        dispatch(fetchTodoArgumentsByCategory(categoryAll.id));
+        dispatch(fetchTodoArgumentsByCategory(getSelectedCategoriesId(getState())));
       } else {
         dispatch(errorFetchAllCategories(response.messageError));
       }
@@ -125,4 +131,19 @@ export const addCategory = (name = '', callback = undefined) => (dispatch) => {
       dispatch(showMessageError(error))
     ),
   );
+};
+
+export const changeVisibility = visibility => (dispatch, getState) => {
+  dispatch(switchVisibilityFilter(visibility));
+  return dispatch(fetchArguments(getState()));
+};
+
+export const selectCategory = selectedCategory => (dispatch, getState) => {
+  dispatch(toogleSelectCategory(selectedCategory));
+  return dispatch(fetchArguments(getState()));
+};
+
+export const selectCategoryAll = () => (dispatch, getState) => {
+  dispatch(toogleSelectCategoryAll());
+  return dispatch(fetchArguments(getState()));
 };

@@ -132,6 +132,9 @@
   <data name="msgErrorSave" xml:space="preserve">
     <value>Error while saving object</value>
   </data>
+  <data name="msgSelectCategory" xml:space="preserve">
+    <value>Select a category</value>
+  </data>
   <data name="msgTodoArgumentIdRequired" xml:space="preserve">
     <value>No todo arugment selected</value>
   </data>

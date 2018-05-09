@@ -7,12 +7,15 @@ import {
   REMOVE_ARGUMENT_LOCAL,
   UPDATE_ARGUMENT_LOCAL,
 } from '../constants/actionTypes';
+import { queryItemsLimit } from '../constants/config';
 import { showMessageError } from './messageActions';
 import { toJsDate } from '../utils/Common';
 
-const requestFetchArguments = () => (
+const requestFetchArguments = (limit, skip) => (
   {
     type: REQUEST_FETCH_ARGUMENTS,
+    limit,
+    skip,
   }
 );
 
@@ -51,9 +54,16 @@ const updateArgumentLocal = todoArgument => (
   }
 );
 
-export const fetchTodoArgumentsByCategory = (categoryId = '') => (dispatch) => {
-  dispatch(requestFetchArguments());
-  const request = callApi('/fetch-arguments-by-category', { categoryId });
+export const fetchTodoArgumentsByCategory = (
+  categoriesId = [],
+  completed = false,
+  limit = queryItemsLimit,
+  skip = 0,
+) => (dispatch) => {
+  dispatch(requestFetchArguments(limit, skip));
+  const request = callApi('/fetch-arguments-by-category', {
+    categoriesId, completed, limit, skip,
+  });
   return request.then(
     (response) => {
       if (response.success) {

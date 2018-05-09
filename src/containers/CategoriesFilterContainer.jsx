@@ -1,8 +1,8 @@
 ﻿import { connect } from 'react-redux';
 import CategoriesFilter from '../components/CategoriesFilter';
 import {
-  toogleSelectCategory,
-  toogleSelectCategoryAll,
+  selectCategory,
+  selectCategoryAll,
   deleteCategory,
 } from '../actions/todoFiltersActions';
 import categoryAll from '../constants/config';
@@ -23,9 +23,9 @@ const mapDispatchToProps = dispatch => (
     onCilckCategory: (category, e) => {
       if (e.target.tagName.toLowerCase() !== 'i' && e.target.tagName.toLowerCase() !== 'button') {
         if (category.id === categoryAll.id) {
-          dispatch(toogleSelectCategoryAll());
+          dispatch(selectCategoryAll());
         } else {
-          dispatch(toogleSelectCategory(category));
+          dispatch(selectCategory(category));
         }
       }
     },
