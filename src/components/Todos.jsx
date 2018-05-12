@@ -18,6 +18,7 @@ class Todos extends Component {
   }
 
   componentDidMount() {
+    // DialogAdd.preload();
     const { initFetchAllCategories } = this.props;
     initFetchAllCategories();
   }

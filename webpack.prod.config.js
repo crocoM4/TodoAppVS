@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -5,27 +6,19 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+const packageFile = require('./package.json');
+
 module.exports = {
   mode: 'production',
   context: path.resolve('src'),
   entry: {
     main: './index.jsx',
-    vendor: [
-      'babel-polyfill',
-      'prop-types',
-      'react',
-      'react-dom',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'reselect',
-      'react-router-dom',
-      'react-transition-group',
-      'scroll',
-    ],
+    vendor: Object.keys(packageFile.dependencies),
   },
   output: {
+    publicPath: 'dist/',
     filename: '[name].js',
+    chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -75,6 +68,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.IgnorePlugin(/\.svg$/),
     new MiniCssExtractPlugin({
       filename: '[name].css',

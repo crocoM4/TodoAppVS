@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -7,7 +8,8 @@ module.exports = {
   watch: true,
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
-    filename: 'main.js',
+    publicPath: 'dist/',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'inline-source-map',
