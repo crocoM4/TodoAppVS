@@ -13,8 +13,8 @@ End Code
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
     @* Production *@
-    <link rel="stylesheet" href="@Url.Content("~/dist/vendor.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/dist/main.css")" />
+    @*<link rel="stylesheet" href="@Url.Content("~/dist/vendor.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/dist/main.css")" />*@
 </head>
 <body>
 
@@ -24,7 +24,7 @@ End Code
     </div>
 
     @* Production *@
-    <script src="@Url.Content("~/dist/vendor.js")"></script>
+    @*<script src="@Url.Content("~/dist/vendor.js")"></script>*@
     <script src="@Url.Content("~/dist/main.js")"></script>
 
 </body>
