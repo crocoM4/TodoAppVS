@@ -1,10 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
+import LoaderLinear from '../components/LoaderLinear';
 import Drawer from '../components/Drawer';
-import TodosContainer from '../containers/TodosContainer';
-import ChartsContainer from '../containers/ChartsContainer';
 import * as paths from '../constants/paths';
+
+const TodosContainer = Loadable({
+  loader: () => import('../containers/TodosContainer' /* webpackChunkName: 'todos' */), 
+  loading: LoaderLinear,
+});
+
+const ChartsContainer = Loadable({
+  loader: () => import('../containers/ChartsContainer' /* webpackChunkName: 'charts' */),
+  loading: LoaderLinear,
+});
 
 const Root = () => (
   <Router>
